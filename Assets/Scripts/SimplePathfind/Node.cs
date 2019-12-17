@@ -18,7 +18,7 @@ public class Node
     public Node parentNode;
     public Vector3 topLeftPositon;
     //A layer mask which will be obstructed by the pathfind
-    public LayerMask wallMask;
+    public LayerMask wallMask;    
     GameObject floor001 = GameObject.Find("Floor001");
 
     public Node(float xPos, float zPos)
@@ -32,9 +32,21 @@ public class Node
         obstructed = Physics.CheckSphere(position,0.5f, wallMask);        
     }
     
-    void FindNode(Vector3 pos)
+    Node FindNode(Vector3 pos)
     {
-        
+        //Round down the x position to the nearest int
+        int roundDownXPos = Convert.ToInt32(Math.Floor(pos.x));
+        //Round down the y position to the nearest int
+        int roundDownYPos = Convert.ToInt32(Math.Floor(pos.y));
+
+        //For each node in the list of 
+        foreach (Node Node in Grid.AllNodesList)
+        {
+            if (Node.position.x == roundDownXPos && Node.position.y == roundDownYPos)
+            {
+                return Node;
+            }            
+        }
     }
 
 }
