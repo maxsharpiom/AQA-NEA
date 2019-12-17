@@ -4,8 +4,8 @@ using UnityEngine;
 using System;
 
 public class Node
-{    
-    bool obstructed;
+{
+    bool obstructed = false;
     //Heuristic estimated cost from vertex n to the goal(an estimate)
     float hCost;
     //Exact cost of the path from the starting point to any vertex n
@@ -17,23 +17,24 @@ public class Node
     //The previous node - Used to traverse back through the shortest path
     public Node parentNode;
     public Vector3 topLeftPositon;
-
+    //A layer mask which will be obstructed by the pathfind
+    public LayerMask wallMask;
     GameObject floor001 = GameObject.Find("Floor001");
-    
-    public Node(float xPos, float zPos)
-    {
-        //Debug.Log($"{floor001.transform.position}");
-        //position        
-        //position = position - Vector3.right * xPos - Vector3.forward * zPos;
-        
-        Debug.Log($"{Vector3.right}");
-        //position = position +
-        //Debug.Log($"{position}");
-    }
 
-    Vector3 ReturnWorldPosition(float xPos, float yPos)
+    public Node(float xPos, float zPos)
+    {    
+        //Set the position of the node
+        position.Set(xPos,0,zPos);
+
+        Debug.Log($"{position}");
+
+        //Returns true if the node is toutching an object with the, "wallMask" LayerMask
+        obstructed = Physics.CheckSphere(position,0.5f, wallMask);        
+    }
+    
+    void FindNode(Vector3 pos)
     {
-        return new Vector3(xPos, yPos);
+        
     }
 
 }
