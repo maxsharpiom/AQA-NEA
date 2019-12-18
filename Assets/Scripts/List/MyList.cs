@@ -4,6 +4,27 @@ using UnityEngine;
 
 public class MyList<T>
 {
+    static public void Main(String[] args)
+    {
+       MyList<string> TestList = new MyList<string>();
+        TestList.Add(38);
+        TestList.Add(27);
+        TestList.Add(43);
+        TestList.Add(3);
+        TestList.Add(9);
+        TestList.Add(82);
+        TestList.Add(10);
+
+        int[] NumberArray = TestList.toIntArray();
+
+        for (int i = 0; i < length; i++)
+        {
+            console.WriteLine(NumberArray[i]);
+        }
+
+        Console.ReadLine();
+    }
+
     ///<summary>The entry point of the Node (a refrence to the first node)</summary>
     public Node<T> Head;
     /// <summary>
@@ -66,6 +87,25 @@ public class MyList<T>
 
         return tempPointer.Data;
     }
+
+    public int[] toIntArray()
+    {
+        int[] ListArray = new int[listLength];
+        //Creates a temporary pointer and sets it equal to the head
+        Node<T> TempPointer = Head;
+
+        for (int i = 0; i < listLength; i++)
+        {
+            ListArray[i] = TempPointer.Data;
+            if (TempPointer.NextNode != null)
+            {
+                TempPointer = TempPointer.NextNode;
+            }
+        }
+        return ListArray;
+    }
+
+
 
     public void DisplayList()
     {
