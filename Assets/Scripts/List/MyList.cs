@@ -50,6 +50,13 @@ public class MyList<T>
         listLength += 1;
     }
 
+    public T FindNode(int xPos, int zPos)
+    {
+        
+
+
+    }
+
     ///// <summary>
     ///// Move the pointer from it's current position to it's new position
     ///// </summary>
@@ -88,22 +95,29 @@ public class MyList<T>
         return tempPointer.Data;
     }
 
-    public int[] toIntArray()
+    public int ListLength()
     {
-        int[] ListArray = new int[listLength];
-        //Creates a temporary pointer and sets it equal to the head
-        Node<T> TempPointer = Head;
+        int listLength = this.listLength;
 
-        for (int i = 0; i < listLength; i++)
-        {
-            ListArray[i] = TempPointer.Data;
-            if (TempPointer.NextNode != null)
-            {
-                TempPointer = TempPointer.NextNode;
-            }
-        }
-        return ListArray;
+        return listLength;
     }
+
+    //public int[] toIntArray()
+    //{
+    //    int[] ListArray = new int[listLength];
+    //    //Creates a temporary pointer and sets it equal to the head
+    //    Node<T> TempPointer = Head;
+
+    //    for (int i = 0; i < listLength; i++)
+    //    {
+    //        ListArray[i] = TempPointer.Data;
+    //        if (TempPointer.NextNode != null)
+    //        {
+    //            TempPointer = TempPointer.NextNode;
+    //        }
+    //    }
+    //    return ListArray;
+    //}
 
 
 

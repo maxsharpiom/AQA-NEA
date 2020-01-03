@@ -30,23 +30,6 @@ public class GridNode
 
         //Returns true if the node is toutching an object with the, "wallMask" LayerMask
         obstructed = Physics.CheckSphere(position,0.5f, wallMask);        
-    }
-    
-    public GridNode FindNode(Vector3 pos)
-    {
-        //Round down the x position to the nearest int
-        int roundDownXPos = Convert.ToInt32(Math.Floor(pos.x));
-        //Round down the y position to the nearest int
-        int roundDownYPos = Convert.ToInt32(Math.Floor(pos.y));
-
-        //For each node in the list of 
-        foreach (GridNode Node in Grid.AllNodesList)
-        {
-            if (Node.position.x == roundDownXPos && Node.position.y == roundDownYPos)
-            {
-                return Node;
-            }            
-        }
-    }
+    }   
 
 }

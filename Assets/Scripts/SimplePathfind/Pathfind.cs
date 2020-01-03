@@ -12,7 +12,7 @@ public class Pathfind
 
     void Update()
     {
-        FindPath(startPos.position, endPos.position);        
+        FindPath(startPos.position, endPos.position);
     }
 
     void FindPath(Vector3 startPos, Vector3 endPos)
@@ -22,7 +22,7 @@ public class Pathfind
         //Return the node that is neighboruing the current leading node that has the lost fCost.
 
         //Find the node that is equal to the 
-        GridNode startNode = GridNode.FindNode(startPos);
+        GridNode startNode = Grid.FindNode(startPos);
         LeadingNode = startNode; //Could be prone to error seeing that it is called in the Update()
         GridNode endNode = GridNode.FindNode(endPos);
         //Add the starting node to the list
@@ -43,7 +43,7 @@ public class Pathfind
                 cost = Pythagoras(/*the leading node, goal*/);
                 break;
             case "gCost":
-                FindCost = Pythagoras();              
+                FindCost = Pythagoras();
                 break;
         }
 
