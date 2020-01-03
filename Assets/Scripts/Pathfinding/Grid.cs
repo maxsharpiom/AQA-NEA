@@ -28,11 +28,11 @@
 //    /// <summary>
 //    /// A 2D array that represents the Nodes within the grid
 //    /// </summary>
-//    Node[,] gridNodes;
+//    GridNode[,] gridNodes;
 //    /// <summary>
 //    /// A list to represent the shortest path
 //    /// </summary>
-//    public MyList<Node> pathToFollow;
+//    public MyList<GridNode> pathToFollow;
 //    /// <summary>
 //    /// The diameter of 1 node which is equal to radius*2
 //    /// </summary>
@@ -64,7 +64,7 @@
 //        {
 //            for (int x = 0; x < xSizeOfFloor; x++)
 //            {
-//                Node Node = new Node(false,);
+//                GridNode GridNode = new GridNode(false,);
 //            }
 //        }
 //    }

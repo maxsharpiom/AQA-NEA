@@ -2,7 +2,7 @@
 //using System.Collections.Generic;
 //using UnityEngine;
 
-//public class Node
+//public class GridNode
 //{
 
 //    collider NodeCollider;
@@ -23,7 +23,7 @@
 //    //The position of the node in the game
 //    public Vector3 position;
 //    //The previous node - Used to traverse back through the shortest path
-//    public Node parentNode;
+//    public GridNode parentNode;
 
 //    /// <summary>
 //    /// The node constructor that sets all the values equal
@@ -32,7 +32,7 @@
 //    /// <param name="position"></param>
 //    /// <param name="gridXNodePosition"></param>
 //    /// <param name="gridYNodePosition"></param>
-//    Node(bool obstructed, Vector3 position, int gridXNodePosition, int gridYNodePosition)
+//    GridNode(bool obstructed, Vector3 position, int gridXNodePosition, int gridYNodePosition)
 //    {
 //        obstructed = this.obstructed;
 //        position = this.position;

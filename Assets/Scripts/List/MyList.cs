@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class MyList<T>
 {
-    static public void Main(String[] args)
-    {
-       MyList<string> TestList = new MyList<string>();
-        TestList.Add(38);
-        TestList.Add(27);
-        TestList.Add(43);
-        TestList.Add(3);
-        TestList.Add(9);
-        TestList.Add(82);
-        TestList.Add(10);
+    //static public void Main(String[] args)
+    //{
+    //   MyList<string> TestList = new MyList<string>();
+    //    TestList.Add(38);
+    //    TestList.Add(27);
+    //    TestList.Add(43);
+    //    TestList.Add(3);
+    //    TestList.Add(9);
+    //    TestList.Add(82);
+    //    TestList.Add(10);
 
-        int[] NumberArray = TestList.toIntArray();
+    //    int[] NumberArray = TestList.toIntArray();
 
-        for (int i = 0; i < length; i++)
-        {
-            console.WriteLine(NumberArray[i]);
-        }
+    //    for (int i = 0; i < length; i++)
+    //    {
+    //        console.WriteLine(NumberArray[i]);
+    //    }
 
-        Console.ReadLine();
-    }
+    //    Console.ReadLine();
+    //}
 
-    ///<summary>The entry point of the Node (a refrence to the first node)</summary>
+    ///<summary>The entry point of the GridNode (a refrence to the first node)</summary>
     public Node<T> Head;
     /// <summary>
     /// The current node/pointer (allows traversal of the list)
@@ -33,7 +33,7 @@ public class MyList<T>
     public Node<T> current;
 
     //A pointer along the list which can be moved at any time
-    //public Node<T> pointer;
+    //public GridNode<T> pointer;
 
     ///<summary>The length of the list (the number of nodes in the list)</summary>
     int listLength = 0;
@@ -163,7 +163,7 @@ public class MyList<T>
         Node.NextNode = TempPointer.NextNode;
         //The tempPointer's next node is equal to the node (the main subject)
         TempPointer.NextNode = Node;
-        //The Node's next node's previous node is now equal to the node
+        //The GridNode's next node's previous node is now equal to the node
         Node.NextNode.PreviousNode = Node;
         //The tempPointer's previous node is equal to the tempPointe/Head
         TempPointer.PreviousNode = Node.PreviousNode;
@@ -269,7 +269,7 @@ public class MyList<T>
 
         if (newPos == 1 && oldPos != listLength)
         {
-            //Isolates Node
+            //Isolates GridNode
             OldTempPosPointer.PreviousNode.NextNode = OldTempPosPointer.NextNode;
             OldTempPosPointer.NextNode.PreviousNode = OldTempPosPointer.PreviousNode;
 
@@ -333,7 +333,7 @@ public class MyList<T>
         }
         else
         {
-            //Isolate Node
+            //Isolate GridNode
             OldTempPosPointer.PreviousNode.NextNode = OldTempPosPointer.NextNode;
             OldTempPosPointer.NextNode.PreviousNode = OldTempPosPointer.PreviousNode;
 
