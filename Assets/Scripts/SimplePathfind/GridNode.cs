@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class GridNode
+public class GridNode : MonoBehaviour
 {
-    bool obstructed = false;
+    public bool obstructed = true;
     //Heuristic estimated cost from vertex n to the goal(an estimate)
     public float hCost;
     //Exact cost of the path from the starting point to any vertex n
@@ -18,8 +18,21 @@ public class GridNode
     public GridNode parentNode;
     public Vector3 topLeftPositon;
     //A layer mask which will be obstructed by the pathfind
-    public LayerMask wallMask;    
+    public LayerMask wallMask;  
     GameObject floor001 = GameObject.Find("Floor001");
+
+    public GridNode(Vector3 pos)
+    {
+        //Round down the x position to the nearest int
+        int roundDownXPos = Convert.ToInt32(Math.Floor(pos.x));
+        //Round down the y position to the nearest int
+        int roundDownZPos = Convert.ToInt32(Math.Floor(pos.z));
+
+        position = new Vector3(roundDownXPos,0,roundDownZPos);
+        
+        //Returns true if the node is toutching an object with the, "wallMask" LayerMask
+        obstructed = Physics.CheckSphere(position, 0.5f, wallMask);
+    }
 
     public GridNode(float xPos, float zPos)
     {    

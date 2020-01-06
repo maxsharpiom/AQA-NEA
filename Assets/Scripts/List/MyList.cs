@@ -49,14 +49,7 @@ public class MyList<T>
         GiveNodePosition(Node);
         listLength += 1;
     }
-
-    public T FindNode(int xPos, int zPos)
-    {
-        
-
-
-    }
-
+    
     ///// <summary>
     ///// Move the pointer from it's current position to it's new position
     ///// </summary>
@@ -119,8 +112,6 @@ public class MyList<T>
     //    return ListArray;
     //}
 
-
-
     public void DisplayList()
     {
         //Creates a temporary pointer
@@ -138,7 +129,7 @@ public class MyList<T>
         }
 
     }
-
+        
     /// <summary>
     /// Assign the node a position within the list
     /// </summary>
