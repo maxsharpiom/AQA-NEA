@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class GridNode : MonoBehaviour
+public class GridNode
 {
     public bool obstructed = true;
     //Heuristic estimated cost from vertex n to the goal(an estimate)
@@ -39,7 +39,7 @@ public class GridNode : MonoBehaviour
         //Set the position of the node
         position.Set(xPos,0,zPos);
 
-        Debug.Log($"{position}");
+        //Debug.Log($"{position}");
 
         //Returns true if the node is toutching an object with the, "wallMask" LayerMask
         obstructed = Physics.CheckSphere(position,0.5f, wallMask);        

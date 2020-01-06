@@ -15,8 +15,8 @@ public class Pathfind : MonoBehaviour
 
     void Update()
     {
-        FindPath(startPos.position, endPos.position);
-        FinishedPath.DisplayList();
+        FindPath(startPos.position, endPos.position);       
+        //FinishedPath.DisplayList();
     }
 
     void FindPath(Vector3 startPos, Vector3 endPos)
@@ -25,7 +25,7 @@ public class Pathfind : MonoBehaviour
         //Sort all the nodes in the list to find the lowest fCost
         //Return the node that is neighboruing the current leading node that has the lost fCost.
 
-        GridNode[] NodeCompareArray = new GridNode[9];
+        GridNode[] NodeCompareArray = new GridNode[10];
         int counter = 0;
         GridNode startNode = new GridNode(startPos);
         LeadingNode = startNode; //Could be prone to error seeing that it is called in the Update()
@@ -36,33 +36,36 @@ public class Pathfind : MonoBehaviour
         //GridNode endNode = GridNode.FindNode(endPos);
 
         //Add the starting node to the list
-        FinishedPath.Add(startNode);
+        FinishedPath.Add(startNode);        
 
         while (arrived == false)
         {
-            if (LeadingNode.hCost == 0)
+            if (LeadingNode.position == endNode.position)
             {
                 arrived = true;
+                Debug.Log("Arrived");
             }
             else
             {
+                Debug.Log("Test");
                 //Create all 9 nodes (including the central one) around the leading node
                 for (int x = -1; x < 2; x++)
                 {
                     for (int z = -1; z < 2; z++)
-                    {
-                        counter += 1;
+                    {                        
                         GridNode NodeToCompare = new GridNode(LeadingNode.position);
                         int newXPos = Convert.ToInt32(LeadingNode.position.x) - x;
                         int newZPos = Convert.ToInt32(LeadingNode.position.z) - z;
                         NodeToCompare.position = new Vector3(newXPos,0,newZPos);
                         FindCosts(NodeToCompare, startPos, endPos);
                         NodeCompareArray[counter] = NodeToCompare;
+                        counter += 1;
                     }
                     //FindCosts(startPos, endPos);
                 }
 
-                LeadingNode = ReturnNodeWithLowestFCost(NodeCompareArray);                
+                LeadingNode = ReturnNodeWithLowestFCost(NodeCompareArray);
+                Debug.Log(LeadingNode.position);
             }
             
         }   
@@ -80,7 +83,7 @@ public class Pathfind : MonoBehaviour
         {
             if (NodeCompareArray[i].fCost < LeadingNode.fCost && NodeCompareArray[i].obstructed == false)
             {
-                NodeCompareArray[i] = LeadingNode;
+                LeadingNode = NodeCompareArray[i];
             }
               
         }

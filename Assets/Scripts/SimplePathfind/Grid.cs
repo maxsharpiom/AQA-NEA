@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Grid : MonoBehaviour
+public class Grid
 {
 
     MyList<GridNode> AllNodesList = new MyList<GridNode>();

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
     //The speed at which the enemy can move;
     public float speed = 6f;
 
