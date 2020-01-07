@@ -22,7 +22,23 @@ public class Pathfind : MonoBehaviour
 
     void TraversePath(MyList<GridNode> FinishedPath)
     {
+        int counter = 1;
+        bool arrived = false;
+        while (arrived == false)
+        {
+            Vector3 nodeToTraversePosition;
+            GridNode NodeToTraverse = FinishedPath.ReturnObject(counter);
+            //wanting to move it to a position but need to access the vector3 pos //////////////////////////////////////////////////////////////////////////////////////////////////////////
+            this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, FinishedPath.ReturnObject(counter), 1/*movespeed of gameObject*/);
+            CheckIfGameObjectArrived(arrived);
+        }        
+        
+    }
 
+    bool CheckIfGameObjectArrived(bool arrived)
+    {        
+
+        return arrived;
     }
 
     void FindPath(Vector3 startPos, Vector3 endPos)
@@ -52,7 +68,7 @@ public class Pathfind : MonoBehaviour
                 Debug.Log("Arrived");
             }
             else
-            {                
+            {
                 //An array the size of the number of traversable nodes around the leading node
                 GridNode[] NodeCompareArray = new GridNode[CountNeighbouringNodesThatAreTraversable(LeadingNode)];
 
@@ -98,7 +114,7 @@ public class Pathfind : MonoBehaviour
         //GridNode.fCost = GridNode.hCost + GridNode.gCost;
         //Only add the end node once reached
     }
-    
+
     GridNode[] ReturnTraversableGridNode(int NodeCompareArrayLength)
     {
         GridNode[] TraversableArray = new GridNode[NodeCompareArrayLength];
@@ -113,8 +129,8 @@ public class Pathfind : MonoBehaviour
                 if (!checkNode.obstructed)
                 {
                     TraversableArray[counter] = checkNode;
-                    counter += 1;                    
-                }                              
+                    counter += 1;
+                }
             }
         }
         return TraversableArray;
