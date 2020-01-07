@@ -30,13 +30,19 @@ public class Grid
                 //Create nodes over the area of the floor top
                 GridNode Node = new GridNode(x - (width / 2), z - (height / 2));
 
+                //If an object with a wallMask
                 if (Physics.CheckSphere(Node.position, 1, Node.wallMask))
+                {
+                    Node.obstructed = true;
+                }
+                else
                 {
                     Node.obstructed = false;
                 }
 
                 //Add the node to the list of all the nodes in the world
                 AllNodesList.Add(Node);
+                //Add the node to an array representing the grid with all the nodes
                 gridArray[x, z] = Node;
             }
         }

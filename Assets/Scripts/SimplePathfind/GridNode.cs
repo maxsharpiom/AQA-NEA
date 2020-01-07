@@ -17,8 +17,8 @@ public class GridNode
     //The previous node - Used to traverse back through the shortest path
     public GridNode parentNode;
     public Vector3 topLeftPositon;
-    //A layer mask which will be obstructed by the pathfind
-    public LayerMask wallMask;  
+    //A layer mask which will be obstructed by the pathfind and represents the wall
+    public LayerMask wallMask = LayerMask.GetMask("Wall");  
     GameObject floor001 = GameObject.Find("Floor001");
 
     public GridNode(Vector3 pos)

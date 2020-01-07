@@ -7,7 +7,7 @@ using System;
 public class Pathfind : MonoBehaviour
 {
     public Transform startPos;
-    public Transform endPos;    
+    public Transform endPos;
     //A list to represent the final path
     MyList<GridNode> FinishedPath = new MyList<GridNode>();
     GridNode LeadingNode; //The node that has the lowest fCost
@@ -15,8 +15,14 @@ public class Pathfind : MonoBehaviour
 
     void Update()
     {
-        FindPath(startPos.position, endPos.position);       
+        FindPath(startPos.position, endPos.position);
+        TraversePath(FinishedPath);
         //FinishedPath.DisplayList();
+    }
+
+    void TraversePath(MyList<GridNode> FinishedPath)
+    {
+
     }
 
     void FindPath(Vector3 startPos, Vector3 endPos)
@@ -25,8 +31,8 @@ public class Pathfind : MonoBehaviour
         //Sort all the nodes in the list to find the lowest fCost
         //Return the node that is neighboruing the current leading node that has the lost fCost.
 
-        GridNode[] NodeCompareArray = new GridNode[10];
-        int counter = 0;
+        //int counter = 0;
+
         GridNode startNode = new GridNode(startPos);
         LeadingNode = startNode; //Could be prone to error seeing that it is called in the Update()
         GridNode endNode = new GridNode(endPos);
@@ -36,7 +42,7 @@ public class Pathfind : MonoBehaviour
         //GridNode endNode = GridNode.FindNode(endPos);
 
         //Add the starting node to the list
-        FinishedPath.Add(startNode);        
+        FinishedPath.Add(startNode);
 
         while (arrived == false)
         {
@@ -46,29 +52,45 @@ public class Pathfind : MonoBehaviour
                 Debug.Log("Arrived");
             }
             else
-            {
-                Debug.Log("Test");
-                //Create all 9 nodes (including the central one) around the leading node
-                for (int x = -1; x < 2; x++)
+            {                
+                //An array the size of the number of traversable nodes around the leading node
+                GridNode[] NodeCompareArray = new GridNode[CountNeighbouringNodesThatAreTraversable(LeadingNode)];
+
+                NodeCompareArray = ReturnTraversableGridNode(NodeCompareArray.Length);
+
+                //Finds the cost of each node that is traversable
+                for (int i = 0; i < NodeCompareArray.Length; i++)
                 {
-                    for (int z = -1; z < 2; z++)
-                    {                        
-                        GridNode NodeToCompare = new GridNode(LeadingNode.position);
-                        int newXPos = Convert.ToInt32(LeadingNode.position.x) - x;
-                        int newZPos = Convert.ToInt32(LeadingNode.position.z) - z;
-                        NodeToCompare.position = new Vector3(newXPos,0,newZPos);
-                        FindCosts(NodeToCompare, startPos, endPos);
-                        NodeCompareArray[counter] = NodeToCompare;
-                        counter += 1;
-                    }
-                    //FindCosts(startPos, endPos);
+                    FindCosts(NodeCompareArray[i], startPos, endPos);
                 }
 
                 LeadingNode = ReturnNodeWithLowestFCost(NodeCompareArray);
                 Debug.Log(LeadingNode.position);
+
+                //Debug.Log("Test");
+                ////Create all 9 nodes (including the central one) around the leading node
+                //for (int x = -1; x < 2; x++)
+                //{
+                //    for (int z = -1; z < 2; z++)
+                //    {
+                //        GridNode NodeToCompare = new GridNode(LeadingNode.position);
+                //        int newXPos = Convert.ToInt32(LeadingNode.position.x) - x;
+                //        int newZPos = Convert.ToInt32(LeadingNode.position.z) - z;
+                //        NodeToCompare.position = new Vector3(newXPos, 0, newZPos);
+                //        //If the node is not next to a wall add it to the array
+                //        if (NodeToCompare.obstructed == false)
+                //        {
+                //            FindCosts(NodeToCompare, startPos, endPos);
+                //            NodeCompareArray[counter] = NodeToCompare; //May be an index problem
+                //            counter += 1;
+                //        }
+                //    }
+                //    //FindCosts(startPos, endPos);
+                //}
+
             }
-            
-        }   
+
+        }
 
         ////Calculate costs for the node
         //GridNode.hCost = FindCost("hCost", startPos, endPos);
@@ -76,16 +98,58 @@ public class Pathfind : MonoBehaviour
         //GridNode.fCost = GridNode.hCost + GridNode.gCost;
         //Only add the end node once reached
     }
+    
+    GridNode[] ReturnTraversableGridNode(int NodeCompareArrayLength)
+    {
+        GridNode[] TraversableArray = new GridNode[NodeCompareArrayLength];
+        int counter = 0;
+        for (int x = -1; x < 2; x++)
+        {
+            for (int z = -1; z < 2; z++)
+            {
+                int newXPos = Convert.ToInt32(LeadingNode.position.x) - x;
+                int newZPos = Convert.ToInt32(LeadingNode.position.z) - z;
+                GridNode checkNode = new GridNode(new Vector3(newXPos, 0, newZPos));
+                if (!checkNode.obstructed)
+                {
+                    TraversableArray[counter] = checkNode;
+                    counter += 1;                    
+                }                              
+            }
+        }
+        return TraversableArray;
+    }
+
+    int CountNeighbouringNodesThatAreTraversable(GridNode LeadingNode)
+    {
+        int numberOfTraversableNodes = 0;
+
+        for (int x = -1; x < 2; x++)
+        {
+            for (int z = -1; z < 2; z++)
+            {
+                int newXPos = Convert.ToInt32(LeadingNode.position.x) - x;
+                int newZPos = Convert.ToInt32(LeadingNode.position.z) - z;
+                GridNode checkNode = new GridNode(new Vector3(newXPos, 0, newZPos));
+                if (!checkNode.obstructed)
+                {
+                    numberOfTraversableNodes += 1;
+                }
+            }
+        }
+
+        return numberOfTraversableNodes;
+    }
 
     public GridNode ReturnNodeWithLowestFCost(GridNode[] NodeCompareArray)
-    {        
-        for (int i = 0; i < NodeCompareArray.Length; i++)
+    {
+        for (int i = 0; i < NodeCompareArray.Length; i++) //object refrece error, becuase you are trying to refrence an object that may not be in the array?
         {
-            if (NodeCompareArray[i].fCost < LeadingNode.fCost && NodeCompareArray[i].obstructed == false)
+            if (NodeCompareArray[i].fCost < LeadingNode.fCost)
             {
                 LeadingNode = NodeCompareArray[i];
             }
-              
+
         }
 
         FinishedPath.Add(LeadingNode);
@@ -111,11 +175,11 @@ public class Pathfind : MonoBehaviour
             case "hCost":
                 cost = Pythagoras(LeadingNode.position, endPos/*the leading node, goal*/);
                 break;
-                //Cost of starting node to leading node
+            //Cost of starting node to leading node
             case "gCost":
                 cost = Pythagoras(startPos, LeadingNode.position/*the leading node, goal*/);
                 break;
-                //gcost + hcost
+            //gcost + hcost
             case "fCost":
                 cost = LeadingNode.hCost + LeadingNode.gCost;
                 break;
@@ -130,7 +194,7 @@ public class Pathfind : MonoBehaviour
 
         //do pythag
 
-        distance = Mathf.Sqrt(Mathf.Pow(endPos.x-startPos.x,2)+Mathf.Pow(endPos.z-startPos.z,2));
+        distance = Mathf.Sqrt(Mathf.Pow(endPos.x - startPos.x, 2) + Mathf.Pow(endPos.z - startPos.z, 2));
 
         return distance;
     }
