@@ -15,9 +15,11 @@ public class Item : MonoBehaviour
     /// Sets the position of the item in the game world
     /// </summary>
     /// <param name="position"></param>
-    public Item(Vector3 position)
+    public Item(string name, Vector3 position, bool useableByPlayer)
     {
         this.position = position;
+        this.name = name;
+        this.usableByPlayer = useableByPlayer;
     }
 
 }
