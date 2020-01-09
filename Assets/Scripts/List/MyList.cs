@@ -88,7 +88,7 @@ public class MyList<T>
         return tempPointer.Data;
     }
 
-    public Node<T> ReturnObject(int pos)
+    public T ReturnObject(int pos)
     {
         Node<T> tempPointer = Head;
 
@@ -97,7 +97,7 @@ public class MyList<T>
             tempPointer = tempPointer.NextNode;
         }
 
-        return tempPointer;
+        return tempPointer.Data;
     }
 
     public int ListLength()

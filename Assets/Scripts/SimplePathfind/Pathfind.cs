@@ -25,19 +25,26 @@ public class Pathfind : MonoBehaviour
         int counter = 1;
         bool arrived = false;
         while (arrived == false)
-        {
-            Vector3 nodeToTraversePosition;
+        {            
             GridNode NodeToTraverse = FinishedPath.ReturnObject(counter);
+            Vector3 nodeToTraversePosition = NodeToTraverse.position;
             //wanting to move it to a position but need to access the vector3 pos //////////////////////////////////////////////////////////////////////////////////////////////////////////
-            this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, FinishedPath.ReturnObject(counter), 1/*movespeed of gameObject*/);
-            CheckIfGameObjectArrived(arrived);
+            this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, nodeToTraversePosition, this.gameObject.GetComponent<Enemy>().movementSpeed/*movespeed of gameObject*/);
+            CheckIfGameObjectArrived(arrived, nodeToTraversePosition);
         }        
         
     }
 
-    bool CheckIfGameObjectArrived(bool arrived)
-    {        
-
+    bool CheckIfGameObjectArrived(bool arrived, Vector3 nodeToTraversePosition)
+    {
+        if (this.gameObject.transform.position == nodeToTraversePosition)
+        {
+            arrived = true;
+        }
+        else
+        {
+            arrived = false;
+        }
         return arrived;
     }
 
@@ -81,8 +88,8 @@ public class Pathfind : MonoBehaviour
                 }
 
                 LeadingNode = ReturnNodeWithLowestFCost(NodeCompareArray);
+                
                 Debug.Log(LeadingNode.position);
-
                 //Debug.Log("Test");
                 ////Create all 9 nodes (including the central one) around the leading node
                 //for (int x = -1; x < 2; x++)
