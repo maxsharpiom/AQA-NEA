@@ -7,8 +7,7 @@ public class Item : MonoBehaviour
 {
     string name;
     bool usableByPlayer;
-    Vector3 position;
-    //May not need
+    Vector3 position;    
     string description;
 
     /// <summary>
