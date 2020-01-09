@@ -3,80 +3,95 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Weapons : Item
+public class Weapon
 {
     /// <summary>
-    /// Name of the weapon
+    /// The position of the weapon
     /// </summary>
-    string name;
+    Vector3 position;
+    /// <summary>
+    /// The name of the weapon
+    /// </summary>
+    protected string name;
     //Maximum attack distance
-    float maxDistance;
+    protected float maxDistance;
     /// <summary>
     /// Damage per attack
     /// </summary>
-    float damage;
+    protected float damage;
     /// <summary>
     /// The maxiumum amount of ammo at any one time
     /// </summary>
-    float magazineSize;
+    protected float magazineSize;
     /// <summary>
     /// The type of ammo acceptable by the weapon
     /// </summary>
-    Ammo AmmoType;
+    protected Ammo AmmoType;
     /// <summary>
     /// The time taken for a reload
     /// </summary>
-    float reloadTime;
+    protected float reloadTime;
     /// <summary>
     /// The current ammo in the weapon's magazine
     /// </summary>
-    int currentAmmoInMagazine;
+    protected float currentAmmoInMagazine;
     /// <summary>
     /// The amount of ammo in reserve
     /// </summary>
-    int reserveAmmo;
+    protected float reserveAmmo;
     /// <summary>
     /// Is the player currently holding the weapon?
     /// </summary>
-    bool playerIsHolding;
+    protected bool playerIsHolding;
     /// <summary>
     /// Is the weapon currently being reloaded?
     /// </summary>
-    bool weaponIsReloading;
+    protected bool weaponIsReloading;
     /// <summary>
     /// Is the weapon currently firing?
     /// </summary>
-    bool weaponIfFiring;
+    protected bool weaponIfFiring;
     /// <summary>
     /// Direction the weapon is being pointed in
     /// </summary>
-    Vector3 directionWeaponIsPoitingIn;
+    protected Vector3 directionWeaponIsPoitingIn;
     /// <summary>
     /// The player camera
     /// </summary>
-    public Camera playerCamera;   
+    protected Camera playerCamera;
     /// <summary>
     /// A layermask used to selectivly ignore colliders
     /// </summary>
-    int layerMask;
+    protected int layerMask;
     /// <summary>
     /// Attack animation for weapon
     /// </summary>
-    public Animation attackAnim;
+    protected Animation attackAnim;
     /// <summary>
     /// Reload animation for weapon
     /// </summary>
-    public Animation reloadAnim;
+    protected Animation reloadAnim;
     /// <summary>
     /// Attack audio for weapon
     /// </summary>
-    public AudioSouce attackAudio;
+    protected AudioSource attackAudio;
     /// <summary>
     /// Reload audio for weapon
     /// </summary>
-    public AudioSource reloadAudio;
+    protected AudioSource reloadAudio;
+    /// <summary>
+    /// Is the weapon useable by the player?
+    /// </summary>
+    protected bool useableByPlayer;
 
-    void Update()
+    public void Weapons(string name, Vector3 position, bool useableByPlayer)
+    {
+        this.name = name;
+        this.position = position;
+        this.useableByPlayer = useableByPlayer;
+    }
+
+    protected void Update()
     {
         //Keeps checking if the weapon is fired
         CheckFireWeapon();
@@ -84,7 +99,7 @@ public class Weapons : Item
         CheckReloadWeapon();
     }
 
-    void CheckFireWeapon()
+    protected void CheckFireWeapon()
     {
         if (Input.GetKey(KeyCode.Mouse1) && playerIsHolding == true && currentAmmoInMagazine > 0)
         {
@@ -100,7 +115,7 @@ public class Weapons : Item
     /// /// Some of this script derives from Brakey's youtube video
     /// https://www.youtube.com/watch?v=THnivyG0Mvo
     /// </summary>
-    void FireWeapon()
+    protected void FireWeapon()
     {
         weaponIfFiring = true;
         RaycastHit hit;
@@ -109,7 +124,7 @@ public class Weapons : Item
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance))
         {
             //Print the name of the object that has been hit
-            Debug.Log(hit.tranform.name);
+            Debug.Log(hit.transform.name);
             //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
             Target target = hit.transform.GetComponent<Target>();
             //If the gameObject hit has a target component (exists) then apply damage
@@ -127,7 +142,7 @@ public class Weapons : Item
         weaponIfFiring = false; //should be the last line of the subroutine
     }
 
-    void CheckReloadWeapon()
+    protected void CheckReloadWeapon()
     {
         if (Input.GetKeyDown(KeyCode.R) && playerIsHolding == true)
         {
@@ -135,14 +150,14 @@ public class Weapons : Item
         }        
     }
 
-    void ReloadWeapon()
+    protected void ReloadWeapon()
     {
         weaponIsReloading = true;
         Debug.Log("Reloading weapon...");
 
         //Ammo needed for the weapon to resuply fully its currentAmmoInMagazine
-        int AmmoNeeded = magazineSize - currentAmmoInMagazine;
-        int ReplenishAmmo = reserveAmmo - AmmoNeeded;
+        float AmmoNeeded = magazineSize - currentAmmoInMagazine;
+        float ReplenishAmmo = reserveAmmo - AmmoNeeded;
 
         //Only play the anim if there is enough ammo to reload
         if ((currentAmmoInMagazine+=reserveAmmo) != currentAmmoInMagazine)
@@ -166,7 +181,8 @@ public class Weapons : Item
             reserveAmmo -= AmmoNeeded;
         }
 
-        yield return new WaitForSeconds(reloadTime);
+        //Add a pause
+       // yield return new WaitForSeconds(reloadTime);
 
     }
 

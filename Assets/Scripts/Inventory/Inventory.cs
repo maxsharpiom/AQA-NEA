@@ -7,7 +7,7 @@ public class Inventory
 {
     public Inventory()
     {
-        MyList<Items> InventoryList = new MyList<Items>();
+       MyList<Item> InventoryList = new MyList<Item>();
     }
 
     /// <summary>
@@ -39,9 +39,9 @@ public class Inventory
 
     }
 
-    bool WeaponExistsInInventory(Item item)
+    public bool WeaponExistsInInventory(Item item)
     {
-        return InventoryList.Contains(item);                
+        return InventoryList.Contains(item);
     }
 
 }

@@ -5,10 +5,10 @@ using System;
 
 public class Item : MonoBehaviour
 {
-    string name;
-    bool usableByPlayer;
-    Vector3 position;    
-    string description;
+    public string name;
+    public bool usableByPlayer;
+    public Vector3 position;    
+    public string description;
 
     /// <summary>
     /// Sets the position of the item in the game world

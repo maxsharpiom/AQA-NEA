@@ -9,7 +9,9 @@ using UnityEngine;
 /// </summary>
 public class Target : MonoBehaviour
 {
-    public TakeDamage(float amount)
+    float maxHealth;
+
+    public void TakeDamage(float amount)
     {
         this.maxHealth -= amount;
 
@@ -21,7 +23,7 @@ public class Target : MonoBehaviour
     }
 
     //Destroy the gameObject attached to the script
-    public Die()
+    public void Die()
     {
         Destroy(this.gameObject);
         //Play animation associated with the game object death (should be specific to gameObject)        

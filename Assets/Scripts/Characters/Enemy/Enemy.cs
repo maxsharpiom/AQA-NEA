@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float maxHealth = 100;
-    private float movementSpeed = 5f;
-    Weapon weapon;
+    public float maxHealth = 100;
+    public float movementSpeed = 5f;
+    public Weapons weapon;
     public float fovAngle;
-    GameObject Player = new GameObject.FindWithTag("Player");
+    public GameObject Player;
     public float viewDistance;
-    bool playerInSight;
+    public bool playerInSight;
 
     void Update()
     {
