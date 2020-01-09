@@ -7,15 +7,10 @@ public class Enemy : MonoBehaviour
     private float maxHealth = 100;
     private float movementSpeed = 5f;
 
-    // Start is called before the first frame update
-    void Start()
+    //The idle state of the enemy (before it interacts with the player)
+    public Idle()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

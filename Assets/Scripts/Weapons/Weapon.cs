@@ -20,6 +20,7 @@ public class Weapons : Item
     Vector3 positionInWorld;
     Vector3 attackOriginPosition; //EG. the barrel of a gun
     Vector3 directionWeaponIsPoitingIn;
+    public Camera playerCamera;
     bool canFire;
     int layerMask; //Layermask used to selectivly ignore colliders
 
@@ -43,24 +44,33 @@ public class Weapons : Item
         }
     }
 
+    /// <summary>
+    /// /// Some of this script derives from Brakey's youtube
+    /// https://www.youtube.com/watch?v=THnivyG0Mvo
+    /// </summary>
     void FireWeapon()
     {
         weaponIfFiring = true;
+        RaycastHit hit;
 
-        if (Physics.Raycast(attackOriginPosition, directionWeaponIsPoitingIn, maxDistance, layerMask))
+        //Physics.Raycast(Vector3 origin, Vector direction, out collisionInfo, float distance)
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance))
         {
-
+            Debug.Log(hit.tranform.name);
+            //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
+            Target target = hit.transform.GetComponent<Target>();
+            //If the gameObject hit has a target component (exists) sthen apply damage
+            if (target != null)
+            {
+                //Apply the damage to the target in question
+                target.TakeDamage(damage);
+            }
+            
         }
-
-        ////Fire raycast from origin forward facing the obeject
-        //Ray Ray = new Ray(Vector3 attackOriginPosition, Vector3 directionWeaponIsPoitingIn);
-        //if (Physics.Raycast(Ray, out Ray, float distance))
-        //{
-        //    if (Ray.collider.tag == "enemy") //will change
-        //    {
-        //        //Apply damage to enemy in question
-        //    }
-        //}
+        
+        //Play weapon animation
+        //
+               
     }
 
     void CheckReloadWeapon()
