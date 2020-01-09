@@ -21,6 +21,7 @@ public class Weapons : Item
     Vector3 attackOriginPosition; //EG. the barrel of a gun
     Vector3 directionWeaponIsPoitingIn;
     bool canFire;
+    int layerMask; //Layermask used to selectivly ignore colliders
 
     void Update()
     {
@@ -45,15 +46,21 @@ public class Weapons : Item
     void FireWeapon()
     {
         weaponIfFiring = true;
-        //Fire raycast from origin forward facing the obeject
-        Ray Ray = new Ray(Vector3 attackOriginPosition, Vector3 directionWeaponIsPoitingIn);
-        if (Physics.Raycast(Ray, out Ray, float distance))
+
+        if (Physics.Raycast(attackOriginPosition, directionWeaponIsPoitingIn, maxDistance, layerMask))
         {
-            if (Ray.collider.tag == "enemy") //will change
-            {
-                //Apply damage to enemy in question
-            }
+
         }
+
+        ////Fire raycast from origin forward facing the obeject
+        //Ray Ray = new Ray(Vector3 attackOriginPosition, Vector3 directionWeaponIsPoitingIn);
+        //if (Physics.Raycast(Ray, out Ray, float distance))
+        //{
+        //    if (Ray.collider.tag == "enemy") //will change
+        //    {
+        //        //Apply damage to enemy in question
+        //    }
+        //}
     }
 
     void CheckReloadWeapon()
