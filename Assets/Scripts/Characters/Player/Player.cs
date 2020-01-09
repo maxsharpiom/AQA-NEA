@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    GameObject Player = new GameObject.FindWithTag("Player");
     float maxHealth = 100;
     float movementSpeed = 5f;
     public float currentHealth;
