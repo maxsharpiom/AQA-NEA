@@ -12,8 +12,8 @@ public class Weapons : Item
     //Ammo type has not yet been made
     Ammo AmmoType;
     float reloadTime;
-    float currentAmmoInMagazine;
-    float reserveAmmo;
+    int currentAmmoInMagazine;
+    int reserveAmmo;
     bool playerIsHolding;
     bool weaponIsReloading;
     bool weaponIfFiring;
@@ -67,10 +67,11 @@ public class Weapons : Item
             }
             
         }
-        
+
         //Play weapon animation
-        //
-               
+        //Decrement ammo in current magazine by one
+        currentAmmoInMagazine -= 1;
+        weaponIfFiring = false; //should be the last line of the subroutine
     }
 
     void CheckReloadWeapon()
@@ -83,6 +84,29 @@ public class Weapons : Item
 
     void ReloadWeapon()
     {
+        Debug.Log("Reloading weapon...");
+
+        //Ammo needed for the weapon to resuply fully its currentAmmoInMagazine
+        int AmmoNeeded = magazineSize - currentAmmoInMagazine;
+
+        int ReplenishAmmo = reserveAmmo - AmmoNeeded;
+
+        if (ReplenishAmmo == 0)
+        {
+            CurrentAmmo += ReserveAmmo;
+            ReserveAmmo = 0;
+        }
+        else if (ReplenishAmmo < 0)
+        {
+            CurrentAmmo += ReserveAmmo;
+            ReserveAmmo = 0;
+        }
+        else if (ReplenishAmmo > 0)
+        {
+            CurrentAmmo += AmmoNeeded;
+            ReserveAmmo -= AmmoNeeded;
+        }
+
 
     }
 
