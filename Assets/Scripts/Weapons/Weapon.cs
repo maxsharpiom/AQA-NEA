@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Weapon
+public class Weapon : Item
 {
     /// <summary>
     /// The position of the weapon

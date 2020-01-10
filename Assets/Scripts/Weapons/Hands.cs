@@ -16,7 +16,6 @@ public class Hand : Weapon
         this.AmmoType = null;
         this.reloadTime = 0;
         this.currentAmmoInMagazine = Mathf.Infinity;
-        this.currentAmmoInMagazine = Mathf.Infinity;
         this.reserveAmmo = Mathf.Infinity;
         //Define attackAnim;
         //Define reloadAnim;

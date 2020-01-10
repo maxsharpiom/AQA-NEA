@@ -20,10 +20,10 @@ public class EnemyMovement : MonoBehaviour
     public LayerMask groundMask;
 
     //A boolean to check if we are grounded
-    bool isGrounded;
+    public bool isGrounded;
 
-    //The player's current velocity
-    Vector3 velocity;
+    //The enemie's current velocity
+    public Vector3 velocity;
     
     // Update is called once per frame
     void Update()

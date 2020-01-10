@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
     float movementSpeed = 5f;
     public float currentHealth;
     public float currentSpeed;
+    public Weapon currentWeapon;
 
     void Start()
     {
         //Create an inventory;
         Inventory PlayerInventory = new Inventory();
+
     }
 
 }
