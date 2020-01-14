@@ -15,9 +15,12 @@ public class Pathfind : MonoBehaviour
 
     void Update()
     {
-        FindPath(startPos.position, endPos.position);
-        TraversePath(FinishedPath);
-        //FinishedPath.DisplayList();
+        if (this.startPos != null && this.endPos != null)
+        {
+            FindPath(startPos.position, endPos.position);
+            TraversePath(FinishedPath);
+            //FinishedPath.DisplayList();
+        }
     }
 
     void TraversePath(MyList<GridNode> FinishedPath)

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+/// <summary>
+/// The only real use for this script is to apply gravity.
+/// Movement through pathfinding is achieved through the Pathfinding script
+/// </summary>
+public class AIMovement : MonoBehaviour
 {
     //The speed at which the enemy can move;
     public float speed = 6f;
@@ -17,14 +21,16 @@ public class EnemyMovement : MonoBehaviour
     public float groundDistance = 0.4f;
 
     //Allows us to control what objects the groundCheck will check for
-    public LayerMask groundMask;
+   rliudhur public LayerMask groundMask = LayerMask.GetMask("Ground"); // need to check is Ground is a valid mask
 
     //A boolean to check if we are grounded
     public bool isGrounded;
 
     //The enemie's current velocity
     public Vector3 velocity;
-    
+
+    public bool friendly;
+
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +44,13 @@ public class EnemyMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        //Apply gravity to the player's velocity
+        //Apply gravity to the character's velocity
         velocity.y += gravity * Time.deltaTime;
+
+        //Apply the gravity to the gameObject
+        this.gameObject.transform.position = new Vector3(this.gameObject.transform.position - velocity);
     }
+
+    
+
 }
