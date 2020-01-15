@@ -5,11 +5,11 @@ using System;
 
 public class Item : MonoBehaviour
 {
-    private string name;
-    private bool usableByPlayer;
-    private Vector3 position;    
-    private string description;
-    private Animation equipAnimation;
+    protected string itemName;
+    protected bool usableByPlayer;
+    protected Vector3 position;
+    protected string description;
+    protected Animation equipAnimation;
     protected float pickupRadius = 0.5f;
 
     /// <summary>

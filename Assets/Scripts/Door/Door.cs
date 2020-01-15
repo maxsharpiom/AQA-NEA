@@ -7,22 +7,27 @@ using System;
 public class Door : MonoBehaviour
 {
     public GameObject player = GameObject.Find("Player");
-    LayerMask playerLayerMask = LayerMask.GetMask("Player");
+    public LayerMask playerLayerMask = LayerMask.GetMask("Player");
     public float maxOpenAngle = 90;
-    public float closedAngle = 0;
-    public float currentAngle; //Not set to anything
+    public float closedAngle = 0;    
     public bool playerCanInteract;
     float interactRange = 1.5f;
     bool doorOpen = false;
+    public float currentAngle/* = transform.eulerAngles.y*/; //Not set to anything
+
+    private void Start()
+    {
+        currentAngle = transform.eulerAngles.y;
+    }
 
     void Update()
     {
         Interaction();
         doorOpen = CheckDoorStatus();
-        currentAngle = //find the current angle
+        //currentAngle = //find the current angle
     }
 
-    public CheckDoorStatus()
+    public bool CheckDoorStatus()
     {
         if (currentAngle > maxOpenAngle)
         {
@@ -32,17 +37,18 @@ public class Door : MonoBehaviour
         {
             doorOpen = false;
         }
+        return doorOpen;
     }
 
     public void Interaction()
     {
         if (playerCanInteractWith())
         {
-            if (Input.GetKey(KeyCode.e) && doorOpen = false)
+            if (Input.GetKey(KeyCode.E) && doorOpen == false)
             {
                 OpenDoor();
             }
-            else if (Input.GetKey(KeyCode.e) && doorOpen = True)
+            else if (Input.GetKey(KeyCode.E) && doorOpen == true)
             {
                 CloseDoor();
             }
@@ -65,7 +71,7 @@ public class Door : MonoBehaviour
     {
         RaycastHit lookRay;
         //If the player is in range and looking at the Door      
-        if (Physics.CheckSpere(transform.position, interactRange, playerGroundMask) && Physics.Raycast(player.transform.position, player.tranform.forward, out lookRay, interactRange) && lookRay.collider.gameObject.CompareTag("Door"))
+        if (Physics.CheckSphere(transform.position, interactRange, playerLayerMask) && Physics.Raycast(player.transform.position, player.transform.forward, out lookRay, interactRange) && lookRay.collider.gameObject.CompareTag("Door"))
         {
             playerCanInteract = true;
 
@@ -74,7 +80,7 @@ public class Door : MonoBehaviour
         {
             playerCanInteract = false;
         }
-        return playerLooking;
+        return playerCanInteract;
     }
-
+       
 }

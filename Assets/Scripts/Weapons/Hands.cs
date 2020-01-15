@@ -7,7 +7,7 @@ using static System.Math;
 public class Hand : Weapon
 {
 
-    void start()
+    void Start()
     {
         this.name = "Hand";
         this.maxDistance = 0.5f;
@@ -23,4 +23,11 @@ public class Hand : Weapon
         //Define reloadAudio;
     }
 
+    public Hand(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    {
+        this.name = name;
+        this.position = position;
+        this.useableByPlayer = useableByPlayer;
+    }
+    
 }

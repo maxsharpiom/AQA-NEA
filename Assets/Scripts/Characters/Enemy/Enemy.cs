@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : AI
+public class Enemy : AICharacter
 {
     void Start()
-    {    
-    this.friendly = false;
+    {
+        this.friendly = false;
+    }
+    void Update()
+    {
+        //ScanFOV();
+        //Detect player
+    }
 }
-void Update()
-{
-    //ScanFOV();        
-    //Detect player
-}
-}
-
-
 
 

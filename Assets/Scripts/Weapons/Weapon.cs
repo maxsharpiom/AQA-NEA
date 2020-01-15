@@ -84,7 +84,7 @@ public class Weapon : Item
     /// </summary>
     protected bool useableByPlayer;
 
-    public void Weapons(string name, Vector3 position, bool useableByPlayer)
+    public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
         this.name = name;
         this.position = position;

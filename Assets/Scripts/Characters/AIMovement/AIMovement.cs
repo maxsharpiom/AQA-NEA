@@ -21,7 +21,7 @@ public class AIMovement : MonoBehaviour
     public float groundDistance = 0.4f;
 
     //Allows us to control what objects the groundCheck will check for
-   rliudhur public LayerMask groundMask = LayerMask.GetMask("Ground"); // need to check is Ground is a valid mask
+    public LayerMask groundMask = LayerMask.GetMask("Ground"); // need to check is Ground is a valid mask
 
     //A boolean to check if we are grounded
     public bool isGrounded;
@@ -47,8 +47,10 @@ public class AIMovement : MonoBehaviour
         //Apply gravity to the character's velocity
         velocity.y += gravity * Time.deltaTime;
 
+       // Vector3 changeInVelocity = new Vector3(velocity.x, velocity.y, velocity.z);
+
         //Apply the gravity to the gameObject
-        this.gameObject.transform.position = new Vector3(this.gameObject.transform.position - velocity);
+        this.gameObject.transform.position = new Vector3(0,this.gameObject.transform.position.y - velocity.y,0);
     }
 
     

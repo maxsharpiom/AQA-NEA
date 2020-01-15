@@ -32,7 +32,7 @@ public class Pathfind : MonoBehaviour
             GridNode NodeToTraverse = FinishedPath.ReturnObject(counter);
             Vector3 nodeToTraversePosition = NodeToTraverse.position;
             //wanting to move it to a position but need to access the vector3 pos //////////////////////////////////////////////////////////////////////////////////////////////////////////
-            this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, nodeToTraversePosition, this.gameObject.GetComponent<Enemy>().movementSpeed/*movespeed of gameObject*/);
+            this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, nodeToTraversePosition, this.gameObject.GetComponent<AICharacter>().movementSpeed/*movespeed of gameObject*/);
             CheckIfGameObjectArrived(arrived, nodeToTraversePosition);
         }        
         

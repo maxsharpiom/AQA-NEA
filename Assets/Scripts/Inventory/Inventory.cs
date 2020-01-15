@@ -6,19 +6,21 @@ using System;
 public class Inventory
 {
     //The current item that the player has equiped
-    Item currentItem= new Item();
+    Item currentItem; //Not yet known;
+    MyList<Item> InventoryList = new MyList<Item>();
 
-    public Inventory()
-    {
-        MyList<Item> InventoryList = new MyList<Item>();
-    }
+    //public Inventory() //Don't think this is needed right now
+    //{
+
+    //}
 
     /// <summary>
     /// Upon start the current item is the first item in the list
     /// </summary>
     void Start()
     {
-        currenItem = InventoryList.InventoryList.ReturnObject(1);
+        
+        currentItem = InventoryList.ReturnObject(1);
     }
 
     void Update()
@@ -68,7 +70,7 @@ public class Inventory
     void SwitchWeapon()
     {
         Item oldItem = currentItem;
-        int weaponNumberSelect;
+        int weaponNumberSelect = 0; //Nothing happens
         if (Input.GetKey(KeyCode.Alpha1)) { weaponNumberSelect = 1; }
         if (Input.GetKey(KeyCode.Alpha2)) { weaponNumberSelect = 2; }
         if (Input.GetKey(KeyCode.Alpha3)) { weaponNumberSelect = 3; }
@@ -84,19 +86,19 @@ public class Inventory
         {
             //The item that the player is currently holding is equal to the object that is selected
             currentItem = InventoryList.ReturnObject(weaponNumberSelect);
-            SwapItemToCurrentAndMakeActive(oldItem, currentItem);
+            //SwapItemToCurrentAndMakeActive(oldItem, currentItem);
         }
         oldItem = currentItem;
     }
 
-    void SwapItemToCurrentAndMakeActive(Item oldItem, Item newItem)
-    {
-        //The old item is no longer active
-        oldItem.SetActive(false);
-        //New item is now active
-        newItem.SetActive(true);
-        //Play newItem equip Anim
+    //void SwapItemToCurrentAndMakeActive(Item oldItem, Item newItem)
+    //{
+    //    //The old item is no longer active
+    //    oldItem.SetActive(false);
+    //    //New item is now active
+    //    newItem.SetActive(true);
+    //    //Play newItem equip Anim
 
-    }
+    //}
 
 }
