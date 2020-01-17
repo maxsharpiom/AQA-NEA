@@ -32,14 +32,14 @@ public class Scientist : AICharacter
         if (this.playerInteractable && friendly == true && Input.GetKey(KeyCode.E))
         {
             //For this function I could use Vector3.MoveTowards (but this does not deal with obstacles)
-            if (following == false)
+            if (this.following == false)
             {
                 //Pathfind to the player
                 this.pathfinding.startPos = this.gameObject.transform;
                 this.pathfinding.endPos = player.transform;
                 this.following = true;
             }
-            else if (following == true)
+            else if (this.following == true)
             {
                 //Stop following the player
                 this.pathfinding.startPos = null;

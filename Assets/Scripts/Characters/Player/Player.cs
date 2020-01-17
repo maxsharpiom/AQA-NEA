@@ -14,7 +14,24 @@ public class Player : MonoBehaviour
     {
         //Create an inventory;
         Inventory PlayerInventory = new Inventory();
+    }
 
+    void Update()
+    {
+        CheckDead();
+    }
+
+    void CheckDead()
+    {
+        if (currentHealth <= 0)
+        {
+            DeathScreen();
+        }
+    }
+
+    void DeathScreen()
+    {
+        SceneManager.LoadScene("DeathScreen");//17/01/2020 - Doesn't exist
     }
 
 }

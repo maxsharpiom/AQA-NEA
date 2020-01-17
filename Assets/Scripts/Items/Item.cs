@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Math;
 using System;
 
 public class Item : MonoBehaviour
@@ -10,7 +11,10 @@ public class Item : MonoBehaviour
     protected Vector3 position;
     protected string description;
     protected Animation equipAnimation;
-    protected float pickupRadius = 0.5f;
+    protected float interactRadius;
+    public float DistanceBetweenPlayerAndItem;
+    protected GameObject player = GameObject.Find("Player");
+    protected bool itemIsInInteractableRange;
 
     /// <summary>
     /// Sets the position of the item in the game world
@@ -26,7 +30,31 @@ public class Item : MonoBehaviour
     void Update()
     {
         PickUp();
+        DistanceBetweenPlayerAndItem = FindDistanceBetweenPlayerAndItem();
+        FindIfItemIsInInteractableRange();
     }
+
+    void FindIfItemIsInInteractableRange()
+    {
+        if (DistanceBetweenPlayerAndItem < interactRadius)
+        {
+            itemIsInInteractableRange = true;
+        }
+        else
+        {
+            itemIsInInteractableRange = false;
+        }
+    }
+
+    void FindDistanceBetweenPlayerAndItem() //May or may not need to pass variables to work
+    {
+        //do pythag
+        DistanceBetweenPlayerAndItem = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - position.x, 2) + Mathf.Pow(player.transform.position.z - player.transform.position.z, 2));
+
+        return DistanceBetweenPlayerAndItem;
+    }
+
+
 
     /// <summary>
     /// Add an item to the player's inventory
@@ -40,7 +68,7 @@ public class Item : MonoBehaviour
 
 
         //If the player is within the radius of the ammo pack
-        //if (Physics.CheckSphere(position, pickupRadius, playerLayerMask))
+        //if (Physics.CheckSphere(position, interactRadius, playerLayerMask))
         //{
 
         //    //Is the item already in the player's inventory?

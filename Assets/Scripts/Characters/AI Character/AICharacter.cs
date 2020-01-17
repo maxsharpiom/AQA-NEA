@@ -12,7 +12,7 @@ public class AICharacter : MonoBehaviour
     protected float viewDistance;
     protected bool playerInSight;
     protected bool friendly;
-    protected bool playerInteractable; // Set in the update
+    protected bool playerInteractable;
     protected bool following;
     protected float interactRange = 1.5f;
     protected LayerMask playerGroundMask = LayerMask.GetMask("Player");
@@ -21,6 +21,7 @@ public class AICharacter : MonoBehaviour
 
     void Start()
     {
+
     }
 
     void Update()
@@ -53,6 +54,5 @@ public class AICharacter : MonoBehaviour
         }
         return playerLooking;
     }
-
 }
 

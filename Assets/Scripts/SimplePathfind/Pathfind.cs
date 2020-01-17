@@ -6,8 +6,8 @@ using System;
 
 public class Pathfind : MonoBehaviour
 {
-    public Transform startPos;
-    public Transform endPos;
+    public Transform startPos = null;
+    public Transform endPos = null;
     //A list to represent the final path
     MyList<GridNode> FinishedPath = new MyList<GridNode>();
     GridNode LeadingNode; //The node that has the lowest fCost
@@ -15,7 +15,7 @@ public class Pathfind : MonoBehaviour
 
     void Update()
     {
-        if (this.startPos != null && this.endPos != null)
+        while (this.startPos != null && this.endPos != null)
         {
             FindPath(startPos.position, endPos.position);
             TraversePath(FinishedPath);
@@ -59,16 +59,19 @@ public class Pathfind : MonoBehaviour
 
         //int counter = 0;
 
+        //Create a GridNode at the same position as the starting position
         GridNode startNode = new GridNode(startPos);
-        LeadingNode = startNode; //Could be prone to error seeing that it is called in the Update()
+        LeadingNode = startNode; //Could be prone to error seeing that this function is called in the Update()
+        //LeadingNode = new GridNode(startNode.position) ?????
+        //Create a GridNode at the same position as the ending position
         GridNode endNode = new GridNode(endPos);
 
         ////Find the node that is equal to the 
         //startNode = Grid.FindNode(startPos);        
         //GridNode endNode = GridNode.FindNode(endPos);
 
-        //Add the starting node to the list
-        FinishedPath.Add(startNode);
+        //Add the leading node to the list
+        FinishedPath.Add(LeadingNode);
 
         while (arrived == false)
         {
@@ -146,6 +149,11 @@ public class Pathfind : MonoBehaviour
         return TraversableArray;
     }
 
+    /// <summary>
+    /// Find the number of GridNodes around a given position are traversable
+    /// </summary>
+    /// <param name="LeadingNode"></param>
+    /// <returns></returns>
     int CountNeighbouringNodesThatAreTraversable(GridNode LeadingNode)
     {
         int numberOfTraversableNodes = 0;
@@ -167,6 +175,11 @@ public class Pathfind : MonoBehaviour
         return numberOfTraversableNodes;
     }
 
+    /// <summary>
+    /// Returns the GridNode with the lowest cost from an array of GridNoes
+    /// </summary>
+    /// <param name="NodeCompareArray"></param>
+    /// <returns></returns>
     public GridNode ReturnNodeWithLowestFCost(GridNode[] NodeCompareArray)
     {
         for (int i = 0; i < NodeCompareArray.Length; i++) //object refrece error, becuase you are trying to refrence an object that may not be in the array?

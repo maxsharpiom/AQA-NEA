@@ -120,19 +120,28 @@ public class Weapon : Item
         weaponIfFiring = true;
         RaycastHit hit;
 
-        //Physics.Raycast(Vector3 origin, Vector direction, out collisionInfo, float distance)
+        //Casts a raycast maxDistance length from the player camera, outputs the info into hit
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance))
         {
             //Print the name of the object that has been hit
             Debug.Log(hit.transform.name);
-            //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
-            Target target = hit.transform.GetComponent<Target>();
-            //If the gameObject hit has a target component (exists) then apply damage
-            if (target != null)
+            ///
+            /// potentially a problem as we can only apply damage to AICharacters...
+            ///
+            //Getting the reference for the gameObject hit
+            WeaponHit itemHit = hit.transform.GetComponent<WeaponHit>();
+            if (itemHit != null)
             {
-                //Apply the damage to the target in question
-                target.TakeDamage(damage);
+                itemHit.TakeDamage(this.damage);
             }
+            //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
+            //Target target = hit.transform.GetComponent<Target>();
+            ////If the gameObject hit has a target component (exists) then apply damage
+            //if (target != null)
+            //{
+            //    //Apply the damage to the target in question
+            //    target.TakeDamage(damage);
+            //}
             
         }
 

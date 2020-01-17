@@ -21,7 +21,6 @@ public class Grid
         this.gridArray = new GridNode[width + 1, height + 1];
         //Print to console the width and height of the grid
         Debug.Log($"Width: {width}, Height: {height}");
-
         //Creates nodes all over the floor
         for (int x = 0; x <= width; x++)
         {
