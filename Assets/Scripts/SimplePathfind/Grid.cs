@@ -66,7 +66,7 @@ public class Grid
                 if (gridArray[x, z] == nodeToFind)
                 {
                     return gridArray[x, z];
-                }                
+                }
             }
         }
 

@@ -35,15 +35,15 @@ public class Scientist : AICharacter
             if (this.following == false)
             {
                 //Pathfind to the player
-                this.pathfinding.startPos = this.gameObject.transform;
-                this.pathfinding.endPos = player.transform;
+                //this.pathfinding.startPos = this.gameObject.transform;
+                //this.pathfinding.endPos = player.transform;
                 this.following = true;
             }
             else if (this.following == true)
             {
                 //Stop following the player
-                this.pathfinding.startPos = null;
-                this.pathfinding.endPos = null;
+                //this.pathfinding.startPos = null;
+                //this.pathfinding.endPos = null;
                 this.following = false;
             }
         }

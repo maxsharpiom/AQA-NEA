@@ -708,6 +708,8 @@ GameObject:
   - component: {fileID: 567999764}
   - component: {fileID: 567999767}
   - component: {fileID: 567999768}
+  - component: {fileID: 567999770}
+  - component: {fileID: 567999769}
   m_Layer: 0
   m_Name: Enemy001
   m_TagString: Untagged
@@ -788,13 +790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac605259388c7d44bdbb84b1cde0647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  gravity: -40
-  groundCheck: {fileID: 1144874301}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!136 &567999768
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -809,6 +804,42 @@ CapsuleCollider:
   m_Height: 1.9999999
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &567999769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567999763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e9e5fed8496904ebc2eb27ea078465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  gravity: -40
+  groundCheck: {fileID: 1144874301}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isGrounded: 0
+  velocity: {x: 0, y: 0, z: 0}
+  friendly: 0
+--- !u!114 &567999770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567999763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0c041298e1dc44798ab6b42628bd62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0
+  playerLooking: 0
 --- !u!1 &593044142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {fileID: 567999766}
   endPos: {fileID: 455278945}
+  arrived: 0
 --- !u!1 &704811447
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class AICharacter : MonoBehaviour
     protected float interactRange = 1.5f;
     protected LayerMask playerGroundMask = LayerMask.GetMask("Player");
     public bool playerLooking;
-    protected Pathfind pathfinding = new Pathfind();
+    //protected Pathfind pathfinding = new Pathfind();
 
     void Start()
     {
