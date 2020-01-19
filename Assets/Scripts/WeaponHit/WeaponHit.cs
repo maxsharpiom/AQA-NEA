@@ -8,7 +8,7 @@ public class WeaponHit : MonoBehaviour
     protected float currentHealth;
     protected float maximumHealth;
 
-    void TakeDamage(float damageAmountToApply)
+    public void TakeDamage(float damageAmountToApply)
     {
         currentHealth -= damageAmountToApply;
         if (currentHealth <= 0)

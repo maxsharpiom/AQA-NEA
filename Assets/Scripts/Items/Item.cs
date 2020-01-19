@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
     void Update()
     {
         PickUp();
-        DistanceBetweenPlayerAndItem = FindDistanceBetweenPlayerAndItem();
+        FindDistanceBetweenPlayerAndItem();
         FindIfItemIsInInteractableRange();
     }
 
@@ -51,7 +51,6 @@ public class Item : MonoBehaviour
         //do pythag
         DistanceBetweenPlayerAndItem = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - position.x, 2) + Mathf.Pow(player.transform.position.z - player.transform.position.z, 2));
 
-        return DistanceBetweenPlayerAndItem;
     }
 
 

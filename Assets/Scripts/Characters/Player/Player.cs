@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     void DeathScreen()
     {
-        SceneManager.LoadScene("DeathScreen");//17/01/2020 - Doesn't exist
+        //SceneManager.LoadScene("DeathScreen");//17/01/2020 - Doesn't exist
     }
 
 }
