@@ -7,6 +7,7 @@ public class WeaponHit : MonoBehaviour
     protected bool dead;
     protected float currentHealth;
     protected float maximumHealth;
+    protected 
 
     public void TakeDamage(float damageAmountToApply)
     {
@@ -19,6 +20,9 @@ public class WeaponHit : MonoBehaviour
 
     void Kill()
     {
+        //Drop current weapon
+        //Player death anim
+        //Destory game object
         Object.Destroy(this.gameObject);
     }
 }

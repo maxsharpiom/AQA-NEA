@@ -83,6 +83,11 @@ public class Weapon : Item
     /// Is the weapon useable by the player?
     /// </summary>
     protected bool useableByPlayer;
+    /// <summary>
+    /// The time taken per attack
+    /// </summary>
+    /// <returns></returns>
+    protected float fireTime();
 
     public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
@@ -142,13 +147,24 @@ public class Weapon : Item
             //    //Apply the damage to the target in question
             //    target.TakeDamage(damage);
             //}
-            
+
         }
 
         //Play weapon animation
         //Decrement ammo in current magazine by one
         currentAmmoInMagazine -= 1;
+        StartCoroutine(Timer(fireTime));
         weaponIfFiring = false; //should be the last line of the subroutine
+    }
+
+    /// <summary>
+    /// Used to pause for a given period of time (seconds)
+    /// </summary>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
+    IEnumerator Timer(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 
     protected void CheckReloadWeapon()
@@ -156,7 +172,7 @@ public class Weapon : Item
         if (Input.GetKeyDown(KeyCode.R) && playerIsHolding == true)
         {
             ReloadWeapon();
-        }        
+        }
     }
 
     protected void ReloadWeapon()
@@ -169,7 +185,7 @@ public class Weapon : Item
         float ReplenishAmmo = reserveAmmo - AmmoNeeded;
 
         //Only play the anim if there is enough ammo to reload
-        if ((currentAmmoInMagazine+=reserveAmmo) != currentAmmoInMagazine)
+        if ((currentAmmoInMagazine += reserveAmmo) != currentAmmoInMagazine)
         {
             //play reload anim
         }
@@ -191,7 +207,7 @@ public class Weapon : Item
         }
 
         //Add a pause
-       // yield return new WaitForSeconds(reloadTime);
+        Timer(reloadTime);
 
     }
 
