@@ -20,8 +20,7 @@ public class AIMovement : MonoBehaviour
     //Radius of sphere for GroundCheck
     public float groundDistance = 0.4f;
 
-    //Allows us to control what objects the groundCheck will check for
-    public LayerMask groundMask = LayerMask.GetMask("Ground"); // need to check is Ground is a valid mask
+
 
     //A boolean to check if we are grounded
     public bool isGrounded;
@@ -34,8 +33,10 @@ public class AIMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Creates a sphere, that if it collides with anything that is in our groundMask to true
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        //Allows us to control what objects the groundCheck will check for
+    LayerMask groundMask = LayerMask.GetMask("Ground"); // need to check is Ground is a valid mask
+                                                               //Creates a sphere, that if it collides with anything that is in our groundMask to true
+    isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         //If we are toutching the ground and our y velocity is stationary
         if (isGrounded && velocity.y < 0)
@@ -52,7 +53,5 @@ public class AIMovement : MonoBehaviour
         //Apply the gravity to the gameObject
         this.gameObject.transform.position = new Vector3(0,this.gameObject.transform.position.y - velocity.y,0);
     }
-
-    
 
 }

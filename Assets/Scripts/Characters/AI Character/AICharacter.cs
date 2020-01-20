@@ -8,7 +8,6 @@ public class AICharacter : MonoBehaviour
     public float movementSpeed;
     //protected Weapon weapon;
     protected float fovAngle;
-    protected GameObject player = GameObject.Find("Player");
     protected float viewDistance;
     protected bool playerInSight;
     protected bool friendly;
@@ -17,11 +16,11 @@ public class AICharacter : MonoBehaviour
     protected float interactRange = 1.5f;
     protected LayerMask playerGroundMask = LayerMask.GetMask("Player");
     public bool playerLooking;
-    //protected Pathfind pathfinding = new Pathfind();
+    protected Pathfind pathfinding = new Pathfind();
 
     void Start()
     {
-
+        GameObject player = GameObject.Find("Player");
     }
 
     void Update()
