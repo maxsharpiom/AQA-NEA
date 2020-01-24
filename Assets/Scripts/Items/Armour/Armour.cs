@@ -23,6 +23,7 @@ public class Armour : Item
         {
             //check if the user runs over it and if so, apply health
             this.player.ApplyArmour(healthAmount);
+            Object.Destroy(this.gameObject);
         }
     }
 
