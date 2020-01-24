@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float currentHealth;
     public float currentSpeed;
     public Weapon currentWeapon;
+    public float maxArmour = 100f;
+    public float currentArmour;
 
     void Start()
     {
@@ -26,6 +28,24 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             DeathScreen();
+        }
+    }
+
+    void ApplyHealth(float amount)
+    {
+        this.currentHealth += amount;
+        if (this.currentHealth > maxHealth)
+        {
+            this.currentHealth = maxHealth;
+        }
+    }
+
+    void ApplyArmour(float amount)
+    {
+        this.currentArmour += amount;
+        if (this.currentArmour > maxArmour)
+        {
+            this.currentArmour = maxArmour;
         }
     }
 

@@ -38,11 +38,11 @@ public class Item : MonoBehaviour
     {
         if (DistanceBetweenPlayerAndItem < interactRadius)
         {
-            itemIsInInteractableRange = true;
+            this.itemIsInInteractableRange = true;
         }
         else
         {
-            itemIsInInteractableRange = false;
+            this.itemIsInInteractableRange = false;
         }
     }
 
@@ -76,7 +76,7 @@ public class Item : MonoBehaviour
 
         //    }
 
-        //    ////Check if the player has the weapon for this ammo type (stored in a list in inventory)
+        //    ////Check if the player has the we    on for this ammo type (stored in a list in inventory)
         //    //if (Inventory.WeaponExistsInInventory())
         //    //{
 
