@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HealthPackSmall : Item
+public class HealthPack : Item
 {
-    float healthAmount = 25;
-
-    public HealthPackSmall(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-
-    }
+    protected float healthAmount;
 
     void Start()
     {
         this.interactRadius = 0.5f;
     }
 
-    void PickUp()
+    void Update()
+    {
+        CheckPickup();
+    }
+
+    void CheckPickup()
     {
         if (itemIsInInteractableRange)
         {
             //check if the user runs over it and if so, apply health
+            this.player.ApplyHealth(healthAmount);
         }
     }
+
 
 }
