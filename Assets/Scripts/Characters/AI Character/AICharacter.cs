@@ -46,7 +46,7 @@ public class AICharacter : MonoBehaviour
         //The direction of the enemy
         Vector3 enemyDirection = player.transform.position - this.transform.position;
         //Creating the line of sight ray and it's properties
-        Ray lineOfSight;
+        Ray lineOfSight = new Ray();
         lineOfSight.direction = enemyDirection;
         lineOfSight.origin = fovFromPosition;
 
@@ -81,14 +81,14 @@ public class AICharacter : MonoBehaviour
 
     }
 
-    RayCastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
+    RaycastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
     {
         RaycastHit closestObject;
-        Raycast
+        //Raycas
         //out of the array of gameobjects find the closest one
         for (int i = 0; i < hitInfo.Length; i++)
         {
-            
+
         }
         return closestObject;
     }
