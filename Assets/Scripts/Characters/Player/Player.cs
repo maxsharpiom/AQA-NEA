@@ -11,11 +11,17 @@ public class Player : MonoBehaviour
     public Weapon currentWeapon;
     public float maxArmour = 100f;
     public float currentArmour;
+    protected float total9mmAmmo;
+    protected float total556mmAmmo;
+    protected float total762mmAmmo;
 
     void Start()
     {
         //Create an inventory;
         Inventory PlayerInventory = new Inventory();
+        this.total9mmAmmo = 0f;
+        this.total556mmAmmo = 0f;
+        this.total762mmAmmo = 0f;
     }
 
     void Update()

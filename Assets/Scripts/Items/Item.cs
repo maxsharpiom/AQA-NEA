@@ -15,7 +15,7 @@ public class Item : MonoBehaviour
     public float DistanceBetweenPlayerAndItem;
     protected GameObject player = GameObject.Find("Player");
     protected bool itemIsInInteractableRange;
-
+    protected bool playerInteract = false;
     /// <summary>
     /// Sets the position of the item in the game world
     /// </summary>
@@ -23,12 +23,13 @@ public class Item : MonoBehaviour
     public Item(string name, Vector3 position, bool useableByPlayer)
     {
         this.position = position;
-        this.name = name;
+        this.itemName = name;
         this.usableByPlayer = useableByPlayer;
     }
 
     void Update()
     {
+        CheckPickup();
         PickUp();
         FindDistanceBetweenPlayerAndItem();
         FindIfItemIsInInteractableRange();
@@ -53,36 +54,44 @@ public class Item : MonoBehaviour
 
     }
 
-
-
-    /// <summary>
-    /// Add an item to the player's inventory
-    /// Should not be responsible for the validation of weather or not the weapon
-    /// is already in the player's inventory
-    /// </summary>
-    void PickUp()
+    void CheckPickup() //Needs looking over
     {
-        //  (1) Add item to the player's inventory
-        //  (2) Remove item from gameWorld
-
-
-        //If the player is within the radius of the ammo pack
-        //if (Physics.CheckSphere(position, interactRadius, playerLayerMask))
-        //{
-
-        //    //Is the item already in the player's inventory?
-        //    if ()
-        //    {
-
-        //    }
-
-        //    ////Check if the player has the we    on for this ammo type (stored in a list in inventory)
-        //    //if (Inventory.WeaponExistsInInventory())
-        //    //{
-
-        //    //}
-        //    ////If the player has the correct weapon then add ammo to the weapon
-        //}
+        if (itemIsInInteractableRange)
+        {
+            //check if the user runs over it and if so, apply health
+            this.playerInteract = true;            
+        }
     }
+
+
+/// <summary>
+/// Add an item to the player's inventory
+/// Should not be responsible for the validation of weather or not the weapon
+/// is already in the player's inventory
+/// </summary>
+void PickUp()
+{
+    //  (1) Add item to the player's inventory
+    //  (2) Remove item from gameWorld
+
+
+    //If the player is within the radius of the ammo pack
+    //if (Physics.CheckSphere(position, interactRadius, playerLayerMask))
+    //{
+
+    //    //Is the item already in the player's inventory?
+    //    if ()
+    //    {
+
+    //    }
+
+    //    ////Check if the player has the we    on for this ammo type (stored in a list in inventory)
+    //    //if (Inventory.WeaponExistsInInventory())
+    //    //{
+
+    //    //}
+    //    ////If the player has the correct weapon then add ammo to the weapon
+    //}
+}
 
 }

@@ -10,21 +10,12 @@ public class HealthPack : Item
     void Start()
     {
         this.interactRadius = 0.5f;
+        this.useableByPlayer = true;
     }
 
     void Update()
     {
-        CheckPickup();
-    }
 
-    void CheckPickup()
-    {
-        if (itemIsInInteractableRange)
-        {
-            //check if the user runs over it and if so, apply health
-            this.player.ApplyHealth(healthAmount);
-        }
     }
-
 
 }

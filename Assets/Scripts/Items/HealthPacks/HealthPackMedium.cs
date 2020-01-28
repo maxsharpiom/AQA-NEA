@@ -5,9 +5,13 @@ using System;
 
 public class HealthPackMedium : HealthPack
 {
-    float healthAmount = 50;
+    void Start()
+    {
+        this.healthAmount = 50f;
+        this.description = "Medium Health Pack";
+    }
 
-    public HealthPackSmall(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    public HealthPackMedium(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
         this.itemName = name;
         this.position = position;

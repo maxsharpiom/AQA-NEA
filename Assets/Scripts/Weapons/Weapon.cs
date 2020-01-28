@@ -24,9 +24,9 @@ public class Weapon : Item
     /// </summary>
     protected float magazineSize;
     /// <summary>
-    /// The type of ammo acceptable by the weapon
+    /// The type of ammo acceptable by the weapon     MAY NOT NEED
     /// </summary>
-    protected Ammo AmmoType;
+    protected string AmmoType;
     /// <summary>
     /// The time taken for a reload
     /// </summary>
@@ -84,10 +84,14 @@ public class Weapon : Item
     /// </summary>
     protected bool useableByPlayer;
     /// <summary>
-    /// The time taken per attack
+    /// The time taken per attack |
+    /// Used as a pause between each time fire is called
     /// </summary>
     /// <returns></returns>
-    protected float fireTime();
+    protected float fireTime;
+    protected float recoilAmount;
+    protected GameObject mouseLook = this.player.GetComponent<MouseLook>();
+    protected bool automatic;
 
     public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
@@ -102,6 +106,14 @@ public class Weapon : Item
         CheckFireWeapon();
         //Keeps checking if the weapon is being reloaded
         CheckReloadWeapon();
+    }
+
+    protected void ApplyRecoil(float recoilAmount)
+    {
+        //Make a refrence to player movement to transform the player camera down
+        //Apply transformation to player camera
+        mouseLook.mouseY += recoilAmount * fireTime;
+        //mouseLook.mouseY -= recoilAmount * fireTime;
     }
 
     protected void CheckFireWeapon()
@@ -153,6 +165,7 @@ public class Weapon : Item
         //Play weapon animation
         //Decrement ammo in current magazine by one
         currentAmmoInMagazine -= 1;
+        ApplyRecoil(this.recoilAmount);
         StartCoroutine(Timer(fireTime));
         weaponIfFiring = false; //should be the last line of the subroutine
     }
