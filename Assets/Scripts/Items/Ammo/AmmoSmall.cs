@@ -29,9 +29,10 @@ public class AmmoSmall : Item
         if (this.playerInteract)
         {
 
-            if (this.name == "Small9mmAmmo") { this.total9mmAmmo += this.amount; }
-            if (this.name == "Small556mmAmmo"){ this.total556mmAmmo += this.amount; }
-            if (this.name == "Small762mmAmmo"){ this.total762mmAmmo += this.amount; }
+            if (this.name == "Small9mmAmmo") { Inventory.total9mmAmmo += this.amount; }
+            if (this.name == "Small556mmAmmo"){ Inventory.total556mmAmmo += this.amount; }
+            if (this.name == "Small762mmAmmo"){ Inventory.total762mmAmmo += this.amount; }
+            if (this.name == "Medium357mmAmmo") { Inventory.total357mmAmmo += this.amount; }
             //Play pickup sound
             Object.Destroy(this.gameObject);
             

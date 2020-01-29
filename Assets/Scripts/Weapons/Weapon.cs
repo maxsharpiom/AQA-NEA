@@ -90,8 +90,9 @@ public class Weapon : Item
     /// <returns></returns>
     protected float fireTime;
     protected float recoilAmount;
-    protected GameObject mouseLook = this.player.GetComponent<MouseLook>();
+    protected MouseLook mouseLook = this.player.GetComponent<MouseLook>();    
     protected bool automatic;
+    protected const float throwVelocity = 10f; //For grenades and stuff
 
     public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {

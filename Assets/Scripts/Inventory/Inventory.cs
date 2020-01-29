@@ -8,7 +8,9 @@ public class Inventory
     //The current item that the player has equiped
     Item currentItem; //Not yet known;
     MyList<Item> InventoryList = new MyList<Item>();
-
+    protected float total9mmAmmo;
+    protected float total556mmAmmo;
+    protected float total762mmAmmo;
     //public Inventory() //Don't think this is needed right now
     //{
 
@@ -18,9 +20,11 @@ public class Inventory
     /// Upon start the current item is the first item in the list
     /// </summary>
     void Start()
-    {
-        
+    {        
         currentItem = InventoryList.ReturnObject(1);
+        this.total9mmAmmo = 0f;
+        this.total556mmAmmo = 0f;
+        this.total762mmAmmo = 0f;
     }
 
     void Update()
