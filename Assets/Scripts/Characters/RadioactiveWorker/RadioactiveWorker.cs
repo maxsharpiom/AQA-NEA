@@ -10,7 +10,7 @@ public class RadioactiveWorker : Enemy
         this.movementSpeed = 4f;
         //this.weapon = new Weapon Hands (); //need to refrence hands as it does not currenly exist?
         Hand handsWeapon = new Hand("Hand", this.transform.position, false);
-        this.fovAngle = 90f;
+        //this.fovAngle = 90f;
         this.viewDistance = 20f;      
     }
     

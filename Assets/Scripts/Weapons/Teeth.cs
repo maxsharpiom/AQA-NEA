@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using static System.Math;
 
-public class Crowbar : Weapon
+public class Teeth : Weapon
 {
 
     void Start()
@@ -23,7 +23,7 @@ public class Crowbar : Weapon
         //Define reloadAudio;
     }  
     
-    public Crowbar(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    public Teeth(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
         this.name = name;
         this.position = position;
