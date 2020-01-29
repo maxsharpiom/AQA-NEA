@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Enemy : AICharacter
 {
-    void Start()
-    {
-        this.friendly = false;
-    }
+    //public override void Start()
+    //{
+    //    base.Start();
+        
+    //}
     void Update()
     {
         //ScanFOV();

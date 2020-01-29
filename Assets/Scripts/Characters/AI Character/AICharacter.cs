@@ -23,12 +23,12 @@ public class AICharacter : MonoBehaviour
     protected Vector3 fovFromPosition;
 
     //Should probably be adapted not just for player but any two gameobjects
-    protected GameObject player;
+    protected GameObject player = GameObject.Find("Player");
 
-    void Start()
-    {
-        player = GameObject.Find("Player");
-    }
+    //public virtual void Start()
+    //{
+        
+    //}
 
     void Update()
     {

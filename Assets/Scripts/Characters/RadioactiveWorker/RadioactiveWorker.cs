@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RadioactiveWorker : Enemy
 {
-    void Start()
-    {        
+    public void Start()
+    {
+        //base.Start();
+        this.friendly = false;
         this.maxHealth = 20;
         this.movementSpeed = 4f;
         //this.weapon = new Weapon Hands (); //need to refrence hands as it does not currenly exist?

@@ -7,7 +7,7 @@ using System;
 public class Item : MonoBehaviour
 {
     protected string itemName;
-    protected bool usableByPlayer;
+    protected bool useableByPlayer;
     protected Vector3 position;
     protected string description;
     protected Animation equipAnimation;
