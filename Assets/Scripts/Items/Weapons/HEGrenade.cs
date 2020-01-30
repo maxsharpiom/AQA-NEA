@@ -11,15 +11,8 @@ public class HEGrenade : Weapon
     {
         this.name = "HEGrenade";
         this.maxDistance = Mathf.Infinity;
-        this.damage = 15f;
-        this.magazineSize = 31f;
-        this.AmmoType = "HEGrenade"; //Don't think this is used anywhere or needed
-        this.reloadTime = 2.5f;
-        this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = this.player.total9mmAmmo;
-        this.recoilAmount = 5f;
-        this.fireTime = 0.075f;
-        
+        this.damage = 80f;
+        this.firetime = 2f;
         //Define attackAnim;
         //Define reloadAnim;
         //Define attackAudio;
@@ -31,6 +24,11 @@ public class HEGrenade : Weapon
         this.name = name;
         this.position = position;
         this.useableByPlayer = useableByPlayer;
+    }
+
+    void Explode()
+    {
+
     }
 
 }

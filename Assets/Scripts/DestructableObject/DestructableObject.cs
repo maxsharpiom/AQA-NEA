@@ -48,9 +48,6 @@ public class DestructableObject
     {
         float dealDamageToSourounding;
         //Returns true if there are any colliders overlapping the sphere
-        //https://docs.unity3d.com/ScriptReference/Physics.OverlapSphere.html
-        //https://docs.unity3d.com/ScriptReference/GameObject.SendMessage.html
-        //https://docs.unity3d.com/ScriptReference/Vector3.Distance.html?_ga=2.121006024.1588713239.1580308064-324497535.1560950234
         Collider[] explosionHit = Physics.OverlapSphere(this.position, explosionRadius);
         float distanceToPlayerSquared;
 
@@ -68,6 +65,7 @@ public class DestructableObject
     {
         //Spawn item in and set position equal to the destructable object
         Instantiate(containsItem, this.transform.position);
+        //May need to apply gravity?
     }
 
 }

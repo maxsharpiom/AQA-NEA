@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MediumCrate : DestructableObject
+public class LargeCrate : DestructableObject
 {
 
     void Start()
     {
-        this.maxHealth = 30f;
+        this.maxHealth = 40f;
         this.currentHealth = maxHealth;
-        this.name = "MediumCrate";
+        this.name = "LargeCrate";
     }
 
-    public MediumCrate(Vector3 position, Item containingItem)
+    public LargeCrate(Vector3 position, Item containingItem)
     {
         this.position = position;
         this.containingInside = containingItem;

@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class RadioactiveWorker : Enemy
 {
-    public void Start()
+    public override void Start()
     {
-        //base.Start();
         this.friendly = false;
         this.maxHealth = 20;
         this.movementSpeed = 4f;
         //this.weapon = new Weapon Hands (); //need to refrence hands as it does not currenly exist?
-        Hand handsWeapon = new Hand("Hand", this.transform.position, false);
+        //Hand handsWeapon = new Hand("Hand", this.transform.position, false);
         //this.fovAngle = 90f;
-        this.viewDistance = 20f;      
+        this.viewDistance = 20f;
     }
-    
+
 }

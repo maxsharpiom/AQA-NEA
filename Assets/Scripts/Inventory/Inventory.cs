@@ -11,6 +11,8 @@ public class Inventory
     protected float total9mmAmmo;
     protected float total556mmAmmo;
     protected float total762mmAmmo;
+    protected float total357totalAmmo;
+    protected float total762mmAmmoTokarev;
     //public Inventory() //Don't think this is needed right now
     //{
 
@@ -19,12 +21,14 @@ public class Inventory
     /// <summary>
     /// Upon start the current item is the first item in the list
     /// </summary>
-    void Start()
+    void Start() //May not work if starting game from a saved state as it would reset ammo?
     {        
         currentItem = InventoryList.ReturnObject(1);
         this.total9mmAmmo = 0f;
         this.total556mmAmmo = 0f;
         this.total762mmAmmo = 0f;
+        this.total357totalAmmo = 0f;
+        this.total762mmAmmoTokarev = 0f;
     }
 
     void Update()

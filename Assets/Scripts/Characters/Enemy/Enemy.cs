@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class Enemy : AICharacter
 {
-    //public override void Start()
-    //{
-    //    base.Start();
-        
-    //}
+    public virtual void Start()
+    {
+        this.friendly = false;
+    }
     void Update()
     {
         //ScanFOV();
         //Detect player
     }
 }
-
-

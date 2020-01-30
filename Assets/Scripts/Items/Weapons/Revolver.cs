@@ -4,28 +4,28 @@ using UnityEngine;
 using System;
 using static System.Math;
 
-public class Glock : Weapon
+public class Revolver: Weapon
 {
 
     void Start()
     {
-        this.name = "Glock";
+        this.name = "Revolver";
         this.maxDistance = Mathf.Infinity;
-        this.damage = 15f;
-        this.magazineSize = 10f;
-        this.AmmoType = "9mmAmmo"; //Don't think this is used anywhere or needed
-        this.reloadTime = 2.5f;
+        this.damage = 20f;
+        this.magazineSize = 8f;
+        this.AmmoType = "357mmAmmo"; //Don't think this is used anywhere or needed
+        this.reloadTime = 5f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = this.player.total9mmAmmo;        
-        this.recoilAmount = 5f;
-        this.fireTime = 0.5f;
+        this.reserveAmmo = this.player.total357mmAmmo;        
+        this.recoilAmount = 15f;
+        this.fireTime = 0.75f;
         //Define attackAnim;
         //Define reloadAnim;
         //Define attackAudio;
         //Define reloadAudio;
     }  
     
-    public Glock(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    public Revolver(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
         this.name = name;
         this.position = position;

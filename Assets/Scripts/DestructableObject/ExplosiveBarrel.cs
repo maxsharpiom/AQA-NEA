@@ -10,6 +10,10 @@ public class ExplosiveBarrel : DestructableObject
         this.maxHealth = 20f;
         this.currentHealth = maxHealth;
         this.name = "ExplosiveBarrel";
+        this.explodes = true;
+        this.containsItem = false;
+        this.explosionRadius = 10f;
+        this.maximumDamage = 80f;
     }
 
     public ExplosiveBarrel(Vector3 position)
