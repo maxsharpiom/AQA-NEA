@@ -30,7 +30,7 @@ public class Level1Boss : Enemy
         Vector3 spawnPosition;
         //float cumlativeDegreeOfSpawn = 0;
         //float degreeSeperationBetweenEachWolf;
-
+        //Use rcos(x) and rsin(x) for each position
         //Create a wolf array and set the position of each wolf
         //SPAWNS ARE NOT DYNAMICALLY ADAPTED FOR > 4 WOLFS TO SPAWN
         RadioactiveWolf[] wolf = new RadioactiveWolf[numberOfWolves];
