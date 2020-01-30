@@ -6,7 +6,7 @@ public class AICharacter : MonoBehaviour
 {
     protected float maxHealth;
     public float movementSpeed;
-    //protected Weapon weapon;
+    protected Weapon weapon;
     protected float angleBetweenForwardAndTarget; //Needs to be Vector3.Angle
     protected float viewAngle;
     protected float viewDistance;
@@ -36,70 +36,79 @@ public class AICharacter : MonoBehaviour
         playerLooking = PlayerLookingAtAI(playerInteractable, interactRange);
     }
 
-    //void FOV()
-    //{
-    //    //If the enemy is the first game item to be hit by the casted ray and is within a certain distance then it must be in sight
-    //    //Cast the raycast forward, but translate the raycast by half of the fov angle to get an even amount each side
-    //    //or
-    //    //Create a gameObject in the shape of the FOV and if the player collides with it then it is seen
+    void FOV()
+    {
+        //If the enemy is the first game item to be hit by the casted ray and is within a certain distance then it must be in sight
+        //Cast the raycast forward, but translate the raycast by half of the fov angle to get an even amount each side
+        //or
+        //Create a gameObject in the shape of the FOV and if the player collides with it then it is seen
 
-    //    //The direction of the enemy
-    //    Vector3 enemyDirection = player.transform.position - this.transform.position;
-    //    //Creating the line of sight ray and it's properties
-    //    Ray lineOfSight = new Ray();
-    //    lineOfSight.direction = enemyDirection;
-    //    lineOfSight.origin = fovFromPosition;
+        //The direction of the enemy
+        Vector3 enemyDirection = player.transform.position - this.transform.position;
+        //Creating the line of sight ray and it's properties
+        Ray lineOfSight = new Ray();
+        lineOfSight.direction = enemyDirection;
+        lineOfSight.origin = fovFromPosition;
 
-    //    angleBetweenForwardAndTarget = Vector3.Angle(this.gameObject.transform.position, enemyDirection);
-    //    RaycastHit closestObject;
+        angleBetweenForwardAndTarget = Vector3.Angle(this.gameObject.transform.position, enemyDirection);
+        RaycastHit closestObject;
 
-    //    //player is within fov angle
-    //    if (angleBetweenForwardAndTarget < viewAngle / 2 || angleBetweenForwardAndTarget > ((viewAngle * -1) / 2))
-    //    {
-    //        //Raycast made in direciton of player and info stored in hitInfo
-    //        RaycastHit[] hitInfo = Physics.RaycastAll(lineOfSight, viewDistance);
-    //        closestObject = ObjectWithLeastDistance(hitInfo);
-    //        //Find the world object that has collided with the smaller distance. If the world object with the smalled distance = player
-    //        for (int i = 0; i < hitInfo.Length; i++)
-    //        {
-    //            RaycastHit ray = hitInfo[i];
-    //            if (ray.collider == )
-    //            {
+        //player is within fov angle
+        if (angleBetweenForwardAndTarget < viewAngle / 2 || angleBetweenForwardAndTarget > ((viewAngle * -1) / 2))
+        {
+            //Raycast made in direciton of player and info stored in hitInfo
+            RaycastHit[] hitInfo = Physics.RaycastAll(lineOfSight, viewDistance);
+            closestObject = ObjectWithLeastDistance(hitInfo);
+            //Find the world object that has collided with the smaller distance. If the world object with the smalled distance = player
+            for (int i = 0; i < hitInfo.Length; i++)
+            {
+                RaycastHit ray = hitInfo[i];
+                if (ray.collider == )
+                {
 
-    //            }
-    //        }
-    //    }
+                }
+            }
+        }
 
-    //    //EG angleBetweenForwardAndTarget = 90
-    //    //float fovStartAngle = ((angleBetweenForwardAndTarget * -1) / 2);//-45
-    //    //float fovFinishAngle = (angleBetweenForwardAndTarget / 2);//45
+        //EG angleBetweenForwardAndTarget = 90
+        //float fovStartAngle = ((angleBetweenForwardAndTarget * -1) / 2);//-45
+        //float fovFinishAngle = (angleBetweenForwardAndTarget / 2);//45
 
-    //    //for (int i = fovFinishAngle; i < fovStartAngle; i++)
-    //    //{
-    //    //    Physics.Raycast(fovFromPosition, transform.position.forward + fovStartAngle, out lineOfSight[i], viewDistance);
-    //    //}
+        //for (int i = fovFinishAngle; i < fovStartAngle; i++)
+        //{
+        //    Physics.Raycast(fovFromPosition, transform.position.forward + fovStartAngle, out lineOfSight[i], viewDistance);
+        //}
 
-    //}
+    }
 
-    //RaycastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
-    //{
-    //    RaycastHit closestObject;
-    //    //Raycas
-    //    //out of the array of gameobjects find the closest one
-    //    for (int i = 0; i < hitInfo.Length; i++)
-    //    {
+    RaycastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
+    {
+        RaycastHit closestObject;
+        float distanceBetweenRayCollisionAndEnemy;
+        //Raycas
+        //out of the array of gameobjects find the closest one
+        for (int i = 0; i < hitInfo.Length; i++)
+        {
+            distanceBetweenRayCollisionAndEnemy = Vector3.Distance(player.transform.position, this.gameobject.position);
+            if (hitInfo[i] < hitInfo[i+1])
+            {
+                closestObject = hitInfo[i];
+            }
+            else if (hitInfo)
+            {
 
-    //    }
-    //    return closestObject;
-    //}
+            }
+        }
+        return closestObject;
+    }
 
     //this.gameObject.AddComponent(AIMovement); //may not be allowed to refrence it as this
 
-    //Rigidbody AIRigidbody = gameObject.AddComponent<RigidBody>();    
+    Rigidbody AIRigidbody = gameObject.AddComponent<RigidBody>();
 
 
     //Add the pathfind script
-    //Pathfind pathfinding = gameObject.AddComponent<Pathfind>();    
+    Pathfind pathfinding = gameObject.AddComponent<Pathfind>();
 
     public bool PlayerLookingAtAI(bool playerInteractable, float interactRange)
     {

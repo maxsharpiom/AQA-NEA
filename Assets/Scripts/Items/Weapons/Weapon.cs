@@ -110,6 +110,28 @@ public class Weapon : Item
         CheckReloadWeapon();
     }
 
+    protected void SetEqualAmmoType()
+    {
+        switch (this.AmmoType)
+        {
+            case "762mmAmmo":
+                this.reserveAmmo = player.Inventory.total762mmAmmo;
+                break;
+            case "9mmAmmo":
+                this.reserveAmmo = player.Inventory.total9mmAmmo;
+                break;
+            case "556mmAmmo":
+                this.reserveAmmo = player.Inventory.total556mmAmmo;
+                break;
+            case "357mmAmmo":
+                this.reserveAmmo = player.Inventory.total357mmAmmo;
+                break;
+            case "762mmAmmoTokarev":
+                this.reserveAmmo = player.Inventory.total762mmAmmoTokarev;
+                break;
+        }
+    }
+
     protected void ApplyRecoil(float recoilAmount)
     {
         //Make a refrence to player movement to transform the player camera down

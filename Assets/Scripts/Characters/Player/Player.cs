@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float maxArmour = 100f;
     public float currentArmour;    
 
-    void Start()
+    public void Start()
     {
         //Create an inventory;
         Inventory PlayerInventory = new Inventory();        
