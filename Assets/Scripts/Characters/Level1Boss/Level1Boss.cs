@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Math;
 
 public class Level1Boss : Enemy
 {    
@@ -11,7 +12,7 @@ public class Level1Boss : Enemy
         this.viewDistance = 100f;
         this.weapon = new Hands("Level1BossHands", this.gameObject.position, false); //Give the boss a weapon
         this.Hands.damage = 10f; //make the damage dealt by this instance of the weapon greater
-        int numberOfWolves;
+        int numberOfWolves = 8;
         SpawnInWolves(numberOfWolves);
         ScaleBoss();                
     }
@@ -24,33 +25,24 @@ public class Level1Boss : Enemy
 
     void SpawnInWolves(int numberOfWolves)
     {
-        numberOfWolves = 4;
         //The distance a wolf spawns from the central point of the boss
         float spawnBufferDistance = 7.5f;
         Vector3 spawnPosition;
-        //float cumlativeDegreeOfSpawn = 0;
-        //float degreeSeperationBetweenEachWolf;
-        //Use rcos(x) and rsin(x) for each position
-        //Create a wolf array and set the position of each wolf
-        //SPAWNS ARE NOT DYNAMICALLY ADAPTED FOR > 4 WOLFS TO SPAWN
-        RadioactiveWolf[] wolf = new RadioactiveWolf[numberOfWolves];
-        spawnPosition = new Vector3(this.gameObject.transform.position.x-spawnBufferDistance,this.gameObject.transform.position.y, this.gameObject.transform.position.z);
-        wolf[0].transform.position = spawnPosition;
-        spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y+spawnBufferDistance, this.gameObject.transform.position.z);
-        wolf[1].transform.position = spawnPosition;
-        spawnPosition = new Vector3(this.gameObject.transform.position.x+spawnBufferDistance, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
-        wolf[2].transform.position = spawnPosition;
-        spawnPosition = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y-spawnBufferDistance, this.gameObject.transform.position.z);
-        wolf[3].transform.position = spawnPosition;
+        float cumlativeDegreeOfSpawn = 0;
+        float degreeSeperationBetweenEachWolf = 360 / numberOfWolves;
+        //Use rcos(x) and rsin(x) for each position        
 
-        //Instantiate wolfs
-        for (int i = 0; i < wolf.Length; i++)
+        //Spawn wolfs dynamically around boss
+        for (int i = 0; i < numberOfWolves; i++)
         {
-            Instanantiate(wolf[i], wolf[i].transform.position);
+            //Instantiate a new wolf
+            RadioactiveWolf wolf = new RadioactiveWolf();
+            wolf.transform.position = new Vector3(spawnBufferDistance*Math.Sin(cumlativeDegreeOfSpawn),spawnBufferDistance*Math.Cos(cumlativeDegreeOfSpawn),this.transform.position.z);
+            //Instantiate wolf into game world
+            Instantiate(wolf);
+            cumlativeDegreeOfSpawn += degreeSeperationBetweenEachWolf;
         }
 
-        //cumlativeDegreeOfSpawn += degreeSeperationBetweenEachWolf;
-        
     }
 
 }
