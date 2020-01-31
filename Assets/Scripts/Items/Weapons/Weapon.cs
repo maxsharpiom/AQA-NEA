@@ -162,7 +162,7 @@ public class Weapon : Item
         RaycastHit hit;
 
         //Casts a raycast maxDistance length from the player camera, outputs the info into hit
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance) && this.name != "HEGrenade")
         {
             //Print the name of the object that has been hit
             Debug.Log(hit.transform.name);
@@ -184,9 +184,7 @@ public class Weapon : Item
             //    target.TakeDamage(damage);
             //}
 
-        }
-
-        if (this.name == "HEGrenade")
+        } else if (this.name == "HEGrenade")
         {
             //Implies rigidbody already exists on the object, and we are just getting it to reference
             rigidBody = GetComponent<RigidBody>();
@@ -194,28 +192,29 @@ public class Weapon : Item
             rigidBody.AddForce(playerCamera.transform.forward, throwForce);
             //start timer -- cook time
             StartCoroutine(Timer(fireTime));
-            //explode
+            //Explode
             Explode();
         }
 
         //Play weapon animation
-        //Decrement ammo in current magazine by one
-        currentAmmoInMagazine -= 1;
-        ApplyRecoil(this.recoilAmount);
-        StartCoroutine(Timer(fireTime));
+        //Decrement ammo in current magazine by one        
+            currentAmmoInMagazine -= 1;
+            ApplyRecoil(this.recoilAmount);
+            StartCoroutine(Timer(fireTime));        
         weaponIfFiring = false; //should be the last line of the subroutine
     }
 
     void Explode()
     {
         float dealDamageToSourounding;
-        //Returns true if there are any colliders overlapping the sphere
+        //Returns all colliders into an array that overlap the sphere
         Collider[] explosionHit = Physics.OverlapSphere(this.position, explosionRadius);
         float distanceToPlayerSquared;
 
         //Inverse square law
         for (int i = 0; i < explosionHit.Length; i++)
         {
+            //Current issue is that things on the other side of a wall for instance still take damage
             distanceToPlayerSquared = Vector3.distance(explosionHit.position, this.transform.position);
             dealDamageToSourounding = maximumDamage * (1 / distanceToPlayerSquared);
             explosionHit.SendMessage("TakeDamage", dealDamageToSourounding);

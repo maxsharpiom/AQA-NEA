@@ -63,9 +63,9 @@ public class AICharacter : MonoBehaviour
             for (int i = 0; i < hitInfo.Length; i++)
             {
                 RaycastHit ray = hitInfo[i];
-                if (ray.collider == )
+                if (ray.collider.gameObject == player)
                 {
-
+                    playerInSight = true;
                 }
             }
         }

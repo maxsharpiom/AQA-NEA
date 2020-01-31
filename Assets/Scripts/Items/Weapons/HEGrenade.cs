@@ -13,6 +13,7 @@ public class HEGrenade : Weapon
         this.maxDistance = Mathf.Infinity;
         this.damage = 80f;
         this.firetime = 2f;
+        this.recoilAmount = 0f;
         //Define attackAnim;
         //Define reloadAnim;
         //Define attackAudio;
