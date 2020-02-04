@@ -13,6 +13,7 @@ public class Inventory
     protected float total762mmAmmo;
     protected float total357totalAmmo;
     protected float total762mmAmmoTokarev;
+
     //public Inventory() //Don't think this is needed right now
     //{
 

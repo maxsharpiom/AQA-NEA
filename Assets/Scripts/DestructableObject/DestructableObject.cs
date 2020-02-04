@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestructableObject
 {
-    protected float maxHealth;
+    protected float maxHealth; //maxHealth may need to be mathF.Infinity to make a climbable object
     protected float currentHealth;
     protected string name;
     protected bool explodes;
@@ -13,6 +13,7 @@ public class DestructableObject
     protected bool explosionRadius;
     protected bool maximumDamage; //Damage dealt per meter radius;
     //Need to referene player for position;
+    protected bool canPickup();
 
     protected void Update()
     {
