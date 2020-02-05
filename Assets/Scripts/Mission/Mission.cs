@@ -12,13 +12,13 @@ public class Mission : MonoBehaviour
     protected bool missionInProgress;
     protected Mission previousMission;
 
-    public Mission(string name, string description)
-    {
-        this.name = name;
-        this.description = description;
-    }
+    //public Mission(string name, string description)
+    //{
+    //    this.name = name;
+    //    this.description = description;
+    //}
 
-    void virtual MissionCompleteCondition(string missionName)
+    void MissionCompleteCondition(string missionName)
     {
 
     }
