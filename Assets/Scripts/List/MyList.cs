@@ -107,6 +107,13 @@ public class MyList<T>
         return listLength;
     }
 
+    public T Next(T currentNode)
+    {
+        Node<T> tempPointer = currentNode.NextNode; //Pointer to next node
+
+        return tempPointer;
+    }
+
     //public int[] toIntArray()
     //{
     //    int[] ListArray = new int[listLength];
