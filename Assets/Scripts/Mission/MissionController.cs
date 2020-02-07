@@ -40,6 +40,10 @@ public class MissionController : MonoBehaviour
     protected Mission previousMission;
     protected Mission currentMission;
     protected Mission NextMission;
+    /// <summary>
+    /// The player camera
+    /// </summary>
+    protected Camera playerCamera;
 
     void CompleteMission(string missionName)
     {
@@ -65,6 +69,14 @@ public class MissionController : MonoBehaviour
     void ActivateNextMission()
     {
 
+    }
+    
+    //https://docs.unity3d.com/ScriptReference/GUI.Label.html
+    public virtual OnGUI(string TextToDisplay)
+    {
+        float yOffsetFromPlayerCameraForward = -50f;
+        //(xpos, ypos, width, height) all as float values
+        GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y+yOffsetFromPlayerCameraForward, 200,200), TextToDisplay); 
     }
 
 }
