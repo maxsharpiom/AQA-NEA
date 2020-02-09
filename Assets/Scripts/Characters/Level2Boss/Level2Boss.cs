@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RadioactiveWorker : Enemy
+public class Level2Boss : Enemy
 {
     void Start()
     {        

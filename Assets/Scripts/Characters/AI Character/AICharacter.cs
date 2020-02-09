@@ -81,26 +81,26 @@ public class AICharacter : MonoBehaviour
 
     }
 
-    RaycastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
-    {
-        RaycastHit closestObject;
-        float distanceBetweenRayCollisionAndEnemy;
-        //Raycas
-        //out of the array of gameobjects find the closest one
-        for (int i = 0; i < hitInfo.Length; i++)
-        {
-            distanceBetweenRayCollisionAndEnemy = Vector3.Distance(player.transform.position, this.gameobject.position);
-            if (hitInfo[i] < hitInfo[i+1])
-            {
-                closestObject = hitInfo[i];
-            }
-            else if (hitInfo)
-            {
+    //RaycastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
+    //{
+    //    RaycastHit closestObject;
+    //    float distanceBetweenRayCollisionAndEnemy;
+    //    //Raycas
+    //    //out of the array of gameobjects find the closest one
+    //    for (int i = 0; i < hitInfo.Length; i++)
+    //    {
+    //        distanceBetweenRayCollisionAndEnemy = Vector3.Distance(player.transform.position, this.gameobject.position);
+    //        if (hitInfo[i] < hitInfo[i+1])
+    //        {
+    //            closestObject = hitInfo[i];
+    //        }
+    //        else if (hitInfo)
+    //        {
 
-            }
-        }
-        return closestObject;
-    }
+    //        }
+    //    }
+    //    return closestObject;
+    //}
 
     //this.gameObject.AddComponent(AIMovement); //may not be allowed to refrence it as this
 
@@ -108,7 +108,7 @@ public class AICharacter : MonoBehaviour
 
 
     //Add the pathfind script
-    Pathfind pathfinding = gameObject.AddComponent<Pathfind>();
+    //Pathfind pathfinding = gameObject.AddComponent<Pathfind>();
 
     public bool PlayerLookingAtAI(bool playerInteractable, float interactRange)
     {

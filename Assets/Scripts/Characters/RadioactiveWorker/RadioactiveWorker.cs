@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RadioactiveWorker : Enemy
 {
-    void Awake()
+    void Start()
     {
         this.friendly = false;
         this.friendly = false;
@@ -15,5 +15,5 @@ public class RadioactiveWorker : Enemy
         //this.fovAngle = 90f;
         this.viewDistance = 20f;
     }
-
+   //poo
 }
