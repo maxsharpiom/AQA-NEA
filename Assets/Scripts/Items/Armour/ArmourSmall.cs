@@ -9,6 +9,8 @@ public class ArmourSmall : Armour
     {
         this.armourAmount = 25f;
         this.description = "Small Armour";
+        this.interactRadius = 0.5f;
+        this.useableByPlayer = true;
     }
 
     public ArmourSmall(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)

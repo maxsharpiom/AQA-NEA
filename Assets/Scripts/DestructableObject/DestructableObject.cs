@@ -13,8 +13,8 @@ public class DestructableObject
     protected bool explosionRadius;
     protected bool maximumDamage; //Damage dealt per meter radius;
     //Need to referene player for position;
-    protected bool canPickup();
-
+    protected bool canPickup;
+    protected Vector3 position;
     protected void Update()
     {
 

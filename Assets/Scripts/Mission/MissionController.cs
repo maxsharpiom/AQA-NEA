@@ -72,7 +72,7 @@ public class MissionController : MonoBehaviour
     }
     
     //https://docs.unity3d.com/ScriptReference/GUI.Label.html
-    public virtual OnGUI(string TextToDisplay)
+    void OnGUI(string TextToDisplay)
     {
         float yOffsetFromPlayerCameraForward = -50f;
         //(xpos, ypos, width, height) all as float values

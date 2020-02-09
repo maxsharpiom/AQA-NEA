@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class RadioactiveWolf : Enemy
 {
-    public override void Start()
+    void Start()
     {
-        base.Start();
         this.maxHealth = 15;
         this.movementSpeed = 12f;
         //this.weapon = new Weapon Hands (); //need to refrence hands as it does not currenly exist?

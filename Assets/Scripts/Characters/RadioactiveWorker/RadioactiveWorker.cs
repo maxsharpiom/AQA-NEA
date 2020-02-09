@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RadioactiveWorker : Enemy
 {
-    public override void Start()
+    void Awake()
     {
+        this.friendly = false;
         this.friendly = false;
         this.maxHealth = 20;
         this.movementSpeed = 4f;

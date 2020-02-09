@@ -10,7 +10,7 @@ public class Barrier : DestructableObject
         this.name = "Barrier";
     }
 
-    public MediumCrate(Vector3 position, float maxHealth)
+    public void MediumCrate(Vector3 position, float maxHealth)
     {
         this.position = position;
         this.maxHealth = maxHealth;

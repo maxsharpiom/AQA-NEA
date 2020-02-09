@@ -8,10 +8,11 @@ public class Armour : Item
     protected float armourAmount;
     protected AudioSource pickupSound;
 
-    void Start()
+    public Armour(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
-        this.interactRadius = 0.5f;
-        this.useableByPlayer = true;
+        this.itemName = name;
+        this.position = position;
+        this.useableByPlayer = useableByPlayer;
     }
 
     void Update()

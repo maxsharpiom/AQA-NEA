@@ -13,8 +13,8 @@ public class Item : MonoBehaviour
     protected Animation equipAnimation;
     protected float interactRadius;
     public float DistanceBetweenPlayerAndItem;
-    protected GameObject player = GameObject.Find("Player");
-    protected Inventory mouseLook = this.player.GetComponent<Inventory>();
+    protected static GameObject player = GameObject.Find("Player");
+    protected Inventory mouseLook = player.GetComponent<Inventory>();
     protected bool itemIsInInteractableRange;
     protected bool playerInteract = false;
     /// <summary>
@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
     {
         this.position = position;
         this.itemName = name;
-        this.usableByPlayer = useableByPlayer;
+        this.useableByPlayer = useableByPlayer;
     }
 
     void Update()
@@ -60,39 +60,39 @@ public class Item : MonoBehaviour
         if (itemIsInInteractableRange)
         {
             //check if the user runs over it and if so, apply health
-            this.playerInteract = true;            
+            this.playerInteract = true;
         }
     }
 
 
-/// <summary>
-/// Add an item to the player's inventory
-/// Should not be responsible for the validation of weather or not the weapon
-/// is already in the player's inventory
-/// </summary>
-void PickUp()
-{
-    //  (1) Add item to the player's inventory
-    //  (2) Remove item from gameWorld
+    /// <summary>
+    /// Add an item to the player's inventory
+    /// Should not be responsible for the validation of weather or not the weapon
+    /// is already in the player's inventory
+    /// </summary>
+    void PickUp()
+    {
+        //  (1) Add item to the player's inventory
+        //  (2) Remove item from gameWorld
 
 
-    //If the player is within the radius of the ammo pack
-    //if (Physics.CheckSphere(position, interactRadius, playerLayerMask))
-    //{
+        //If the player is within the radius of the ammo pack
+        //if (Physics.CheckSphere(position, interactRadius, playerLayerMask))
+        //{
 
-    //    //Is the item already in the player's inventory?
-    //    if ()
-    //    {
+        //    //Is the item already in the player's inventory?
+        //    if ()
+        //    {
 
-    //    }
+        //    }
 
-    //    ////Check if the player has the we    on for this ammo type (stored in a list in inventory)
-    //    //if (Inventory.WeaponExistsInInventory())
-    //    //{
+        //    ////Check if the player has the we    on for this ammo type (stored in a list in inventory)
+        //    //if (Inventory.WeaponExistsInInventory())
+        //    //{
 
-    //    //}
-    //    ////If the player has the correct weapon then add ammo to the weapon
-    //}
-}
+        //    //}
+        //    ////If the player has the correct weapon then add ammo to the weapon
+        //}
+    }
 
 }
