@@ -30,7 +30,7 @@ public class MyList<T>
     /// <summary>
     /// The current node/pointer (allows traversal of the list)
     /// </summary>
-    public Node<T> current;
+    public Node<T>;
 
     //A pointer along the list which can be moved at any time
     //public GridNode<T> pointer;

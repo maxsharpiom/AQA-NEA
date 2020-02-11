@@ -14,15 +14,18 @@ public class OpenDoor : Mission
 
     public OpenDoor()
     {
-        this.name = "OpenDoorTutorial";
+        this.name = "Open The Door";
         this.description = "Open the door using your keypass to enter the room";
     }
 
     void Update()
-    {        
-        CheckIfFinished();
+    {
+        if (this.missionInProgress == true)
+        {            
+            CheckIfFinished();
+        }
     }
-       
+
     void CheckIfFinished()
     {
         if (Door.doorOpen == true)

@@ -9,23 +9,27 @@ public class Movement: Mission
 
     bool pressedW, pressedS, pressedA, pressedD, pressedSpace, pressedCtrl = false;        
 
-    void Start()
-    {
-        this.name = "MovementTutorial";
-        this.description = "Move using W,S,A,D, SPACE and CTRL";        
-    }
-
     public Movement()
     {
-        this.missionInProgress = true;
+        this.name = "Move";
+        this.description = "Move using W,S,A,D, SPACE and CTRL";
+        DisplayMission();
     }
     
     //Checking if the player meets the conditions
     void Update()
-    {
-        CheckingMission();
-        CheckIfFinished();
+    {        
+        if (this.missionInProgress == true)
+        {
+            CheckingMission();
+            CheckIfFinished();
+        }
     }
+
+    //void set(string status)
+    //{
+    //    this.missionInProgress = true;        
+    //}
 
     void CheckingMission()
     {
@@ -34,7 +38,7 @@ public class Movement: Mission
         if (Input.GetKeyDown(KeyCode.A)) { pressedA = true; }
         if (Input.GetKeyDown(KeyCode.D)) { pressedD = true; }
         if (Input.GetKeyDown(KeyCode.Space)) { pressedSpace = true; }
-        if (Input.GetKeyDown(KeyCode.Ctrl)) { pressedCtrl = true; }
+        if (Input.GetKeyDown(KeyCode.Ctrl)) { pressedCtrl = true; } //crouching not yet implemented though
     }
 
     void CheckIfFinished()
@@ -44,5 +48,4 @@ public class Movement: Mission
             this.missionCompleted = true;
         }
     }
-
 }

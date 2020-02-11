@@ -31,7 +31,7 @@ public class MissionController : MonoBehaviour
     /// (11) Reach gate door to end game
 
     //A list used to represent the player's missions
-    MyList<Mission> MissionList = new MyList<Mission>();
+    MyList<Mission> MissionList = new MyList<Mission>();//Need to add missions to list
     protected string name;
     protected string description;
     protected bool playerCanSee;
@@ -43,6 +43,25 @@ public class MissionController : MonoBehaviour
     protected Mission currentMission;    
     protected Camera playerCamera;
     
+    public MissionController()
+    {
+        CreateAndAddMissions();
+    }
+
+    void Update()
+    {
+        GetCurrentMission;
+    }
+
+    void CreateAndAddMissions()
+    {
+        //If you instantiate a mission, it will be set to active.
+        Movement movementMission; //not actually instantiated and therefore not set to inProgess
+        MissionList.Add(movementMission);
+        OpenDoor openDoorMission;
+        MissionList.Add(openDoorMission);
+    }
+
     void CompleteMission()
     {
         if (currentMission.missionCompleted)
@@ -53,7 +72,10 @@ public class MissionController : MonoBehaviour
 
     void GetCurrentMission()
     {
-
+        //The current mission is the current pointer in the MissionList
+        currentMission = MissionList.current;
+        //Instantiate the mission in the location to make it active
+        currentMission.SetActive;
     }
 
     void GetNewMission()
@@ -81,7 +103,9 @@ public class MissionController : MonoBehaviour
     {
         if (missionName == true)
         {
-
+            float yOffsetFromPlayerCameraForward = +50f;
+            //(xpos, ypos, width, height) all as float values
+            GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);
         }
         else //A description of how to complete the mission
         {
@@ -89,7 +113,6 @@ public class MissionController : MonoBehaviour
             //(xpos, ypos, width, height) all as float values
             GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);
         }
-
     }
 
 }

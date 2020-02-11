@@ -9,7 +9,7 @@ public class Mission : MonoBehaviour
     protected string description;
     protected bool playerCanSee;
     protected bool missionCompleted;
-    protected bool missionInProgress;
+    public bool missionInProgress = false;
     protected Mission previousMission;
     
     //public Mission(string name, string description)
@@ -18,9 +18,16 @@ public class Mission : MonoBehaviour
     //    this.description = description;
     //}
 
-    void MissionCompleteCondition(string missionName)
+    void MissionCompleteCondition()
     {
+        this.missionInProgress = true;
+    }
 
+    void SetActive()
+    {
+        this.missionInProgress = true;
+        Update(); //I want to reference the update in the inherited class
+        //May have to do it in each class
     }
 }
 
