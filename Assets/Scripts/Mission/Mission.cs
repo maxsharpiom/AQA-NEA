@@ -11,7 +11,7 @@ public class Mission : MonoBehaviour
     protected bool missionCompleted;
     protected bool missionInProgress;
     protected Mission previousMission;
-
+    
     //public Mission(string name, string description)
     //{
     //    this.name = name;
@@ -22,28 +22,6 @@ public class Mission : MonoBehaviour
     {
 
     }
-
-    void GetCurrentMission()
-    {
-
-    }
-
-    void GetNewMission()
-    {
-
-    }
-    
-    void DisplayMission()
-    {
-        //Display mission Description using canvas
-        //https://docs.unity3d.com/2018.2/Documentation/ScriptReference/UI.Text-text.html
-    }
-
-    void ActivateNextMission()
-    {
-
-    }
-
 }
 
 

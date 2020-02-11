@@ -7,27 +7,15 @@ using System;
 public class Movement: Mission
 {
 
-    bool pressedW, pressedS, pressedA, pressedD, pressedSpace, pressedCtrl = false;        
+    bool pressedW, pressedS, pressedA, pressedD, pressedSpace, pressedCtrl = false;
 
     void Start()
     {
         this.name = "MovementTutorial";
-        this.description = "Move using W,S,A,D, SPACE and CTRL";        
-    }
-
-    public Movement()
-    {
-        this.missionInProgress = true;
+        this.description = "Move using W,S,A,D, SPACE and CTRL";
     }
     
-    //Checking if the player meets the conditions
     void Update()
-    {
-        CheckingMission();
-        CheckIfFinished();
-    }
-
-    void CheckingMission()
     {
         if (Input.GetKeyDown(KeyCode.W)) { pressedW = true; }
         if (Input.GetKeyDown(KeyCode.S)) { pressedS = true; }

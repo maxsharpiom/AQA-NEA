@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 
 //Probs should be attatched to the door hinge
+//Door needs to start closed
 public class Door : MonoBehaviour
 {
     public GameObject player = GameObject.Find("Player");

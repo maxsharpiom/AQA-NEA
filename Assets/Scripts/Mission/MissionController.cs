@@ -40,14 +40,15 @@ public class MissionController : MonoBehaviour
     protected Mission previousMission;
     protected Mission currentMission;
     protected Mission NextMission;
-    /// <summary>
-    /// The player camera
-    /// </summary>
+    protected Mission currentMission;    
     protected Camera playerCamera;
-
-    void CompleteMission(string missionName)
+    
+    void CompleteMission()
     {
-
+        if (currentMission.missionCompleted)
+        {
+            GetNewMission();
+        }
     }
 
     void GetCurrentMission()
@@ -57,26 +58,38 @@ public class MissionController : MonoBehaviour
 
     void GetNewMission()
     {
-        NextMission = MissionList.Next(currentMission);
+        NextMission = MissionList.Next(currentMission);        
+        ActivateNextMission();
     }
     
     void DisplayMission()
     {
         //Display mission Description using canvas
         //https://docs.unity3d.com/2018.2/Documentation/ScriptReference/UI.Text-text.html
+        OnGUI(true, currentMission.name);
+        OnGUI(false, currentMission.description);
     }
 
     void ActivateNextMission()
     {
-
+        currentMission = NextMission;
+        DisplayMission();
     }
     
     //https://docs.unity3d.com/ScriptReference/GUI.Label.html
-    void OnGUI(string TextToDisplay)
+    void OnGUI(bool missionName, string TextToDisplay)
     {
-        float yOffsetFromPlayerCameraForward = -50f;
-        //(xpos, ypos, width, height) all as float values
-        GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y+yOffsetFromPlayerCameraForward, 200,200), TextToDisplay); 
+        if (missionName == true)
+        {
+
+        }
+        else //A description of how to complete the mission
+        {
+            float yOffsetFromPlayerCameraForward = -50f;
+            //(xpos, ypos, width, height) all as float values
+            GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);
+        }
+
     }
 
 }

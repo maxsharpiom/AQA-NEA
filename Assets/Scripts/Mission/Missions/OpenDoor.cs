@@ -8,20 +8,21 @@ public class OpenDoor : Mission
 {
     void Awake()
     {
+        //A reference to the gamobject used for the door
         gameObject Door = gameObject.FindWithTag("OpenDoorTutorial");
     }
 
-    void Start()
+    public OpenDoor()
     {
         this.name = "OpenDoorTutorial";
-        this.description = "Open the door using your keypass to enter the building";
+        this.description = "Open the door using your keypass to enter the room";
     }
 
     void Update()
-    {
+    {        
         CheckIfFinished();
     }
-
+       
     void CheckIfFinished()
     {
         if (Door.doorOpen == true)
