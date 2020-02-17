@@ -215,7 +215,7 @@ public class Weapon : Item
         for (int i = 0; i < explosionHit.Length; i++)
         {
             //Current issue is that things on the other side of a wall for instance still take damage
-            distanceToPlayerSquared = Vector3.distance(explosionHit.position, this.transform.position);
+            distanceToPlayerSquared = Vector3.Distance(explosionHit.position, this.transform.position);
             dealDamageToSourounding = maximumDamage * (1 / distanceToPlayerSquared);
             explosionHit.SendMessage("TakeDamage", dealDamageToSourounding);
         }
