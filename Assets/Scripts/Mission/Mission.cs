@@ -29,6 +29,26 @@ public class Mission : MonoBehaviour
         Update(); //I want to reference the update in the inherited class
         //May have to do it in each class
     }
+
+    //Checking if the player meets the conditions
+    void Update()
+    {
+        while (this.missionInProgress == true)
+        {
+            CheckingMission();
+            CheckIfFinished();
+        }
+    }
+
+    public virtual void CheckingMission()
+    {
+       
+    }
+
+    public virtual void CheckIfFinished()
+    {
+
+    }
 }
 
 

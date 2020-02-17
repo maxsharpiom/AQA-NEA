@@ -30,7 +30,7 @@ public class MyList<T>
     /// <summary>
     /// The current node/pointer (allows traversal of the list)
     /// </summary>
-    public Node<T>;
+    public Node<T> current;
 
     //A pointer along the list which can be moved at any time
     //public GridNode<T> pointer;
@@ -107,16 +107,16 @@ public class MyList<T>
         return listLength;
     }
 
-    public T Next(T currentNode)
+    public Node<T> Next(Node<T> currentNode)
     {
         Node<T> tempPointer = currentNode.NextNode; //Pointer to next node
 
         return tempPointer;
     }
 
-    public T Next()
+    public Node<T> Next()
     {
-        return current.NextNode();
+        return current.NextNode;
     }
 
     //public int[] toIntArray()
