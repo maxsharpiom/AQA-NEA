@@ -136,8 +136,9 @@ public class Weapon : Item
     {
         //Make a refrence to player movement to transform the player camera down
         //Apply transformation to player camera
-        mouseLook.mouseY += recoilAmount * fireTime;
-        //mouseLook.mouseY -= recoilAmount * fireTime;
+        mouseLook.mouseY += recoilAmount * fireTime; //May happen at the same time, therefore cancel eachother out
+        //May need a pause here
+        mouseLook.mouseY -= recoilAmount * fireTime;
     }
 
     protected void CheckFireWeapon()
@@ -184,7 +185,7 @@ public class Weapon : Item
             //    target.TakeDamage(damage);
             //}
 
-        } else if (this.name == "HEGrenade")
+        } else if (this.name == "HEGrenade") //Throw the grenade
         {
             //Implies rigidbody already exists on the object, and we are just getting it to reference
             rigidBody = GetComponent<RigidBody>();
