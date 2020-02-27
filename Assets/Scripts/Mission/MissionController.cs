@@ -39,8 +39,7 @@ public class MissionController : MonoBehaviour
     protected bool missionInProgress;
     protected Mission previousMission;
     protected Mission currentMission;
-    protected Mission NextMission;
-    protected Mission currentMission;    
+    protected Mission NextMission; 
     protected Camera playerCamera;
     
     public MissionController()
@@ -50,21 +49,21 @@ public class MissionController : MonoBehaviour
 
     void Update()
     {
-        GetCurrentMission;
+        GetCurrentMission();
     }
 
     void CreateAndAddMissions()
     {
         //If you instantiate a mission, it will be set to active.
-        Movement movementMission; //not actually instantiated and therefore not set to inProgess
+        Movement movementMission = new Movement(); //inProgess might = true, becuase it has been instantiated
         MissionList.Add(movementMission);
-        OpenDoor openDoorMission;
+        OpenDoor openDoorMission = new OpenDoor();
         MissionList.Add(openDoorMission);
     }
 
     void CompleteMission()
     {
-        if (currentMission.missionCompleted)
+        if (currentMission.MissionCompleted)
         {
             GetNewMission();
         }
@@ -89,7 +88,7 @@ public class MissionController : MonoBehaviour
         //Display mission Description using canvas
         //https://docs.unity3d.com/2018.2/Documentation/ScriptReference/UI.Text-text.html
         OnGUI(true, currentMission.name);
-        OnGUI(false, currentMission.description);
+        OnGUI(false, currentMission.Description);
     }
 
     void ActivateNextMission()

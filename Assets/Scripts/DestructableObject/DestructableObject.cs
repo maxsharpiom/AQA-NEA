@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructableObject
+public class DestructableObject : MonoBehaviour
 {
     protected float maxHealth; //maxHealth may need to be mathF.Infinity to make a climbable object
     protected float currentHealth;

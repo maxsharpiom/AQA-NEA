@@ -28,7 +28,7 @@ public class Movement: Mission
         if (Input.GetKeyDown(KeyCode.A)) { pressedA = true; }
         if (Input.GetKeyDown(KeyCode.D)) { pressedD = true; }
         if (Input.GetKeyDown(KeyCode.Space)) { pressedSpace = true; }
-        if (Input.GetKeyDown(KeyCode.Ctrl)) { pressedCtrl = true; } //crouching not yet implemented though
+        if (Input.GetKeyDown(KeyCode.LeftControl)) { pressedCtrl = true; } //crouching not yet implemented though
     }
 
     public override void CheckIfFinished()

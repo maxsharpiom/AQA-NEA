@@ -12,6 +12,18 @@ public class Mission : MonoBehaviour
     public bool missionInProgress = false;
     protected Mission previousMission;
     
+    public string Description
+    {
+        get { return description; }
+        set { Description = value; }
+    }
+
+    public bool MissionCompleted
+    {
+        get { return missionCompleted; }
+        set { MissionCompleted = value; }
+    }
+
     //public Mission(string name, string description)
     //{
     //    this.name = name;

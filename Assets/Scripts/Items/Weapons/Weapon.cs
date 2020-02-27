@@ -90,9 +90,9 @@ public class Weapon : Item
     /// <returns></returns>
     protected float fireTime;
     protected float recoilAmount;
-    protected MouseLook mouseLook = this.player.GetComponent<MouseLook>();    
+    protected MouseLook mouseLook = player.GetComponent<MouseLook>();    
     protected bool automatic;
-    protected const float throwForce = 10f; //For grenades and stuff
+    protected const float throwForceFloat = 10f; //For grenades and stuff //May not need
     protected float explosionRadius;    
 
     public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
@@ -188,9 +188,9 @@ public class Weapon : Item
         } else if (this.name == "HEGrenade") //Throw the grenade
         {
             //Implies rigidbody already exists on the object, and we are just getting it to reference
-            rigidBody = GetComponent<RigidBody>();
-            //Transform gameObject
-            rigidBody.AddForce(playerCamera.transform.forward, throwForce);
+            Rigidbody rigidBody = this.gameObject.GetComponent<Rigidbody>();
+            //Transform gameObject 
+            rigidBody.AddForce(playerCamera.transform.forward, ForceMode.Impulse); //https://docs.unity3d.com/ScriptReference/ForceMode.html
             //start timer -- cook time
             StartCoroutine(Timer(fireTime));
             //Explode
@@ -215,10 +215,19 @@ public class Weapon : Item
         //Inverse square law
         for (int i = 0; i < explosionHit.Length; i++)
         {
-            //Current issue is that things on the other side of a wall for instance still take damage
-            distanceToPlayerSquared = Vector3.Distance(explosionHit.position, this.transform.position);
-            dealDamageToSourounding = maximumDamage * (1 / distanceToPlayerSquared);
-            explosionHit.SendMessage("TakeDamage", dealDamageToSourounding);
+            //Creating a rigidbody and setting it equal to the whatever the rigidbody component of whatever the explosion has hit
+            Rigidbody rigidbody = explosionHit[i].GetComponent<Rigidbody>();
+            //If there exists a rigid body on that object
+            if (rigidbody != null)
+            {
+                //Current issue is that things on the other side of a wall for instance still take damage
+                distanceToPlayerSquared = Vector3.Distance(rigidbody.position, this.transform.position);
+                dealDamageToSourounding = damage * (1 / distanceToPlayerSquared);
+                rigidbody.AddExplosionForce(dealDamageToSourounding, this.transform.position, explosionRadius);
+                //Watch out becuase the dealDamageToSouroundings may have been done twice
+                rigidbody.SendMessage("TakeDamage", dealDamageToSourounding);
+            }
+            
         }
         //play explosion anim
     }
