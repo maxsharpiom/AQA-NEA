@@ -94,7 +94,7 @@ public class MissionController : MonoBehaviour
     void ActivateNextMission()
     {
         currentMission = NextMission;
-        DisplayMission();
+        DisplayMission(); //May show the next mission and not the current one
     }
     
     //https://docs.unity3d.com/ScriptReference/GUI.Label.html
