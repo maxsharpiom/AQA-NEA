@@ -8,11 +8,11 @@ public class Inventory
     //The current item that the player has equiped
     Item currentItem; //Not yet known;
     MyList<Item> InventoryList = new MyList<Item>();
-    protected float total9mmAmmo;
-    protected float total556mmAmmo;
-    protected float total762mmAmmo;
-    protected float total357totalAmmo;
-    protected float total762mmAmmoTokarev;
+    public float total9mmAmmo;
+    public float total556mmAmmo;
+    public float total762mmAmmo;
+    public float total357mmAmmo;
+    public float total762mmAmmoTokarev;
 
     //public Inventory() //Don't think this is needed right now
     //{
@@ -28,7 +28,7 @@ public class Inventory
         this.total9mmAmmo = 0f;
         this.total556mmAmmo = 0f;
         this.total762mmAmmo = 0f;
-        this.total357totalAmmo = 0f;
+        this.total357mmAmmo = 0f;
         this.total762mmAmmoTokarev = 0f;
     }
 

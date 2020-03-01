@@ -21,14 +21,19 @@ public class AICharacter : MonoBehaviour
     //Add the AI movement script to the AI character class
     //AICharacter myScript = gameObject.AddComponent<AIMovement>();
     protected Vector3 fovFromPosition;
-
+    protected float fovAngle;
     //Should probably be adapted not just for player but any two gameobjects
     protected GameObject player = GameObject.Find("Player");
 
     //public virtual void Start()
     //{
-        
+
     //}
+
+    void Awake()
+    {
+        Rigidbody AIRigidbody = gameObject.AddComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -81,31 +86,29 @@ public class AICharacter : MonoBehaviour
 
     }
 
-    //RaycastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
-    //{
-    //    RaycastHit closestObject;
-    //    float distanceBetweenRayCollisionAndEnemy;
-    //    //Raycas
-    //    //out of the array of gameobjects find the closest one
-    //    for (int i = 0; i < hitInfo.Length; i++)
-    //    {
-    //        distanceBetweenRayCollisionAndEnemy = Vector3.Distance(player.transform.position, this.gameobject.position);
-    //        if (hitInfo[i] < hitInfo[i+1])
-    //        {
-    //            closestObject = hitInfo[i];
-    //        }
-    //        else if (hitInfo)
-    //        {
-
-    //        }
-    //    }
-    //    return closestObject;
-    //}
+    RaycastHit ObjectWithLeastDistance(RaycastHit[] hitInfo)
+    {
+        RaycastHit closestObject = new RaycastHit();
+        float distanceBetweenRayCollisionAndEnemy;
+        //Raycas
+        //out of the array of gameobjects find the closest one
+        for (int i = 0; i < hitInfo.Length; i++)
+        {
+            //Return an array giving the RaycastHit that has the least distance to the player
+            distanceBetweenRayCollisionAndEnemy = Vector3.Distance(player.transform.position, this.gameObject.transform.position);
+            if (hitInfo[i].distance < hitInfo[i + 1].distance)
+            {
+                closestObject = hitInfo[i];
+            }
+            else if (hitInfo[i + 1].distance < hitInfo[i].distance)
+            {
+                closestObject = hitInfo[i + 1];
+            }
+        }
+        return closestObject;
+    }
 
     //this.gameObject.AddComponent(AIMovement); //may not be allowed to refrence it as this
-
-    Rigidbody AIRigidbody = gameObject.AddComponent<RigidBody>();
-
 
     //Add the pathfind script
     //Pathfind pathfinding = gameObject.AddComponent<Pathfind>();

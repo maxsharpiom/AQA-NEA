@@ -69,12 +69,12 @@ public class MissionController : MonoBehaviour
         }
     }
 
-    void GetCurrentMission()
+    void GetCurrentMission() //Try to convert <T> to T in MyList class
     {
         //The current mission is the current pointer in the MissionList
         currentMission = MissionList.current;
         //Instantiate the mission in the location to make it active
-        currentMission.SetActive;
+        currentMission.SetActive();
     }
 
     void GetNewMission()

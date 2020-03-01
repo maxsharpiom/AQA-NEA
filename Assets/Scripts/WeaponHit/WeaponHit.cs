@@ -9,20 +9,20 @@ public class WeaponHit : MonoBehaviour
     protected float maximumHealth;
     protected float currentArmour;
     protected float maximumArmour;
-    GameObject player;
+    Player player; //Changed GameObject to Player
 
-    void Start()
+    void Awake()
     {
         dead = false;
-        player = GameObject.Find("Player");        
+        //player = GameObject.Find("Player");        
     }
 
     void Update()
     {
         this.currentHealth = player.currentHealth;
         this.currentArmour = player.currentArmour;
-        this.maximumHealth = player.maximumHealth;
-        this.maximumArmour = player.maximumArmour;
+        this.maximumHealth = player.maxHealth;
+        this.maximumArmour = player.maxArmour;
     }
 
     public void TakeDamage(float damageAmountToApply)
@@ -32,7 +32,7 @@ public class WeaponHit : MonoBehaviour
             currentArmour -= damageAmountToApply;
             if (currentArmour < 0)
             {
-                currentHealth + currentArmour;
+                currentHealth += currentArmour;
                 currentArmour = 0;
             }
         }

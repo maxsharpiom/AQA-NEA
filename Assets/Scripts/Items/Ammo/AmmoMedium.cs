@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class AmmoMedium : Item
+public class AmmoMedium : Ammo
 {
     
     void Start()
@@ -12,7 +12,7 @@ public class AmmoMedium : Item
         this.description = "Medium Ammo";
     }
 
-    public AmmoMedium(string name, Vector3 position, float amount) : base(name, position, useableByPlayer)
+    public AmmoMedium(string name, Vector3 position, float amount) : base(name, position, amount)
     {
         this.name = name;
         this.position = position;
@@ -29,12 +29,12 @@ public class AmmoMedium : Item
         if (this.playerInteract)
         {
 
-            if (this.name == "Medium9mmAmmo") { Inventory.total9mmAmmo += this.amount; }
-            if (this.name == "Medium556mmAmmo") { Inventory.total556mmAmmo += this.amount; }
-            if (this.name == "Medium762mmAmmo") { Inventory.total762mmAmmo += this.amount; }
-            if (this.name == "Medium357mmAmmo") { Inventory.total357mmAmmo += this.amount; }
+            if (this.name == "Medium9mmAmmo") { inventory.total9mmAmmo += this.amount; }
+            if (this.name == "Medium556mmAmmo") { inventory.total556mmAmmo += this.amount; }
+            if (this.name == "Medium762mmAmmo") { inventory.total762mmAmmo += this.amount; }
+            if (this.name == "Medium357mmAmmo") { inventory.total357mmAmmo += this.amount; }
             //Play pickup sound
-            Object.Destroy(this.gameObject);
+            Destroy(this.gameObject);
 
         }
     }

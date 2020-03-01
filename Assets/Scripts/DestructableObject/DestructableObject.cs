@@ -10,11 +10,12 @@ public class DestructableObject : MonoBehaviour
     protected bool explodes;
     protected bool containsItem;
     protected Item containingInside; //Might need to be more specific with the type as Item is the base and not the class of the actual item itself
-    protected bool explosionRadius;
-    protected bool maximumDamage; //Damage dealt per meter radius;
+    protected float explosionRadius;
+    protected float maximumDamage; //Damage dealt per meter radius;
     //Need to referene player for position;
     protected bool canPickup;
-    protected Vector3 position;
+    protected Vector3 position; 
+
     protected void Update()
     {
 
@@ -49,15 +50,15 @@ public class DestructableObject : MonoBehaviour
     {
         float dealDamageToSourounding;
         //Returns true if there are any colliders overlapping the sphere
-        Collider[] explosionHit = Physics.OverlapSphere(this.position, explosionRadius);
+        Collider[] explosionHit = Physics.OverlapSphere(this.transform.position, explosionRadius);
         float distanceToPlayerSquared;
 
         //Inverse square law
         for (int i = 0; i < explosionHit.Length; i++)
         {
-            distanceToPlayerSquared = Vector3.distance(explosionHit.position, this.transform.position);
+            distanceToPlayerSquared = Vector3.Distance(explosionHit[i].transform.position, this.transform.position);
             dealDamageToSourounding = maximumDamage * (1 / distanceToPlayerSquared);
-            explosionHit.SendMessage("TakeDamage", dealDamageToSourounding);
+            explosionHit[i].SendMessage("TakeDamage", dealDamageToSourounding);
         }
         //play explosion anim
     }
@@ -65,7 +66,7 @@ public class DestructableObject : MonoBehaviour
     void DropContainingItem()
     {
         //Spawn item in and set position equal to the destructable object
-        Instantiate(containsItem, this.transform.position);
+        Instantiate(containingInside, this.transform);
         //May need to apply gravity?
     }
 

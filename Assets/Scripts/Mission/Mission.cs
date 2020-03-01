@@ -35,7 +35,7 @@ public class Mission : MonoBehaviour
         this.missionInProgress = true;
     }
 
-    void SetActive()
+    public void SetActive()
     {
         this.missionInProgress = true;
         Update(); //I want to reference the update in the inherited class

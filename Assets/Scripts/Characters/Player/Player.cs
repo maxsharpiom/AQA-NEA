@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float maxHealth = 100;
-    float movementSpeed = 5f;
+    public float maxHealth = 100;
+    public float movementSpeed = 5f;
     public float currentHealth;
     public float currentSpeed;
     public Weapon currentWeapon;

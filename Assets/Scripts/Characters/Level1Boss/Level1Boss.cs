@@ -10,8 +10,8 @@ public class Level1Boss : Enemy
         this.maxHealth = 3000f;
         this.movementSpeed = 3f;
         this.viewDistance = 100f;
-        this.weapon = new Hands("Level1BossHands", this.gameObject.position, false); //Give the boss a weapon
-        this.Hands.damage = 10f; //make the damage dealt by this instance of the weapon greater
+        this.weapon = new Hand("Level1BossHand", this.gameObject.transform.position, false); //Give the boss a weapon
+        this.weapon.damage = 10f; //make the damage dealt by this instance of the weapon greater
         int numberOfWolves = 8;
         SpawnInWolves(numberOfWolves);
         ScaleBoss();                
@@ -20,7 +20,7 @@ public class Level1Boss : Enemy
     void ScaleBoss()
     {
         float scaleAmmount = 3;
-        this.gameObject.transform.localscale += new Vector3(scaleAmmount, scaleAmmount,scaleAmmount);
+        this.gameObject.transform.localScale += new Vector3(scaleAmmount, scaleAmmount,scaleAmmount);
     }
 
     void SpawnInWolves(int numberOfWolves)
@@ -37,7 +37,7 @@ public class Level1Boss : Enemy
         {
             //Instantiate a new wolf
             RadioactiveWolf wolf = new RadioactiveWolf();
-            wolf.transform.position = new Vector3(spawnBufferDistance*Math.Sin(cumlativeDegreeOfSpawn),spawnBufferDistance*Math.Cos(cumlativeDegreeOfSpawn),this.transform.position.z);
+            wolf.transform.position = new Vector3(spawnBufferDistance*Mathf.Sin(cumlativeDegreeOfSpawn),spawnBufferDistance*Mathf.Cos(cumlativeDegreeOfSpawn),this.transform.position.z);
             //Instantiate wolf into game world
             Instantiate(wolf);
             cumlativeDegreeOfSpawn += degreeSeperationBetweenEachWolf;

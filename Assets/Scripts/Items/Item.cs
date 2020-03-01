@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
     protected float interactRadius;
     public float DistanceBetweenPlayerAndItem;
     public static GameObject player = GameObject.Find("Player");
-    protected Inventory mouseLook = player.GetComponent<Inventory>();
+    protected Inventory inventory = player.GetComponent<Inventory>(); 
     protected bool itemIsInInteractableRange;
     protected bool playerInteract = false;
     /// <summary>

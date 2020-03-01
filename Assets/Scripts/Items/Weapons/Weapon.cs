@@ -18,7 +18,7 @@ public class Weapon : Item
     /// <summary>
     /// Damage per attack
     /// </summary>
-    protected float damage;
+    public float damage; //Must be public beacuse Lvl1 boss has to change the damage dealt per attack
     /// <summary>
     /// The maxiumum amount of ammo at any one time
     /// </summary>
@@ -93,7 +93,9 @@ public class Weapon : Item
     protected MouseLook mouseLook = player.GetComponent<MouseLook>();    
     protected bool automatic;
     protected const float throwForceFloat = 10f; //For grenades and stuff //May not need
-    protected float explosionRadius;    
+    protected float explosionRadius;
+    protected float firetime;
+
 
     public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {

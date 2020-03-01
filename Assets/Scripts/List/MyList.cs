@@ -100,6 +100,12 @@ public class MyList<T>
         return tempPointer.Data;
     }
 
+    //public T ReturnCurrent(Node<T> currentNode)
+    //{
+    //    T nodeToReturn = curr
+    //    return currentNode;
+    //}
+
     public int ListLength()
     {
         int listLength = this.listLength;
@@ -107,9 +113,9 @@ public class MyList<T>
         return listLength;
     }
 
-    public Node<T> Next(Node<T> currentNode)
+    public T Next(T currentNode)
     {
-        Node<T> tempPointer = currentNode.NextNode; //Pointer to next node
+        T tempPointer = currentNode.NextNode; //Pointer to next node
 
         return tempPointer;
     }
