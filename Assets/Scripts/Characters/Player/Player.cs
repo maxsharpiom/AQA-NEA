@@ -23,6 +23,26 @@ public class Player : MonoBehaviour
         CheckDead();
     }
 
+    //optional perameters, so have a default text box size
+    //Could be dynamic so the size of the text box depends on the size of the text entered
+    void OnGUI(string TextToDisplay)
+    {
+            float yOffsetFromPlayerCameraForward = +50f;
+            //(xpos, ypos, width, height) all as float values
+            GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);       
+    }
+
+    bool Interacting(gameObject targetObject, float interactRangeOfTargetObject)
+    {
+        bool interacting = false;
+        RaycastHit hit;
+        if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRangeOfTargetObject)))
+        {
+            interacting = true;
+        }
+        return interacting;
+    }
+
     void CheckDead()
     {
         if (currentHealth <= 0)

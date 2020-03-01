@@ -43,7 +43,8 @@ public class Door : MonoBehaviour
 
     public void Interaction()
     {
-        if (playerCanInteractWith())
+        //Testing the interacting function in player
+        if (player.Interacting(this.gameObject, interactRange))
         {
             if (Input.GetKey(KeyCode.E) && doorOpen == false)
             {
@@ -54,6 +55,18 @@ public class Door : MonoBehaviour
                 CloseDoor();
             }
         }
+        //or
+        //if (playerCanInteractWith())
+        //{
+        //    if (Input.GetKey(KeyCode.E) && doorOpen == false)
+        //    {
+        //        OpenDoor();
+        //    }
+        //    else if (Input.GetKey(KeyCode.E) && doorOpen == true)
+        //    {
+        //        CloseDoor();
+        //    }
+        //}
     }
 
     public void CloseDoor()
