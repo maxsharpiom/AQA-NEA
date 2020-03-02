@@ -16,7 +16,7 @@ public class AKM : Weapon
         this.AmmoType = "762mmAmmo"; //Don't think this is used anywhere or needed
         this.reloadTime = 3.5f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = this.player.total762mmAmmo;
+        this.reserveAmmo = inventory.total762mmAmmo;
         this.recoilAmount = 15f;
         this.fireTime = 0.096f;
         //Define attackAnim;

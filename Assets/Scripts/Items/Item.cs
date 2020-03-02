@@ -13,7 +13,7 @@ public class Item : MonoBehaviour
     protected Animation equipAnimation;
     protected float interactRadius;
     public float DistanceBetweenPlayerAndItem;
-    public static GameObject player = GameObject.Find("Player");
+    public static Player player;// = GameObject.Find("Player");
     protected Inventory inventory = player.GetComponent<Inventory>(); 
     protected bool itemIsInInteractableRange;
     protected bool playerInteract = false;

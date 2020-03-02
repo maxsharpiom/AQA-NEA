@@ -10,12 +10,13 @@ public class Player : MonoBehaviour
     public float currentSpeed;
     public Weapon currentWeapon;
     public float maxArmour = 100f;
-    public float currentArmour;    
-
+    public float currentArmour;
+    Camera playerCamera;
+    public Inventory PlayerInventory;
     public void Start()
     {
         //Create an inventory;
-        Inventory PlayerInventory = new Inventory();        
+         PlayerInventory = new Inventory();        
     }
 
     void Update()
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
             GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);       
     }
 
-    bool Interacting(gameObject targetObject, float interactRangeOfTargetObject)
+   public bool Interacting(GameObject targetObject, float interactRangeOfTargetObject)
     {
         bool interacting = false;
         RaycastHit hit;

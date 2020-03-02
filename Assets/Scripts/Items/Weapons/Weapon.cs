@@ -96,7 +96,6 @@ public class Weapon : Item
     protected float explosionRadius;
     protected float firetime;
 
-
     public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     {
         this.name = name;
@@ -117,31 +116,31 @@ public class Weapon : Item
         switch (this.AmmoType)
         {
             case "762mmAmmo":
-                this.reserveAmmo = player.Inventory.total762mmAmmo;
+                this.reserveAmmo = inventory.total762mmAmmo;
                 break;
             case "9mmAmmo":
-                this.reserveAmmo = player.Inventory.total9mmAmmo;
+                this.reserveAmmo = inventory.total9mmAmmo;
                 break;
             case "556mmAmmo":
-                this.reserveAmmo = player.Inventory.total556mmAmmo;
+                this.reserveAmmo = inventory.total556mmAmmo;
                 break;
             case "357mmAmmo":
-                this.reserveAmmo = player.Inventory.total357mmAmmo;
+                this.reserveAmmo = inventory.total357mmAmmo;
                 break;
             case "762mmAmmoTokarev":
-                this.reserveAmmo = player.Inventory.total762mmAmmoTokarev;
+                this.reserveAmmo = inventory.total762mmAmmoTokarev;
                 break;
         }
     }
 
-    protected void ApplyRecoil(float recoilAmount)
-    {
-        //Make a refrence to player movement to transform the player camera down
-        //Apply transformation to player camera
-        mouseLook.mouseY += recoilAmount * fireTime; //May happen at the same time, therefore cancel eachother out
-        //May need a pause here
-        mouseLook.mouseY -= recoilAmount * fireTime;
-    }
+    //protected void ApplyRecoil(float recoilAmount)
+    //{
+    //    //Make a refrence to player movement to transform the player camera down
+    //    //Apply transformation to player camera
+    //    mouseLook.mouseY += recoilAmount * fireTime; //May happen at the same time, therefore cancel eachother out        
+    //    //May need a pause here
+    //    mouseLook.mouseY -= recoilAmount * fireTime;
+    //}
 
     protected void CheckFireWeapon()
     {
@@ -202,7 +201,7 @@ public class Weapon : Item
         //Play weapon animation
         //Decrement ammo in current magazine by one        
             currentAmmoInMagazine -= 1;
-            ApplyRecoil(this.recoilAmount);
+            //ApplyRecoil(this.recoilAmount);
             StartCoroutine(Timer(fireTime));        
         weaponIfFiring = false; //should be the last line of the subroutine
     }

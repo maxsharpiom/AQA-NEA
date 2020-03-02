@@ -6,10 +6,11 @@ using System;
 
 public class OpenDoor : Mission
 {
+    Door door; //A reference to the gamobject used for the door -- Not linked to a GameObject though?
+
     void Awake()
-    {
-        //A reference to the gamobject used for the door
-        gameObject Door = gameObject.FindWithTag("OpenDoorTutorial");
+    {        
+        // door = GameObject.FindWithTag("OpenDoorTutorial");
     }
 
     public OpenDoor()
@@ -28,7 +29,7 @@ public class OpenDoor : Mission
 
     void CheckIfFinished()
     {
-        if (Door.doorOpen == true)
+        if (door.doorOpen == true)
         {
             this.missionCompleted = true;
         }

@@ -7,15 +7,15 @@ using System;
 //Door needs to start closed
 public class Door : MonoBehaviour
 {
-    public GameObject player = GameObject.Find("Player");
+    public Player player;// = GameObject.Find("Player"); ## No link to a GameObject?
     public LayerMask playerLayerMask = LayerMask.GetMask("Player");
     public float maxOpenAngle = 90;
     public float closedAngle = 0;    
     public bool playerCanInteract;
     float interactRange = 1.5f;
-    bool doorOpen = false;
+    public bool doorOpen = false;
     public float currentAngle/* = transform.eulerAngles.y*/; //Not set to anything
-
+    
     private void Start()
     {
         currentAngle = transform.eulerAngles.y;

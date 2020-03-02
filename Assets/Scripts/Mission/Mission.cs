@@ -8,7 +8,7 @@ public class Mission : MonoBehaviour
     protected string name;
     protected string description;
     protected bool playerCanSee;
-    protected bool missionCompleted;
+    public bool missionCompleted;
     public bool missionInProgress = false;
     protected Mission previousMission;
     

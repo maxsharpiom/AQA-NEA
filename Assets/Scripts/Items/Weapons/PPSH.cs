@@ -16,7 +16,7 @@ public class PPSH : Weapon
         this.AmmoType = "762mmAmmoTokarev";
         this.reloadTime = 2.5f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = this.player.total9mmAmmo;
+        this.reserveAmmo = inventory.total9mmAmmo;
         this.recoilAmount = 5f;
         this.fireTime = 0.06315789473f; // 60/950
         //Define attackAnim;

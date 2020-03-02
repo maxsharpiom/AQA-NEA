@@ -16,7 +16,7 @@ public class Tokarev : Weapon
         this.AmmoType = "762mmAmmoTokarev"; //Don't think this is used anywhere or needed
         this.reloadTime = 2.5f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = this.player.total9mmAmmo;        
+        this.reserveAmmo = inventory.total9mmAmmo;        
         this.recoilAmount = 5f;
         this.fireTime = 0.5f;
         //Define attackAnim;
