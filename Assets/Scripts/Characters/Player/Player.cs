@@ -7,16 +7,16 @@ public class Player : MonoBehaviour
     public float maxHealth = 100;
     public float movementSpeed = 5f;
     public float currentHealth;
-    public float currentSpeed;
     public Weapon currentWeapon;
     public float maxArmour = 100f;
     public float currentArmour;
     Camera playerCamera;
     public Inventory PlayerInventory;
-    public void Start()
+    public void Awake()
     {
         //Create an inventory;
-         PlayerInventory = new Inventory();        
+        PlayerInventory = new Inventory();
+        currentHealth = 100f;
     }
 
     void Update()
@@ -28,12 +28,12 @@ public class Player : MonoBehaviour
     //Could be dynamic so the size of the text box depends on the size of the text entered
     void OnGUI(string TextToDisplay)
     {
-            float yOffsetFromPlayerCameraForward = +50f;
-            //(xpos, ypos, width, height) all as float values
-            GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);       
+        float yOffsetFromPlayerCameraForward = +50f;
+        //(xpos, ypos, width, height) all as float values
+        GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);
     }
 
-   public bool Interacting(GameObject targetObject, float interactRangeOfTargetObject)
+    public bool Interacting(GameObject targetObject, float interactRangeOfTargetObject)
     {
         bool interacting = false;
         RaycastHit hit;

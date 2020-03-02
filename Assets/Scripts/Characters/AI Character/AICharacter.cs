@@ -17,7 +17,7 @@ public class AICharacter : MonoBehaviour
     protected float interactRange = 1.5f;
     protected LayerMask playerGroundMask = LayerMask.GetMask("Player");
     public bool playerLooking;
-    protected Pathfind pathfinding = new Pathfind();
+    //protected Pathfind pathfinding = new Pathfind();
     //Add the AI movement script to the AI character class
     //AICharacter myScript = gameObject.AddComponent<AIMovement>();
     protected Vector3 fovFromPosition;
