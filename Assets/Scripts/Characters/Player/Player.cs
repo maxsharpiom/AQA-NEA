@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float maxHealth = 100;
-    public float movementSpeed = 5f;
+    public const float maxHealth = 100;
     public float currentHealth;
     public Weapon currentWeapon;
-    public float maxArmour = 100f;
+    public const float maxArmour = 100f;
     public float currentArmour;
-    Camera playerCamera;
+    public Camera playerCamera;
     public Inventory PlayerInventory;
+
     public void Awake()
     {
         //Create an inventory;
         PlayerInventory = new Inventory();
-        currentHealth = 100f;
+        currentHealth = maxHealth;
     }
 
     void Update()

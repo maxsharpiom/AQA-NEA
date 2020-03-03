@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     //The speed at which the player moves
     public float speed = 12f;
+
     //Gravity, the force that makes the player move down when in free fall = 9.81;
     private float gravity = -40f;
 
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             //Velocity = -2f
             velocity.y = -2f;
         }
-
+        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
