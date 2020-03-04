@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public const float maxHealth = 100;
+    public float maxHealth = 100;
     public float currentHealth;
     public Weapon currentWeapon;
-    public const float maxArmour = 100f;
+    public float maxArmour = 100f;
     public float currentArmour;
     public Camera playerCamera;
     public Inventory PlayerInventory;
