@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponHit : MonoBehaviour
+public class WeaponHit : MonoBehaviour //Trying to remove this script so that we talk to the gameObject and not this script
 {
     protected bool dead;
     protected float currentHealth;

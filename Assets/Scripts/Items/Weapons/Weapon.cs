@@ -178,10 +178,12 @@ public class Weapon : Item
             /// potentially a problem as we can only apply damage to AICharacters...
             ///
             //Getting the reference for the gameObject hit
-            WeaponHit itemHit = hit.transform.GetComponent<WeaponHit>();
+            //WeaponHit itemHit = hit.transform.GetComponent<WeaponHit>(); //Each object that can recieve damage script much be attatched // May want to 
+            GameObject itemHit = hit.collider.gameObject; //Stores the gameObject hit and stores it as a gameObject
             if (itemHit != null)
             {
-                itemHit.TakeDamage(this.damage);
+                //itemHit.TakeDamage(this.damage);
+                itemHit.SendMessage("TakeDamage", this.damage);
             }
             //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
             //Target target = hit.transform.GetComponent<Target>();

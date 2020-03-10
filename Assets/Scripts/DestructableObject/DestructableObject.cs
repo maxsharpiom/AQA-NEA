@@ -16,10 +16,6 @@ public class DestructableObject : MonoBehaviour
     protected bool canPickup;
     protected Vector3 position; 
 
-    protected void Update()
-    {
-
-    }
 
     protected void TakeDamage(float amount)
     {

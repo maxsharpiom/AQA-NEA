@@ -5,6 +5,9 @@ using UnityEngine;
 public class AICharacter : MonoBehaviour
 {
     protected float maxHealth;
+    protected float maxArmour;
+    protected float currentHealth;
+    protected float currentArmour;
     public float movementSpeed;
     protected Weapon weapon;
     protected float angleBetweenForwardAndTarget; //Needs to be Vector3.Angle
@@ -24,6 +27,7 @@ public class AICharacter : MonoBehaviour
     protected float fovAngle;
     //Should probably be adapted not just for player but any two gameobjects
     protected GameObject player;
+    protected bool dead;
 
     //public virtual void Start()
     //{
@@ -41,6 +45,41 @@ public class AICharacter : MonoBehaviour
     {
         //FOV();  
         playerLooking = PlayerLookingAtAI(playerInteractable, interactRange);
+        CheckIfDead();
+    }
+
+    protected void TakeDamage(float damage)
+    {
+        float remainingDamageToApply = damage;
+        if (currentArmour > 0)
+        {
+            currentArmour -= damage;
+            if (currentArmour < 0)
+            {
+                remainingDamageToApply = currentArmour * -1;
+            }
+        }
+
+        if (currentHealth > 0)
+        {
+            currentHealth -= remainingDamageToApply;
+        }
+
+        if (currentHealth <= 0)
+        {
+            dead = true;
+        }
+
+    }
+
+    void CheckIfDead()
+    {
+        if (dead)
+        {
+            //Play death anim and or sound
+            //Destroy this gameObject
+            object.Destroy(this.gameObject);
+        }
     }
 
     void FOV()

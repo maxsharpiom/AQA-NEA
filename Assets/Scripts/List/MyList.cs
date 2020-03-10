@@ -36,7 +36,7 @@ public class MyList<T>
     //public GridNode<T> pointer;
 
     ///<summary>The length of the list (the number of nodes in the list)</summary>
-    int listLength = 0;
+    private int listLength = 0;
 
     /// <summary>
     /// Add an item to the end of the list
@@ -88,7 +88,7 @@ public class MyList<T>
         return tempPointer.Data;
     }
 
-    public T ReturnObject(int pos)
+    public Node<T> ReturnObject(int pos)
     {
         Node<T> tempPointer = Head;
 
@@ -119,7 +119,7 @@ public class MyList<T>
 
         return tempPointer;
     }
-
+        
     public Node<T> Next()
     {
         return current.NextNode;
