@@ -20,12 +20,12 @@ public class HEGrenade : Weapon
         //Define reloadAudio;
     }  
     
-    public HEGrenade(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.name = name;
-        this.position = position;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public HEGrenade(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.name = name;
+    //    this.position = position;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 
     void Explode()
     {

@@ -25,11 +25,11 @@ public class M4 : Weapon
         //Define reloadAudio;
     }  
     
-    public M4(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.name = name;
-        this.position = position;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public M4(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.name = name;
+    //    this.position = position;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 
 }

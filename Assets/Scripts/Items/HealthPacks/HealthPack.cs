@@ -18,11 +18,11 @@ public class HealthPack : Item
 
     }
 
-    public HealthPack(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.position = position;
-        this.itemName = name;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public HealthPack(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.position = position;
+    //    this.itemName = name;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 
 }

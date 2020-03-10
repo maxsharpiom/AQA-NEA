@@ -11,10 +11,10 @@ public class HealthPackMedium : HealthPack
         this.description = "Medium Health Pack";
     }
 
-    public HealthPackMedium(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.itemName = name;
-        this.position = position;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public HealthPackMedium(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.itemName = name;
+    //    this.position = position;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 }

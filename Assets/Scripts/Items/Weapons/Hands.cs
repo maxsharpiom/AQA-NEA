@@ -23,11 +23,11 @@ public class Hand : Weapon
         //Define reloadAudio;
     }
 
-    public Hand(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.name = name;
-        this.position = position;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public Hand(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.name = name;
+    //    this.position = position;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
     
 }

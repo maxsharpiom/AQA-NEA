@@ -58,7 +58,7 @@ public class Weapon : Item
     /// <summary>
     /// The player camera
     /// </summary>
-    protected Camera playerCamera;
+    public Camera playerCamera;
     /// <summary>
     /// A layermask used to selectivly ignore colliders
     /// </summary>
@@ -96,19 +96,37 @@ public class Weapon : Item
     protected float explosionRadius;
     protected float firetime;
 
-    public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.name = name;
-        this.position = position;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.name = name;
+    //    this.position = position;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 
     protected void Update()
     {
-        //Keeps checking if the weapon is fired
-        CheckFireWeapon();
-        //Keeps checking if the weapon is being reloaded
-        CheckReloadWeapon();
+        basicFire();
+        ////Keeps checking if the weapon is fired
+        //CheckFireWeapon();
+        ////Keeps checking if the weapon is being reloaded
+        //CheckReloadWeapon();
+    }
+
+    void basicFire()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            shoot();
+        }
+    }
+
+    void shoot()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
+        {
+            Debug.Log(hit.transform.name);
+        }
     }
 
     protected void SetEqualAmmoType()

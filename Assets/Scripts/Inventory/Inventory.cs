@@ -22,7 +22,7 @@ public class Inventory
     /// <summary>
     /// Upon start the current item is the first item in the list
     /// </summary>
-    void Start() //May not work if starting game from a saved state as it would reset ammo?
+    void Awake() //May not work if starting game from a saved state as it would reset ammo?
     {        
         currentItem = InventoryList.ReturnObject(1);
         this.total9mmAmmo = 0f;

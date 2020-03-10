@@ -14,16 +14,16 @@ public class AICharacter : MonoBehaviour
     protected bool friendly;
     protected bool playerInteractable;
     protected bool following;
-    protected float interactRange = 1.5f;
-    protected LayerMask playerGroundMask = LayerMask.GetMask("Player");
+    protected float interactRange = 1.5f;    
     public bool playerLooking;
+    LayerMask playerGroundMask;
     //protected Pathfind pathfinding = new Pathfind();
     //Add the AI movement script to the AI character class
     //AICharacter myScript = gameObject.AddComponent<AIMovement>();
     protected Vector3 fovFromPosition;
     protected float fovAngle;
     //Should probably be adapted not just for player but any two gameobjects
-    protected GameObject player = GameObject.Find("Player");
+    protected GameObject player;
 
     //public virtual void Start()
     //{
@@ -33,6 +33,8 @@ public class AICharacter : MonoBehaviour
     void Awake()
     {
         Rigidbody AIRigidbody = gameObject.AddComponent<Rigidbody>();
+        playerGroundMask = LayerMask.GetMask("Player");
+        player = GameObject.Find("Player");
     }
 
     void Update()

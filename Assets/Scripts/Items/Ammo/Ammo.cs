@@ -13,11 +13,11 @@ public class Ammo : Item
     protected string AmmoType;
     protected AudioSource pickupSound;
 
-    public Ammo(string name, Vector3 position, float amount) : base(name, position, useableByPlayer)
-    {
-        this.name = name;
-        this.position = position;
-        this.amount = amount;
-    }
+    //public Ammo(string name, Vector3 position, float amount) : base(name, position, useableByPlayer)
+    //{
+    //    this.name = name;
+    //    this.position = position;
+    //    this.amount = amount;
+    //}
 
 }

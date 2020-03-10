@@ -16,17 +16,17 @@ public class Item : MonoBehaviour
     public static Player player;// = GameObject.Find("Player");
     protected Inventory inventory = player.GetComponent<Inventory>(); //The player's current invenotory
     protected bool itemIsInInteractableRange;
-    protected bool playerInteract = false;
+    protected bool playerInteract = false;    
     /// <summary>
     /// Sets the position of the item in the game world
     /// </summary>
     /// <param name="position"></param>
-    public Item(string name, Vector3 position, bool useableByPlayer)
-    {
-        this.position = position;
-        this.itemName = name;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public Item(string name, Vector3 position, bool useableByPlayer)
+    //{
+    //    this.position = position;
+    //    this.itemName = name;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 
     void Update()
     {

@@ -12,10 +12,10 @@ public class HealthPackLarge : HealthPack
         this.description = "Large Health Pack";
     }
 
-    public HealthPackLarge(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.itemName = name;
-        this.position = position;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public HealthPackLarge(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.itemName = name;
+    //    this.position = position;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 }

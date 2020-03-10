@@ -12,12 +12,12 @@ public class AmmoLarge : Ammo
         this.description = "Large Ammo";
     }
 
-    public AmmoLarge(string name, Vector3 position, float amount) : base(name, position, amount)
-    {
-        this.name = name;
-        this.position = position;
-        this.amount = amount;
-    }
+    //public AmmoLarge(string name, Vector3 position, float amount) : base(name, position, amount)
+    //{
+    //    this.name = name;
+    //    this.position = position;
+    //    this.amount = amount;
+    //}
 
     void Update() //Can do this as the inherited class also has Update???
     {

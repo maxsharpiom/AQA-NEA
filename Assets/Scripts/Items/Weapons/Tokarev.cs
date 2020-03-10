@@ -25,11 +25,11 @@ public class Tokarev : Weapon
         //Define reloadAudio;
     }  
     
-    public Tokarev(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    {
-        this.name = name;
-        this.position = position;
-        this.useableByPlayer = useableByPlayer;
-    }
+    //public Tokarev(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    //{
+    //    this.name = name;
+    //    this.position = position;
+    //    this.useableByPlayer = useableByPlayer;
+    //}
 
 }
