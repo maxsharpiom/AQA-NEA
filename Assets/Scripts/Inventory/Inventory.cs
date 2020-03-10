@@ -96,6 +96,7 @@ public class Inventory
             //The item that the player is currently holding is equal to the object that is selected
             currentItem = InventoryList.ReturnObject(weaponNumberSelect);
             //SwapItemToCurrentAndMakeActive(oldItem, currentItem);
+            //Play swap anim
         }
         oldItem = currentItem;
     }

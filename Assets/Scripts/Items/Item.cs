@@ -6,8 +6,17 @@ using System;
 
 public class Item : MonoBehaviour
 {
+    /// <summary>
+    /// The name of the weapon
+    /// </summary>
     protected string itemName;
+    /// <summary>
+    /// Is the weapon useable by the player?
+    /// </summary>
     protected bool useableByPlayer;
+    /// <summary>
+    /// The position of the weapon
+    /// </summary>
     protected Vector3 position;
     protected string description;
     protected Animation equipAnimation;

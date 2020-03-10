@@ -4,15 +4,7 @@ using UnityEngine;
 using System;
 
 public class Weapon : Item
-{
-    /// <summary>
-    /// The position of the weapon
-    /// </summary>
-    Vector3 position;
-    /// <summary>
-    /// The name of the weapon
-    /// </summary>
-    protected string name;
+{  
     //Maximum attack distance
     protected float maxDistance;
     /// <summary>
@@ -78,11 +70,7 @@ public class Weapon : Item
     /// <summary>
     /// Reload audio for weapon
     /// </summary>
-    protected AudioSource reloadAudio;
-    /// <summary>
-    /// Is the weapon useable by the player?
-    /// </summary>
-    protected bool useableByPlayer;
+    protected AudioSource reloadAudio;    
     /// <summary>
     /// The time taken per attack |
     /// Used as a pause between each time fire is called
