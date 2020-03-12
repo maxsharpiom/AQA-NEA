@@ -66,11 +66,11 @@ public class Weapon : Item
     /// <summary>
     /// Attack audio for weapon
     /// </summary>
-    protected AudioSource attackAudio;
+   // protected AudioSource attackAudio;
     /// <summary>
     /// Reload audio for weapon
     /// </summary>
-    protected AudioSource reloadAudio;    
+    //protected AudioSource reloadAudio;    
     /// <summary>
     /// The time taken per attack |
     /// Used as a pause between each time fire is called
@@ -78,7 +78,7 @@ public class Weapon : Item
     /// <returns></returns>
     protected float fireTime;
     protected float recoilAmount;
-    protected MouseLook mouseLook = player.GetComponent<MouseLook>();    
+    //protected MouseLook mouseLook;    
     protected bool automatic;
     protected const float throwForceFloat = 10f; //For grenades and stuff //May not need
     protected float explosionRadius;
@@ -91,11 +91,17 @@ public class Weapon : Item
     //    this.useableByPlayer = useableByPlayer;
     //}
 
+
+    void Awake()
+    {
+       // mouseLook = player.GetComponent<MouseLook>();
+    }
+
     protected void Update()
     {
-        basicFire();
+        //basicFire();
         ////Keeps checking if the weapon is fired
-        //CheckFireWeapon();
+        CheckFireWeapon();
         ////Keeps checking if the weapon is being reloaded
         //CheckReloadWeapon();
     }
@@ -119,24 +125,24 @@ public class Weapon : Item
 
     protected void SetEqualAmmoType()
     {
-        switch (this.AmmoType)
-        {
-            case "762mmAmmo":
-                this.reserveAmmo = inventory.total762mmAmmo;
-                break;
-            case "9mmAmmo":
-                this.reserveAmmo = inventory.total9mmAmmo;
-                break;
-            case "556mmAmmo":
-                this.reserveAmmo = inventory.total556mmAmmo;
-                break;
-            case "357mmAmmo":
-                this.reserveAmmo = inventory.total357mmAmmo;
-                break;
-            case "762mmAmmoTokarev":
-                this.reserveAmmo = inventory.total762mmAmmoTokarev;
-                break;
-        }
+        //switch (this.AmmoType)
+        //{
+        //    case "762mmAmmo":
+        //        this.reserveAmmo = inventory.total762mmAmmo;
+        //        break;
+        //    case "9mmAmmo":
+        //        this.reserveAmmo = inventory.total9mmAmmo;
+        //        break;
+        //    case "556mmAmmo":
+        //        this.reserveAmmo = inventory.total556mmAmmo;
+        //        break;
+        //    case "357mmAmmo":
+        //        this.reserveAmmo = inventory.total357mmAmmo;
+        //        break;
+        //    case "762mmAmmoTokarev":
+        //        this.reserveAmmo = inventory.total762mmAmmoTokarev;
+        //        break;
+        //}
     }
 
     //protected void ApplyRecoil(float recoilAmount)
@@ -150,14 +156,22 @@ public class Weapon : Item
 
     protected void CheckFireWeapon()
     {
-        if (Input.GetKey(KeyCode.Mouse1) && playerIsHolding == true && currentAmmoInMagazine > 0)
+        if (Input.GetButtonDown("Fire1"))
         {
-            FireWeapon();
+            FireWeapon();            
         }
-        else if (Input.GetKey(KeyCode.Mouse1) && playerIsHolding == true && currentAmmoInMagazine <= 0)
+        else if (Input.GetButtonDown("Fire1"))
         {
-            //Play clicking sound (no ammo in chamber)
+            
         }
+        //if (Input.GetKey(KeyCode.Mouse1) && playerIsHolding == true && currentAmmoInMagazine > 0)
+        //{
+        //    FireWeapon();
+        //}
+        //else if (Input.GetKey(KeyCode.Mouse1) && playerIsHolding == true && currentAmmoInMagazine <= 0)
+        //{
+        //    //Play clicking sound (no ammo in chamber)
+        //}
     }
 
     /// <summary>
@@ -167,23 +181,25 @@ public class Weapon : Item
     protected void FireWeapon()
     {
         weaponIfFiring = true;
-        RaycastHit hit;
-
+        RaycastHit hit;        
         //Casts a raycast maxDistance length from the player camera, outputs the info into hit
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance) && this.name != "HEGrenade")
+        if (/* && this.name != "HEGrenade"*/true)
         {
-            //Print the name of the object that has been hit
-            Debug.Log(hit.transform.name);
+            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance);
+                        
+            //Print the name of the object that has been hit            
             ///
             /// potentially a problem as we can only apply damage to AICharacters...
             ///
             //Getting the reference for the gameObject hit
             //WeaponHit itemHit = hit.transform.GetComponent<WeaponHit>(); //Each object that can recieve damage script much be attatched // May want to 
             GameObject itemHit = hit.collider.gameObject; //Stores the gameObject hit and stores it as a gameObject
-            if (itemHit != null)
-            {
-                //itemHit.TakeDamage(this.damage);
-                itemHit.SendMessage("TakeDamage", this.damage);
+            
+            if (itemHit != null && itemHit.gameObject.tag == "CanTakeDamage")
+            {                     
+                itemHit.SendMessage("TakeDamage", damage);
+                Debug.Log($"{this.name} > {damage} > {hit.collider.gameObject.name}");
+                //Debug.Log($"{ hit.transform.name} : {this.damage}");
             }
             //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
             //Target target = hit.transform.GetComponent<Target>();

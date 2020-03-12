@@ -16,7 +16,7 @@ public class Sniper : Weapon
         this.AmmoType = "762mmAmmo"; //Don't think this is used anywhere or needed
         this.reloadTime = 4f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = inventory.total762mmAmmo;
+        //this.reserveAmmo = inventory.total762mmAmmo;
         this.recoilAmount = 27.5f;
         this.fireTime = 3f;
         //Define attackAnim;

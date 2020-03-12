@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Inventory
+public class Inventory : MonoBehaviour
 {
     //The current item that the player has equiped
-    Item currentItem; //Not yet known;
+    public Item currentItem = null; //Not yet known;
     MyList<Item> InventoryList = new MyList<Item>();
     public float total9mmAmmo;
     public float total556mmAmmo;
     public float total762mmAmmo;
     public float total357mmAmmo;
     public float total762mmAmmoTokarev;
+    public Player player;
+    int weaponNumberSelect = 1;
 
     //public Inventory() //Don't think this is needed right now
     //{
@@ -23,8 +25,8 @@ public class Inventory
     /// Upon start the current item is the first item in the list
     /// </summary>
     void Awake() //May not work if starting game from a saved state as it would reset ammo?
-    {        
-        currentItem = InventoryList.ReturnObject(1);
+    {
+        //currentItem = InventoryList.ReturnObject(1);
         this.total9mmAmmo = 0f;
         this.total556mmAmmo = 0f;
         this.total762mmAmmo = 0f;
@@ -78,8 +80,6 @@ public class Inventory
 
     void SwitchWeapon()
     {
-        Item oldItem = currentItem;
-        int weaponNumberSelect = 0; //Nothing happens
         if (Input.GetKey(KeyCode.Alpha1)) { weaponNumberSelect = 1; }
         if (Input.GetKey(KeyCode.Alpha2)) { weaponNumberSelect = 2; }
         if (Input.GetKey(KeyCode.Alpha3)) { weaponNumberSelect = 3; }
@@ -90,15 +90,30 @@ public class Inventory
         if (Input.GetKey(KeyCode.Alpha8)) { weaponNumberSelect = 8; }
         if (Input.GetKey(KeyCode.Alpha9)) { weaponNumberSelect = 9; }
 
-        //If the current item is not the item selected...
-        if (currentItem != InventoryList.ReturnObject(weaponNumberSelect))
+        int counter = 0;
+        foreach (Transform item in transform)
         {
-            //The item that the player is currently holding is equal to the object that is selected
-            currentItem = InventoryList.ReturnObject(weaponNumberSelect);
-            //SwapItemToCurrentAndMakeActive(oldItem, currentItem);
-            //Play swap anim
+            if (counter == weaponNumberSelect-1)
+            {
+                item.gameObject.SetActive(true);
+                player.currentItem = item.gameObject;
+            }
+            else
+            {
+                item.gameObject.SetActive(false);
+            }
+                        
+            counter += 1;
         }
-        oldItem = currentItem;
+        //If the current item is not the item selected...
+        //if (currentItem != InventoryList.ReturnObject(weaponNumberSelect))
+        //{
+        //    //The item that the player is currently holding is equal to the object that is selected
+        //    currentItem = InventoryList.ReturnObject(weaponNumberSelect);
+        //    //SwapItemToCurrentAndMakeActive(oldItem, currentItem);
+        //    //Play swap anim
+        //}
+        //oldItem = currentItem;
     }
 
     //void SwapItemToCurrentAndMakeActive(Item oldItem, Item newItem)

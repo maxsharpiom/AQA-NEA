@@ -9,8 +9,8 @@ public class AKM : Weapon
 
     void Awake()
     {
-        //this.name = "AKM";
-        //this.maxDistance = Mathf.Infinity;
+        this.name = "AKM";
+        this.maxDistance = Mathf.Infinity;
         this.damage = 30f;
         //this.magazineSize = 31f;
         //this.AmmoType = "762mmAmmo"; //Don't think this is used anywhere or needed

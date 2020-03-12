@@ -7,7 +7,7 @@ public class SmallCrate : DestructableObject
 
     void Start()
     {
-        this.maxHealth = 20f;
+        this.maxHealth = 30f;
         this.currentHealth = maxHealth;
         this.name = "SmallCrate";
     }

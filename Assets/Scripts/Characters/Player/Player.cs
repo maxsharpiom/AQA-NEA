@@ -1,28 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public float maxHealth = 100;
-    public float currentHealth;
-    public Weapon currentWeapon;
+    public float currentHealth;  
     public float maxArmour = 100f;
     public float currentArmour;
     public Camera playerCamera;
-    public Inventory PlayerInventory;
-
+    public GameObject currentItem;
+    //public Inventory PlayerInventory;
     public void Awake()
     {
         //Create an inventory;
-        PlayerInventory = new Inventory();
-        currentHealth = maxHealth;
+        //PlayerInventory = new Inventory();
+        currentHealth = maxHealth;       
+         
     }
 
     void Update()
     {
         CheckDead();
+        Interacting();        
     }
+
+    
 
     //optional perameters, so have a default text box size
     //Could be dynamic so the size of the text box depends on the size of the text entered
@@ -40,6 +44,20 @@ public class Player : MonoBehaviour
         if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRangeOfTargetObject)))
         {
             interacting = true;
+        }
+
+        return interacting;
+    }
+
+    public bool Interacting()
+    {
+        float interactRange = 5f;
+        bool interacting = false;
+        RaycastHit hit;
+        if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRange)))
+        {
+            interacting = true;
+            Debug.Log($"Interacting {interacting} : {hit.collider.gameObject.name}");
         }
         return interacting;
     }

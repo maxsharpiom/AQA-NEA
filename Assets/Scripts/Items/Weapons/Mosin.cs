@@ -16,7 +16,7 @@ public class Mosin : Weapon
         this.AmmoType = "762mmAmmo"; //Don't think this is used anywhere or needed
         this.reloadTime = 4f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = inventory.total762mmAmmo;
+        //this.reserveAmmo = inventory.total762mmAmmo;
         this.recoilAmount = 20f;
         this.fireTime = 2.5f;
         //Define attackAnim;

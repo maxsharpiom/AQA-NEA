@@ -88,17 +88,18 @@ public class MyList<T>
         return tempPointer.Data;
     }
 
-    public Node<T> ReturnObject(int pos)
-    {
-        Node<T> tempPointer = Head;
+    //Needs working on
+    //public T ReturnObject(int pos)
+    //{
+    //    Node<T> tempPointer = Head;
 
-        for (int i = 0; i < pos - 1; i++)
-        {
-            tempPointer = tempPointer.NextNode;
-        }
+    //    for (int i = 0; i < pos - 1; i++)
+    //    {
+    //        tempPointer = tempPointer.NextNode;
+    //    }
 
-        return tempPointer.Data;
-    }
+    //    return tempPointer.Data; 
+    //}
 
     //public T ReturnCurrent(Node<T> currentNode)
     //{

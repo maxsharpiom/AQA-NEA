@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestructableObject : MonoBehaviour
 {
     protected float maxHealth; //maxHealth may need to be mathF.Infinity to make a climbable object
-    protected float currentHealth;
+    public float currentHealth;
     protected string name;
     protected bool explodes;
     protected bool containsItem;
@@ -14,8 +14,12 @@ public class DestructableObject : MonoBehaviour
     protected float maximumDamage; //Damage dealt per meter radius;
     //Need to referene player for position;
     protected bool canPickup;
-    protected Vector3 position; 
+    protected Vector3 position;
 
+    private void Start()
+    {
+        this.gameObject.tag = "canTakeDamage";
+    }
 
     protected void TakeDamage(float amount)
     {
@@ -25,7 +29,7 @@ public class DestructableObject : MonoBehaviour
             Destroy();
         }
     }
-
+    
     void Destroy()
     {
         if (this.explodes == true)

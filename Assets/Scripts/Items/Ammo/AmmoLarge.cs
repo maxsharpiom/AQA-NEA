@@ -29,12 +29,12 @@ public class AmmoLarge : Ammo
         if (this.playerInteract)
         {
 
-            if (this.name == "Large9mmAmmo") { inventory.total9mmAmmo += this.amount; }
-            if (this.name == "Large556mmAmmo") { inventory.total556mmAmmo += this.amount; }
-            if (this.name == "Large762mmAmmo") { inventory.total762mmAmmo += this.amount; }
-            if (this.name == "Large357mmAmmo") { inventory.total357mmAmmo += this.amount; }
-            //Play pickup sound
-            Destroy(this.gameObject);
+            //if (this.name == "Large9mmAmmo") { inventory.total9mmAmmo += this.amount; }
+            //if (this.name == "Large556mmAmmo") { inventory.total556mmAmmo += this.amount; }
+            //if (this.name == "Large762mmAmmo") { inventory.total762mmAmmo += this.amount; }
+            //if (this.name == "Large357mmAmmo") { inventory.total357mmAmmo += this.amount; }
+            ////Play pickup sound
+            //Destroy(this.gameObject);
 
         }
     }

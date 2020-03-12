@@ -29,10 +29,10 @@ public class AmmoMedium : Ammo
         if (this.playerInteract)
         {
 
-            if (this.itemName == "Medium9mmAmmo") { inventory.total9mmAmmo += this.amount; }
-            if (this.itemName == "Medium556mmAmmo") { inventory.total556mmAmmo += this.amount; }
-            if (this.itemName == "Medium762mmAmmo") { inventory.total762mmAmmo += this.amount; }
-            if (this.itemName == "Medium357mmAmmo") { inventory.total357mmAmmo += this.amount; }
+            //if (this.itemName == "Medium9mmAmmo") { inventory.total9mmAmmo += this.amount; }
+            //if (this.itemName == "Medium556mmAmmo") { inventory.total556mmAmmo += this.amount; }
+            //if (this.itemName == "Medium762mmAmmo") { inventory.total762mmAmmo += this.amount; }
+            //if (this.itemName == "Medium357mmAmmo") { inventory.total357mmAmmo += this.amount; }
             //Play pickup sound
             Destroy(this.gameObject);
 

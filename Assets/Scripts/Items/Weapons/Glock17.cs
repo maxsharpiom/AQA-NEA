@@ -4,19 +4,19 @@ using UnityEngine;
 using System;
 using static System.Math;
 
-public class Glock17 : Weapon
+public class Glock : Weapon
 {
 
-    void Start()
+    void Awake()
     {
-        this.name = "Glock17";
+        this.name = "Glock";
         this.maxDistance = Mathf.Infinity;
         this.damage = 15f;
         this.magazineSize = 10f;
         this.AmmoType = "9mmAmmo"; //Don't think this is used anywhere or needed
         this.reloadTime = 2.5f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = inventory.total9mmAmmo;        
+        //this.reserveAmmo = inventory.total9mmAmmo;        
         this.recoilAmount = 5f;
         this.fireTime = 0.5f;
         //Define attackAnim;

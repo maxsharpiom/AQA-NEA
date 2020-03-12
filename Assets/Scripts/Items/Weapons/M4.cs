@@ -16,7 +16,7 @@ public class M4 : Weapon
         this.AmmoType = "556mmAmmo"; //Don't think this is used anywhere or needed
         this.reloadTime = 3.5f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = inventory.total556mmAmmo;
+       // this.reserveAmmo = inventory.total556mmAmmo;
         this.recoilAmount = 10f;
         this.fireTime = 0.086f;
         //Define attackAnim;

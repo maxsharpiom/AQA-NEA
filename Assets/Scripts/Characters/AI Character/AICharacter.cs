@@ -41,6 +41,11 @@ public class AICharacter : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
+    private void Start()
+    {
+        this.gameObject.tag = "canTakeDamage";
+    }
+
     void Update()
     {
         //FOV();  
@@ -78,7 +83,7 @@ public class AICharacter : MonoBehaviour
         {
             //Play death anim and or sound
             //Destroy this gameObject
-            object.Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 

@@ -16,7 +16,7 @@ public class Revolver: Weapon
         this.AmmoType = "357mmAmmo"; //Don't think this is used anywhere or needed
         this.reloadTime = 5f;
         this.currentAmmoInMagazine = magazineSize;
-        this.reserveAmmo = inventory.total357mmAmmo;        
+        //this.reserveAmmo = inventory.total357mmAmmo;        
         this.recoilAmount = 15f;
         this.fireTime = 0.75f;
         //Define attackAnim;
