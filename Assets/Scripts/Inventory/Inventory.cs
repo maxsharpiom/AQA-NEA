@@ -6,7 +6,7 @@ using System;
 public class Inventory : MonoBehaviour
 {
     //The current item that the player has equiped
-    public Item currentItem = null; //Not yet known;
+    public Node<Item> currentItem = null; //Not yet known;
     MyList<Item> InventoryList = new MyList<Item>();
     public float total9mmAmmo;
     public float total556mmAmmo;
@@ -16,10 +16,17 @@ public class Inventory : MonoBehaviour
     public Player player;
     int weaponNumberSelect = 1;
 
-    //public Inventory() //Don't think this is needed right now
-    //{
+    public Inventory() //Don't think this is needed right now
+    {
+        //Equip only weapon
+        EquipWeapon();
+    }
 
-    //}
+    void EquipWeapon()
+    {
+        //Head of list
+        currentItem = InventoryList.current;
+    }
 
     /// <summary>
     /// Upon start the current item is the first item in the list
@@ -67,12 +74,7 @@ public class Inventory : MonoBehaviour
     {
 
     }
-
-    //public bool AmmoTypeExistsInIventory(Ammo ammo)
-    //{
-
-    //}
-
+    
     public bool ItemExistsInInventory(Item item)
     {
         return InventoryList.Contains(item);

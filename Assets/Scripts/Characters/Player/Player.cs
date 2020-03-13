@@ -12,12 +12,12 @@ public class Player : MonoBehaviour
     public Camera playerCamera;
     public GameObject currentItem;
     public Weapon currentWeapon;
+    public Inventory inventory;
 
-    //public Inventory PlayerInventory;
     public void Awake()
     {
         //Create an inventory;
-        //PlayerInventory = new Inventory();
+        inventory = new Inventory();
         currentHealth = maxHealth;       
          
     }
