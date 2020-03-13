@@ -147,11 +147,12 @@ public class Weapon : Item
 
     protected void CheckFireWeapon()
     {
-        if (Input.GetButtonDown("Fire1"))
+        //Gets the current status of Fire1, not just for a single frame
+        if (Input.GetButton("Fire1"))
         {
             FireWeapon();
         }
-        else if (Input.GetButtonDown("Fire1"))
+        else if (Input.GetButton("Fire1"))
         {
 
         }
