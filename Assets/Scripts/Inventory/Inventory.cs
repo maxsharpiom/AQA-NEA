@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        SwitchWeapon();
+        SwitchWeapon();        
     }
 
     /// <summary>
@@ -91,20 +91,23 @@ public class Inventory : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha9)) { weaponNumberSelect = 9; }
 
         int counter = 0;
+
         foreach (Transform item in transform)
         {
-            if (counter == weaponNumberSelect-1)
+            if (counter == weaponNumberSelect - 1)
             {
                 item.gameObject.SetActive(true);
                 player.currentItem = item.gameObject;
+                player.currentWeapon = item.gameObject.GetComponent<Weapon>();    
             }
             else
             {
                 item.gameObject.SetActive(false);
             }
-                        
+
             counter += 1;
         }
+
         //If the current item is not the item selected...
         //if (currentItem != InventoryList.ReturnObject(weaponNumberSelect))
         //{

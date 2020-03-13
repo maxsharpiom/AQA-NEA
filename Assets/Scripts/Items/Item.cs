@@ -22,10 +22,10 @@ public class Item : MonoBehaviour
     protected Animation equipAnimation;
     protected float interactRadius;
     public float DistanceBetweenPlayerAndItem;
-    public static Player player;// = GameObject.Find("Player");
-    //protected Inventory inventory = player.GetComponent<Inventory>(); //The player's current invenotory
+    public GameObject player;
+    protected Inventory inventory; //The player's current invenotory
     protected bool itemIsInInteractableRange;
-    protected bool playerInteract = false;    
+    protected bool playerInteract = false;
     /// <summary>
     /// Sets the position of the item in the game world
     /// </summary>
@@ -36,6 +36,12 @@ public class Item : MonoBehaviour
     //    this.itemName = name;
     //    this.useableByPlayer = useableByPlayer;
     //}
+
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+        inventory = player.GetComponent<Inventory>();
+    }
 
     void Update()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class Weapon : Item
-{  
+{
     //Maximum attack distance
     protected float maxDistance;
     /// <summary>
@@ -26,11 +26,11 @@ public class Weapon : Item
     /// <summary>
     /// The current ammo in the weapon's magazine
     /// </summary>
-    protected float currentAmmoInMagazine;
+    public float currentAmmoInMagazine;
     /// <summary>
     /// The amount of ammo in reserve
     /// </summary>
-    protected float reserveAmmo;
+    public float reserveAmmo;
     /// <summary>
     /// Is the player currently holding the weapon?
     /// </summary>
@@ -94,30 +94,21 @@ public class Weapon : Item
 
     void Awake()
     {
-       // mouseLook = player.GetComponent<MouseLook>();
+        // mouseLook = player.GetComponent<MouseLook>();
     }
 
     protected void Update()
     {
-        //basicFire();
         ////Keeps checking if the weapon is fired
         CheckFireWeapon();
         ////Keeps checking if the weapon is being reloaded
         //CheckReloadWeapon();
     }
 
-    void basicFire()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            shoot();
-        }
-    }
-
     void shoot()
     {
         RaycastHit hit;
-        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
         {
             Debug.Log(hit.transform.name);
         }
@@ -125,24 +116,24 @@ public class Weapon : Item
 
     protected void SetEqualAmmoType()
     {
-        //switch (this.AmmoType)
-        //{
-        //    case "762mmAmmo":
-        //        this.reserveAmmo = inventory.total762mmAmmo;
-        //        break;
-        //    case "9mmAmmo":
-        //        this.reserveAmmo = inventory.total9mmAmmo;
-        //        break;
-        //    case "556mmAmmo":
-        //        this.reserveAmmo = inventory.total556mmAmmo;
-        //        break;
-        //    case "357mmAmmo":
-        //        this.reserveAmmo = inventory.total357mmAmmo;
-        //        break;
-        //    case "762mmAmmoTokarev":
-        //        this.reserveAmmo = inventory.total762mmAmmoTokarev;
-        //        break;
-        //}
+        switch (this.AmmoType)
+        {
+            case "762mmAmmo":
+                this.reserveAmmo = inventory.total762mmAmmo;
+                break;
+            case "9mmAmmo":
+                this.reserveAmmo = inventory.total9mmAmmo;
+                break;
+            case "556mmAmmo":
+                this.reserveAmmo = inventory.total556mmAmmo;
+                break;
+            case "357mmAmmo":
+                this.reserveAmmo = inventory.total357mmAmmo;
+                break;
+            case "762mmAmmoTokarev":
+                this.reserveAmmo = inventory.total762mmAmmoTokarev;
+                break;
+        }
     }
 
     //protected void ApplyRecoil(float recoilAmount)
@@ -158,11 +149,11 @@ public class Weapon : Item
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            FireWeapon();            
+            FireWeapon();
         }
         else if (Input.GetButtonDown("Fire1"))
         {
-            
+
         }
         //if (Input.GetKey(KeyCode.Mouse1) && playerIsHolding == true && currentAmmoInMagazine > 0)
         //{
@@ -181,12 +172,12 @@ public class Weapon : Item
     protected void FireWeapon()
     {
         weaponIfFiring = true;
-        RaycastHit hit;        
+        RaycastHit hit;
         //Casts a raycast maxDistance length from the player camera, outputs the info into hit
         if (/* && this.name != "HEGrenade"*/true)
         {
             Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance);
-                        
+
             //Print the name of the object that has been hit            
             ///
             /// potentially a problem as we can only apply damage to AICharacters...
@@ -194,12 +185,11 @@ public class Weapon : Item
             //Getting the reference for the gameObject hit
             //WeaponHit itemHit = hit.transform.GetComponent<WeaponHit>(); //Each object that can recieve damage script much be attatched // May want to 
             GameObject itemHit = hit.collider.gameObject; //Stores the gameObject hit and stores it as a gameObject
-            
+
             if (itemHit != null && itemHit.gameObject.tag == "CanTakeDamage")
-            {                     
+            {
                 itemHit.SendMessage("TakeDamage", damage);
                 Debug.Log($"{this.name} > {damage} > {hit.collider.gameObject.name}");
-                //Debug.Log($"{ hit.transform.name} : {this.damage}");
             }
             //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
             //Target target = hit.transform.GetComponent<Target>();
@@ -210,7 +200,8 @@ public class Weapon : Item
             //    target.TakeDamage(damage);
             //}
 
-        } else if (this.name == "HEGrenade") //Throw the grenade
+        }
+        else if (this.name == "HEGrenade") //Throw the grenade
         {
             //Implies rigidbody already exists on the object, and we are just getting it to reference
             Rigidbody rigidBody = this.gameObject.GetComponent<Rigidbody>();
@@ -224,10 +215,15 @@ public class Weapon : Item
 
         //Play weapon animation
         //Decrement ammo in current magazine by one        
-            currentAmmoInMagazine -= 1;
-            //ApplyRecoil(this.recoilAmount);
-            StartCoroutine(Timer(fireTime));        
+        DecrementAmmo();
+        //ApplyRecoil(this.recoilAmount);
+        StartCoroutine(Timer(fireTime));
         weaponIfFiring = false; //should be the last line of the subroutine
+    }
+
+    void DecrementAmmo()
+    {
+        currentAmmoInMagazine -= 1;
     }
 
     void Explode()
@@ -252,7 +248,7 @@ public class Weapon : Item
                 //Watch out becuase the dealDamageToSouroundings may have been done twice
                 rigidbody.SendMessage("TakeDamage", dealDamageToSourounding);
             }
-            
+
         }
         //play explosion anim
     }

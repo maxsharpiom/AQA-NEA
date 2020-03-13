@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayWeapon : MonoBehaviour
-{
-    Player player;
+public class DisplayName : MonoBehaviour
+{    
     public Text itemToDisplay;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Player player;
 
     // Update is called once per frame
     void Update()
@@ -22,6 +16,6 @@ public class DisplayWeapon : MonoBehaviour
 
     void DisplayWeaponName()
     {
-        itemToDisplay.text = player.currentItem.transform.name.ToString();
+        itemToDisplay.text = $"{player.currentItem.transform.name.ToString()}";
     }
 }

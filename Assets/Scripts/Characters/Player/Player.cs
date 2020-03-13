@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float currentArmour;
     public Camera playerCamera;
     public GameObject currentItem;
+    public Weapon currentWeapon;
+
     //public Inventory PlayerInventory;
     public void Awake()
     {
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         CheckDead();
-        Interacting();        
+        Interacting();
     }
 
     
