@@ -6,7 +6,7 @@ using System;
 public class Inventory : MonoBehaviour
 {
     //The current item that the player has equiped
-    public Node<Item> currentItem = null; //Not yet known;
+    public Node<Item> currentItem = null; //May not allow access to Item properties
     MyList<Item> InventoryList = new MyList<Item>();
     public float total9mmAmmo;
     public float total556mmAmmo;
