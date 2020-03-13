@@ -10,16 +10,16 @@ public class Player : MonoBehaviour
     public float maxArmour = 100f;
     public float currentArmour;
     public Camera playerCamera;
-    public GameObject currentItem;
+    public Item currentItem;
     public Weapon currentWeapon;
     public Inventory inventory;
+    protected float interactRange = 5f;
 
     public void Awake()
     {
         //Create an inventory;
         inventory = new Inventory();
-        currentHealth = maxHealth;       
-         
+        currentHealth = maxHealth;    
     }
 
     void Update()
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         Interacting();
     }
 
-    
+
 
     //optional perameters, so have a default text box size
     //Could be dynamic so the size of the text box depends on the size of the text entered
@@ -39,11 +39,45 @@ public class Player : MonoBehaviour
     //    GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);
     //}
 
-    public bool Interacting(GameObject targetObject, float interactRangeOfTargetObject)
+    public void PickUp()
+    {
+        Item itemToPickUp;
+        itemToPickUp = ReturnObjectLookingAt().GetComponent<Item>();
+
+        //If the player is interacting with an item (something) and it can be picked up
+        if (itemToPickUp!=null && itemToPickUp.GetComponent<Item>()/*itemToPickUp.GetType().ToString()=="Item"*/)
+        {
+            //Display pickup icon && name of item
+
+            //Pickup if pressing E
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                inventory.AddItem(itemToPickUp);
+                inventory.EquipItem(currentItem, itemToPickUp);
+                currentItem = itemToPickUp; //Now equip that item
+                
+            }
+        }
+    }
+
+    public GameObject ReturnObjectLookingAt()
+    {
+        GameObject targetLookingAt = null;
+        RaycastHit hit;
+
+        if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRange)))
+        {
+            targetLookingAt = hit.collider.gameObject;
+        }
+
+        return targetLookingAt;
+    }
+
+    public bool Interacting(GameObject targetObject)
     {
         bool interacting = false;
         RaycastHit hit;
-        if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRangeOfTargetObject)))
+        if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRange)))
         {
             interacting = true;
         }
@@ -52,8 +86,7 @@ public class Player : MonoBehaviour
     }
 
     public bool Interacting()
-    {
-        float interactRange = 5f;
+    {        
         bool interacting = false;
         RaycastHit hit;
         if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRange)))

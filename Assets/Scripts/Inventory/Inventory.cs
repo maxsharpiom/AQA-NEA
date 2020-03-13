@@ -16,16 +16,9 @@ public class Inventory : MonoBehaviour
     public Player player;
     int weaponNumberSelect = 1;
 
-    public Inventory() //Don't think this is needed right now
-    {
-        //Equip only weapon
-        EquipWeapon();
-    }
-
-    void EquipWeapon()
-    {
-        //Head of list
-        currentItem = InventoryList.current;
+    //Equip this item
+    public void EquipItem(Item oldItem, Item newItem)
+    {       
     }
 
     /// <summary>
@@ -50,7 +43,7 @@ public class Inventory : MonoBehaviour
     /// Add an item to the player's inventory
     /// </summary>
     /// <param name="item"></param>
-    void AddItem(Item item)
+    public void AddItem(Item item)
     {
         InventoryList.Add(item);
     }
