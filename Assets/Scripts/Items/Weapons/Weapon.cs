@@ -90,8 +90,7 @@ public class Weapon : Item
     //    this.position = position;
     //    this.useableByPlayer = useableByPlayer;
     //}
-
-
+    
     void Awake()
     {     
         // mouseLook = player.GetComponent<MouseLook>();
