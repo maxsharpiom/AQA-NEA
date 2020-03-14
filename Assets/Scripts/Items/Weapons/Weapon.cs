@@ -83,7 +83,7 @@ public class Weapon : Item
     protected const float throwForceFloat = 10f; //For grenades and stuff //May not need
     protected float explosionRadius;
     protected float firetime;
-
+    public string playerPos; //Used to see if the player can be referenced
     //public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.name = name;
@@ -93,16 +93,33 @@ public class Weapon : Item
 
 
     void Awake()
-    {
+    {     
         // mouseLook = player.GetComponent<MouseLook>();
     }
 
     protected void Update()
     {
+        playerPos = player.transform.position.ToString();
+        this.gameObject.layer = 0;
         ////Keeps checking if the weapon is fired
         CheckFireWeapon();
         ////Keeps checking if the weapon is being reloaded
         //CheckReloadWeapon();
+        ApplyLayer();
+    }
+
+    void ApplyLayer()
+    {
+        //Debug.Log($"{this.gameObject.name.ToString()}:{transform.root}");
+        Debug.Log(player.transform.position.ToString());
+        if (this.transform.root == player.transform.root)
+        {
+            this.gameObject.layer = 11;
+        }
+        else
+        {
+            this.gameObject.layer = 0;
+        }
     }
 
     void shoot()

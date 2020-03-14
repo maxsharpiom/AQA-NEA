@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public float currentArmour;
     public Camera playerCamera;
     public Item currentItem;
-    public Weapon currentWeapon;
     public Inventory inventory;
     protected float interactRange = 5f;
 

@@ -6,7 +6,7 @@ using static System.Math;
 
 public class SVD : Weapon
 {
-
+    
     void Start()
     {
         this.name = "SVD";

@@ -22,7 +22,7 @@ public class Item : MonoBehaviour
     protected Animation equipAnimation;
     protected float interactRadius;
     public float DistanceBetweenPlayerAndItem;
-    public GameObject player;
+    protected Player player;
     protected Inventory inventory; //The player's current invenotory
     protected bool itemIsInInteractableRange;
     protected bool playerInteract = false;
@@ -39,12 +39,12 @@ public class Item : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindObjectOfType<Player>();        
         inventory = player.GetComponent<Inventory>();
     }
 
     void Update()
-    {
+    {        
         CheckPickup();
         PickUp();
         FindDistanceBetweenPlayerAndItem();

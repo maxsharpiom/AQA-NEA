@@ -6,7 +6,7 @@ using System;
 public class Inventory : MonoBehaviour
 {
     //The current item that the player has equiped
-    public Node<Item> currentItem = null; //May not allow access to Item properties
+    public Item currentItem = null; //May not allow access to Item properties
     MyList<Item> InventoryList = new MyList<Item>();
     public float total9mmAmmo;
     public float total556mmAmmo;
@@ -92,8 +92,8 @@ public class Inventory : MonoBehaviour
             if (counter == weaponNumberSelect - 1)
             {
                 item.gameObject.SetActive(true);
-                player.currentItem = item.gameObject;
-                player.currentWeapon = item.gameObject.GetComponent<Weapon>();    
+                currentItem = item.gameObject.GetComponent<Item>();
+                //player.currentWeapon = item.gameObject.GetComponent<Weapon>();    
             }
             else
             {
