@@ -18,13 +18,18 @@ public class M4 : Weapon
         this.currentAmmoInMagazine = magazineSize;
        // this.reserveAmmo = inventory.total556mmAmmo;
         this.recoilAmount = 10f;
-        this.fireTime = 0.086f;
+        this.fireTime = 0.086f;        
         //Define attackAnim;
         //Define reloadAnim;
         //Define attackAudio;
         //Define reloadAudio;
-    }  
-    
+    }
+
+    private void Awake()
+    {
+        this.gameObject.tag = "CanPickup";
+    }
+
     //public M4(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.name = name;

@@ -13,21 +13,47 @@ public class Player : MonoBehaviour
     public Item currentItem;
     public Inventory inventory;
     protected float interactRange = 5f;
+   public GameObject M4;
 
     public void Awake()
     {
         //Create an inventory;
         inventory = new Inventory();
-        currentHealth = maxHealth;    
+        currentHealth = maxHealth;        
     }
 
     void Update()
     {
         CheckDead();
         Interacting();
+        //IsInInteractingRange();
+        GetSurroundingObjects();
     }
 
+    void GetSurroundingObjects()
+    {
+        Collider[] objs;
+        objs = Physics.OverlapSphere(this.gameObject.transform.position, interactRange);
+        foreach (var item in objs)
+        {
+            if (item.tag == "CanPickup")
+            {
+                Debug.Log($"{item.name} > picking up > {item.tag}");
+                //PickupItem(item.gameObject.GetComponent<Item>());
+            }
+        }
+    }
 
+    //void PickupItem(Item item)
+    //{
+    //    item.transform.parent = GameObject.Find("Weapon").transform;
+    //    if (item.gameObject.GetComponent<Weapon>())
+    //    {
+    //        item.gameObject.GetComponent<Weapon>().playerCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+    //    }
+    //    Instantiate(item, this.transform, true).GetComponent<GameObject>().SetActive(true);
+    //    Destroy(item);
+    //}
 
     //optional perameters, so have a default text box size
     //Could be dynamic so the size of the text box depends on the size of the text entered
@@ -38,26 +64,26 @@ public class Player : MonoBehaviour
     //    GUI.Label(new Rect(playerCamera.transform.forward.x, playerCamera.transform.forward.y + yOffsetFromPlayerCameraForward, 200, 200), TextToDisplay);
     //}
 
-    public void PickUp()
-    {
-        Item itemToPickUp;
-        itemToPickUp = ReturnObjectLookingAt().GetComponent<Item>();
+    //public void PickUp()
+    //{
+    //    Item itemToPickUp;
+    //    itemToPickUp = ReturnObjectLookingAt().GetComponent<Item>();
+    //   // Debug.Log($"Item to pick up = {ReturnObjectLookingAt()}");
+    //    //If the player is interacting with an item (something) and it can be picked up
+    //    if (itemToPickUp!=null && itemToPickUp.GetComponent<Item>()/*itemToPickUp.GetType().ToString()=="Item"*/)
+    //    {
+    //        //Display pickup icon && name of item
 
-        //If the player is interacting with an item (something) and it can be picked up
-        if (itemToPickUp!=null && itemToPickUp.GetComponent<Item>()/*itemToPickUp.GetType().ToString()=="Item"*/)
-        {
-            //Display pickup icon && name of item
+    //        //Pickup if pressing E
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            inventory.AddItem(itemToPickUp);
+    //            inventory.EquipItem(currentItem, itemToPickUp);
+    //            currentItem = itemToPickUp; //Now equip that item
 
-            //Pickup if pressing E
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                inventory.AddItem(itemToPickUp);
-                inventory.EquipItem(currentItem, itemToPickUp);
-                currentItem = itemToPickUp; //Now equip that item
-                
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 
     public GameObject ReturnObjectLookingAt()
     {
@@ -71,6 +97,12 @@ public class Player : MonoBehaviour
 
         return targetLookingAt;
     }
+
+    //public bool InteractingWithPickupObject()
+    //{
+    //    Physics.CheckSphere(this.gameObject.transform.position, interactRange);
+        
+    //}
 
     public bool Interacting(GameObject targetObject)
     {

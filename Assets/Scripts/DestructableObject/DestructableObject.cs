@@ -16,9 +16,9 @@ public class DestructableObject : MonoBehaviour
     protected bool canPickup;
     protected Vector3 position;
 
-    private void Start()
+    private void Awake()
     {
-        this.gameObject.tag = "canTakeDamage";
+        this.gameObject.tag = "CanTakeDamage";
     }
 
     protected void TakeDamage(float amount)

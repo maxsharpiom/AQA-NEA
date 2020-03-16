@@ -12,6 +12,11 @@ public class AmmoMedium : Ammo
         this.description = "Medium Ammo";
     }
 
+    private void Awake()
+    {
+        this.gameObject.tag = "CanPickup";
+    }
+
     //public AmmoMedium(string name, Vector3 position, float amount) : base(name, position, amount)
     //{
     //    this.name = name;

@@ -83,43 +83,45 @@ public class Weapon : Item
     protected const float throwForceFloat = 10f; //For grenades and stuff //May not need
     protected float explosionRadius;
     protected float firetime;
-    public string playerPos; //Used to see if the player can be referenced
     //public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.name = name;
     //    this.position = position;
     //    this.useableByPlayer = useableByPlayer;
     //}
-    
-    void Awake()
-    {     
-        // mouseLook = player.GetComponent<MouseLook>();
+
+    private void Awake()
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        // mouseLook = player.GetComponent<MouseLook>();        
     }
 
     protected void Update()
-    {
-        playerPos = player.transform.position.ToString();
-        this.gameObject.layer = 0;
+    {       
         ////Keeps checking if the weapon is fired
         CheckFireWeapon();
         ////Keeps checking if the weapon is being reloaded
         //CheckReloadWeapon();
-        ApplyLayer();
+        // ApplyLayer();
     }
 
-    void ApplyLayer()
-    {
-        //Debug.Log($"{this.gameObject.name.ToString()}:{transform.root}");
-        Debug.Log(player.transform.position.ToString());
-        if (this.transform.root == player.transform.root)
-        {
-            this.gameObject.layer = 11;
-        }
-        else
-        {
-            this.gameObject.layer = 0;
-        }
-    }
+
+    //protected void ApplyLayer()
+    //{
+    //    Debug.Log($"{gameObject.name}:{this.gameObject.transform.root}");
+    //    this.gameObject.layer = 0;        
+    //    if (this.gameObject.transform.root == player.transform.root)
+    //    {
+    //        this.gameObject.layer = 11;
+    //    }
+    //    else if (this.gameObject.transform.root != player.transform.root)
+    //    {
+    //        this.gameObject.layer = 0;
+    //        Debug.Log($"{gameObject.name} reached here");
+    //    }
+
+    //    Debug.Log($"{this.gameObject.name}'s layer = {gameObject.layer}");
+    //}
 
     void shoot()
     {

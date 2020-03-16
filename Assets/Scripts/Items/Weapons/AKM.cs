@@ -22,7 +22,8 @@ public class AKM : Weapon
         //Define attackAnim;
         //Define reloadAnim;
         //Define attackAudio;
-        //Define reloadAudio;
+        //Define reloadAudio;     
+        this.gameObject.tag = "CanPickup";
     }
 
     //public AKM(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)

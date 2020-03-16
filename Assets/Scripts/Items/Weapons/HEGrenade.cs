@@ -18,8 +18,13 @@ public class HEGrenade : Weapon
         //Define reloadAnim;
         //Define attackAudio;
         //Define reloadAudio;
-    }  
-    
+    }
+
+    private void Awake()
+    {
+        this.gameObject.tag = "CanPickup";
+    }
+
     //public HEGrenade(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.name = name;

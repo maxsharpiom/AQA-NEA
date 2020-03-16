@@ -12,6 +12,11 @@ public class AmmoLarge : Ammo
         this.description = "Large Ammo";
     }
 
+    private void Awake()
+    {
+        this.gameObject.tag = "CanPickup";
+    }
+
     //public AmmoLarge(string name, Vector3 position, float amount) : base(name, position, amount)
     //{
     //    this.name = name;

@@ -13,6 +13,11 @@
 //        this.useableByPlayer = true;
 //    }
 
+//private void Awake()
+//{
+//    this.gameObject.tag = "CanPickup";
+//}
+
 //    public ArmourSmall(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
 //    {
 //        this.itemName = name;

@@ -11,6 +11,11 @@ public class HealthPackMedium : HealthPack
         this.description = "Medium Health Pack";
     }
 
+    private void Awake()
+    {
+        this.gameObject.tag = "CanPickup";
+    }
+
     //public HealthPackMedium(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.itemName = name;

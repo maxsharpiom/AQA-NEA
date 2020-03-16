@@ -9,7 +9,12 @@ public class AmmoSmall : Ammo
     void Start()
     {
         this.amount = 25f;
-        this.description = "Small Ammo";        
+        this.description = "Small Ammo";
+    }
+
+    private void Awake()
+    {
+        this.gameObject.tag = "CanPickup";
     }
 
     //public AmmoSmall(string name, Vector3 position, float amount) : base(name, position, amount)

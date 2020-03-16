@@ -23,8 +23,9 @@ public class Glock : Weapon
         //Define reloadAnim;
         //Define attackAudio;
         //Define reloadAudio;
-    }  
-    
+        this.gameObject.tag = "CanPickup";
+    }
+
     //public Glock17(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.name = name;
