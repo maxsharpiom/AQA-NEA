@@ -39,6 +39,18 @@ public class Inventory : MonoBehaviour
         SwitchWeapon();        
     }
 
+    public bool CheckIfItemIsAlReadyInInventory(Item item)
+    {
+        bool contains = false;
+
+        if (InventoryList.Contains(item))
+        {
+            contains = true;
+        }
+
+        return contains;
+    }
+
     /// <summary>
     /// Add an item to the player's inventory
     /// </summary>

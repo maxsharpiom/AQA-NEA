@@ -42,7 +42,7 @@ public class Weapon : Item
     /// <summary>
     /// Is the weapon currently firing?
     /// </summary>
-    protected bool weaponIfFiring;
+    public bool weaponIfFiring;
     /// <summary>
     /// Direction the weapon is being pointed in
     /// </summary>
@@ -76,7 +76,7 @@ public class Weapon : Item
     /// Used as a pause between each time fire is called
     /// </summary>
     /// <returns></returns>
-    protected float fireTime;
+    public float fireTime;
     protected float recoilAmount;
     //protected MouseLook mouseLook;    
     protected bool automatic;
@@ -166,14 +166,18 @@ public class Weapon : Item
     protected void CheckFireWeapon()
     {
         //Gets the current status of Fire1, not just for a single frame
-        if (Input.GetButton("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireWeapon();
         }
-        else if (Input.GetButton("Fire1"))
-        {
+        //if (Input.GetButton("Fire1"))
+        //{
+        //    FireWeapon();
+        //}
+        //else if (Input.GetButton("Fire1"))
+        //{
 
-        }
+        //}
         //if (Input.GetKey(KeyCode.Mouse1) && playerIsHolding == true && currentAmmoInMagazine > 0)
         //{
         //    FireWeapon();
@@ -203,8 +207,7 @@ public class Weapon : Item
             ///
             //Getting the reference for the gameObject hit
             //WeaponHit itemHit = hit.transform.GetComponent<WeaponHit>(); //Each object that can recieve damage script much be attatched // May want to 
-            GameObject itemHit = hit.collider.gameObject; //Stores the gameObject hit and stores it as a gameObject
-
+            GameObject itemHit = hit.collider.gameObject; //Stores the gameObject hit and stores it as a gameObject            
             if (itemHit != null && itemHit.gameObject.tag == "CanTakeDamage")
             {
                 itemHit.SendMessage("TakeDamage", damage);
@@ -236,7 +239,8 @@ public class Weapon : Item
         //Decrement ammo in current magazine by one        
         DecrementAmmo();
         //ApplyRecoil(this.recoilAmount);
-        StartCoroutine(Timer(fireTime));
+        StartCoroutine(Timer(firetime));
+        Debug.Log($"BANG : {this.name}");
         weaponIfFiring = false; //should be the last line of the subroutine
     }
 
@@ -277,8 +281,9 @@ public class Weapon : Item
     /// </summary>
     /// <param name="seconds"></param>
     /// <returns></returns>
-    IEnumerator Timer(float seconds)
+    private IEnumerator Timer(float seconds)
     {
+        Debug.Log($"Waiting : {seconds}");
         yield return new WaitForSeconds(seconds);
     }
 

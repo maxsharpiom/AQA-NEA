@@ -6,20 +6,19 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public float maxHealth = 100;
-    public float currentHealth;  
+    public float currentHealth;
     public float maxArmour = 100f;
     public float currentArmour;
     public Camera playerCamera;
     public Item currentItem;
     public Inventory inventory;
-    protected float interactRange = 5f;
-   public GameObject M4;
+    protected float interactRange = 2.5f;
 
     public void Awake()
     {
         //Create an inventory;
         inventory = new Inventory();
-        currentHealth = maxHealth;        
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -35,25 +34,47 @@ public class Player : MonoBehaviour
         Collider[] objs;
         objs = Physics.OverlapSphere(this.gameObject.transform.position, interactRange);
         foreach (var item in objs)
-        {
+        {            
             if (item.tag == "CanPickup")
             {
-                Debug.Log($"{item.name} > picking up > {item.tag}");
-                //PickupItem(item.gameObject.GetComponent<Item>());
+                if (inventory.CheckIfItemIsAlReadyInInventory(item.GetComponent<Item>()))
+                {
+                    PickupItem(item.gameObject.GetComponent<Item>());
+                    Debug.Log($"{item.name} > picking up > {item.tag}");
+                }
+                Debug.Log($"{item.name} in inventory({inventory.CheckIfItemIsAlReadyInInventory(item.GetComponent<Item>())})");
             }
         }
     }
 
-    //void PickupItem(Item item)
+    //void ChangeLayer(GameObject item, int layer)
     //{
-    //    item.transform.parent = GameObject.Find("Weapon").transform;
-    //    if (item.gameObject.GetComponent<Weapon>())
+    //    item.gameObject.layer = layer;
+    //    foreach (GameObject child in item.transform)
     //    {
-    //        item.gameObject.GetComponent<Weapon>().playerCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+    //        ChangeLayer(child, layer);
     //    }
-    //    Instantiate(item, this.transform, true).GetComponent<GameObject>().SetActive(true);
-    //    Destroy(item);
     //}
+
+    void PickupItem(Item item)
+    {
+        item.transform.parent = GameObject.Find("Weapon").transform;
+        item.transform.position = GameObject.Find("WeaponHolder").transform.position;
+        item.transform.rotation = GameObject.Find("WeaponHolder").transform.rotation;
+        item.gameObject.GetComponent<Weapon>().playerCamera = GameObject.Find("WeaponCamera").GetComponent<Camera>();
+       // ChangeLayer(item.GetComponent<GameObject>(), 11);
+        inventory.AddItem(item);
+        Destroy(item);
+        //item.GetComponent<Weapon>().fireTime = 99999;
+        //if (item.gameObject.GetComponent<Weapon>())
+        //{
+        //    item.gameObject.GetComponent<Weapon>().playerCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        //    Instantiate(item, this.transform, true).GetComponent<GameObject>().SetActive(true);
+        //    Destroy(item.GetComponent<Collider>());
+        //    //Destroy(item);
+        //}
+
+    }
 
     //optional perameters, so have a default text box size
     //Could be dynamic so the size of the text box depends on the size of the text entered
@@ -101,7 +122,7 @@ public class Player : MonoBehaviour
     //public bool InteractingWithPickupObject()
     //{
     //    Physics.CheckSphere(this.gameObject.transform.position, interactRange);
-        
+
     //}
 
     public bool Interacting(GameObject targetObject)
@@ -117,7 +138,7 @@ public class Player : MonoBehaviour
     }
 
     public bool Interacting()
-    {        
+    {
         bool interacting = false;
         RaycastHit hit;
         if ((Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactRange)))

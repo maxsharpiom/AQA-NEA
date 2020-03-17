@@ -18,19 +18,19 @@ public class AKM : Weapon
         this.currentAmmoInMagazine = magazineSize;
         //this.reserveAmmo = inventory.total762mmAmmo;
         //this.recoilAmount = 15f;
-        //this.fireTime = 0.096f;
+        this.fireTime = 0.096f;        
         //Define attackAnim;
         //Define reloadAnim;
         //Define attackAudio;
         //Define reloadAudio;     
-        this.gameObject.tag = "CanPickup";
+        this.gameObject.tag = "CanPickup";        
+
+        //public AKM(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+        //{
+        //    this.name = name;
+        //    this.position = position;
+        //    this.useableByPlayer = useableByPlayer;
+        //}
+
     }
-
-    //public AKM(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    //{
-    //    this.name = name;
-    //    this.position = position;
-    //    this.useableByPlayer = useableByPlayer;
-    //}
-
 }

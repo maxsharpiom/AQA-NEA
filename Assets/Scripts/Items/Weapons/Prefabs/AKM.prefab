@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 2936894221560963159}
   - component: {fileID: 2936894221570740149}
   - component: {fileID: 2936894221220393488}
+  - component: {fileID: -6886001730236796656}
   m_Layer: 0
   m_Name: AKM
   m_TagString: Untagged
@@ -312,6 +313,19 @@ MonoBehaviour:
   currentAmmoInMagazine: 0
   reserveAmmo: 0
   playerCamera: {fileID: 0}
+--- !u!65 &-6886001730236796656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2936894221561265271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2936894221561265273
 GameObject:
   m_ObjectHideFlags: 0
