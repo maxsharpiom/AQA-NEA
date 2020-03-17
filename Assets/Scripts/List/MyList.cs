@@ -116,7 +116,7 @@ public class MyList<T>
 
     public Node<T> Next(Node<T> currentNode)
     {
-        Node<T> tempPointer = currentNode.NextNode; //Pointer to next node
+            ; //Pointer to next node
 
         return tempPointer;
     }
