@@ -37,12 +37,12 @@ public class Player : MonoBehaviour
         {            
             if (item.tag == "CanPickup")
             {
-                if (inventory.CheckIfItemIsAlReadyInInventory(item.GetComponent<Item>()))
-                {
+                //if (inventory.CheckIfItemIsAlReadyInInventory(item.GetComponent<Item>()))
+                //{
                     PickupItem(item.gameObject.GetComponent<Item>());
-                    Debug.Log($"{item.name} > picking up > {item.tag}");
-                }
-                Debug.Log($"{item.name} in inventory({inventory.CheckIfItemIsAlReadyInInventory(item.GetComponent<Item>())})");
+                    //Debug.Log($"{item.name} > picking up > {item.tag}");
+                //}
+                //Debug.Log($"{item.name} in inventory({inventory.CheckIfItemIsAlReadyInInventory(item.GetComponent<Item>())})");
             }
         }
     }
@@ -62,9 +62,10 @@ public class Player : MonoBehaviour
         item.transform.position = GameObject.Find("WeaponHolder").transform.position;
         item.transform.rotation = GameObject.Find("WeaponHolder").transform.rotation;
         item.gameObject.GetComponent<Weapon>().playerCamera = GameObject.Find("WeaponCamera").GetComponent<Camera>();
-       // ChangeLayer(item.GetComponent<GameObject>(), 11);
-        inventory.AddItem(item);
-        Destroy(item);
+        item.tag = "Untagged";
+        // ChangeLayer(item.GetComponent<GameObject>(), 11);
+        inventory.AddItem(item);       
+        item.playerIsHolding = true;
         //item.GetComponent<Weapon>().fireTime = 99999;
         //if (item.gameObject.GetComponent<Weapon>())
         //{

@@ -89,21 +89,29 @@ public class Weapon : Item
     //    this.position = position;
     //    this.useableByPlayer = useableByPlayer;
     //}
+    float timeSinceLastFire;
 
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        timeSinceLastFire = Mathf.Infinity;
         // mouseLook = player.GetComponent<MouseLook>();        
     }
 
-    protected void Update()
-    {       
+    void Update()
+    {
         ////Keeps checking if the weapon is fired
-        CheckFireWeapon();
-        ////Keeps checking if the weapon is being reloaded
-        //CheckReloadWeapon();
-        // ApplyLayer();
+        //Debug.Log(this.name + " : " + playerIsHolding);
+        if (this.name == "AKM"/*playerIsHolding == true*/)
+        {
+            Debug.Log(this.name + " : " + playerIsHolding);
+            Debug.Log(this.name.ToString() + " : BOOM");
+            CheckFireWeapon();
     }
+    ////Keeps checking if the weapon is being reloaded
+    //CheckReloadWeapon();
+    // ApplyLayer();
+}
 
 
     //protected void ApplyLayer()
@@ -165,9 +173,12 @@ public class Weapon : Item
 
     protected void CheckFireWeapon()
     {
-        //Gets the current status of Fire1, not just for a single frame
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
+        //Debug.Log(this.gameObject.transform.root);
+        //Gets the current status of Fire1, not just for a single frame       
+        if (Input.GetButton("Fire1"))
+        {            
+            //Debug.Log("ROOT (this)" + this.gameObject.transform.root);
+            //Debug.Log("ROOT (player)" + player.transform.root);
             FireWeapon();
         }
         //if (Input.GetButton("Fire1"))
@@ -197,10 +208,11 @@ public class Weapon : Item
         weaponIfFiring = true;
         RaycastHit hit;
         //Casts a raycast maxDistance length from the player camera, outputs the info into hit
-        if (/* && this.name != "HEGrenade"*/true)
-        {
+        
+        if (Time.time - timeSinceLastFire >= firetime)
+        {            
             Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance);
-
+            //Debug.Log($"BANG : {this.name}");
             //Print the name of the object that has been hit            
             ///
             /// potentially a problem as we can only apply damage to AICharacters...
@@ -239,8 +251,10 @@ public class Weapon : Item
         //Decrement ammo in current magazine by one        
         DecrementAmmo();
         //ApplyRecoil(this.recoilAmount);
-        StartCoroutine(Timer(firetime));
-        Debug.Log($"BANG : {this.name}");
+        // StartCoroutine(Timer(firetime));
+        //Debug.Log("Fire time: "+firetime + "s");
+        //yield return new WaitForSeconds(firetime);   
+        timeSinceLastFire = Time.time;
         weaponIfFiring = false; //should be the last line of the subroutine
     }
 
@@ -287,13 +301,13 @@ public class Weapon : Item
         yield return new WaitForSeconds(seconds);
     }
 
-    protected void CheckReloadWeapon()
-    {
-        if (Input.GetKeyDown(KeyCode.R) && playerIsHolding == true)
-        {
-            ReloadWeapon();
-        }
-    }
+    //protected void CheckReloadWeapon()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.R) && playerIsHolding == true)
+    //    {
+    //        ReloadWeapon();
+    //    }
+    //}
 
     protected void ReloadWeapon()
     {

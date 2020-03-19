@@ -114,12 +114,12 @@ public class MyList<T>
         return listLength;
     }
 
-    public Node<T> Next(Node<T> currentNode)
-    {
-            ; //Pointer to next node
+    //public Node<T> Next(Node<T> currentNode)
+    //{
+    //         //Pointer to next node
 
-        return tempPointer;
-    }
+    //    return tempPointer;
+    //}
         
     public Node<T> Next()
     {

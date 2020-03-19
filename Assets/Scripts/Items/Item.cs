@@ -26,6 +26,7 @@ public class Item : MonoBehaviour
     protected Inventory inventory; //The player's current invenotory
     protected bool itemIsInInteractableRange;
     protected bool playerInteract = false;
+    public bool playerIsHolding = false;
     /// <summary>
     /// Sets the position of the item in the game world
     /// </summary>
@@ -38,7 +39,8 @@ public class Item : MonoBehaviour
     //}
 
     void Awake()
-    {        
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
         inventory = player.GetComponent<Inventory>();           
     }
 
