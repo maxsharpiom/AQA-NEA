@@ -24,6 +24,10 @@ public class Glock : Weapon
         //Define attackAudio;
         //Define reloadAudio;
         this.gameObject.tag = "CanPickup";
+        this.gameObject.AddComponent<AudioSource>();
+        this.attackSource = this.gameObject.GetComponent<AudioSource>();
+        this.attackSource.clip = Resources.Load<AudioClip>(attackAudioName);
+        this.attackSource.playOnAwake = false;
     }
 
     //public Glock17(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)

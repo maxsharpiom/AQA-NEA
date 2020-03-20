@@ -23,6 +23,14 @@ public class Teeth : Weapon
         //Define reloadAudio;
     }  
     
+    void Awake()
+    {
+        this.gameObject.AddComponent<AudioSource>();
+        this.attackSource = this.gameObject.GetComponent<AudioSource>();
+        this.attackSource.clip = Resources.Load<AudioClip>(attackAudioName);
+        this.attackSource.playOnAwake = false;
+    }
+
     //public Teeth(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.name = name;

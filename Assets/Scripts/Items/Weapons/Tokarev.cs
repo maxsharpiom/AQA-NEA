@@ -28,6 +28,10 @@ public class Tokarev : Weapon
     private void Awake()
     {
         this.gameObject.tag = "CanPickup";
+        this.gameObject.AddComponent<AudioSource>();
+        this.attackSource = this.gameObject.GetComponent<AudioSource>();
+        this.attackSource.clip = Resources.Load<AudioClip>(attackAudioName);
+        this.attackSource.playOnAwake = false;
     }
 
     //public Tokarev(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)

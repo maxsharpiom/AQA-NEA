@@ -21,6 +21,10 @@ public class Hand : Weapon
         //Define reloadAnim;
         //Define attackAudio;
         //Define reloadAudio;
+        this.gameObject.AddComponent<AudioSource>();
+        this.attackSource = this.gameObject.GetComponent<AudioSource>();
+        this.attackSource.clip = Resources.Load<AudioClip>(attackAudioName);
+        this.attackSource.playOnAwake = false;
     }
 
     //public Hand(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
