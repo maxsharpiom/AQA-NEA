@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Node
+public class NewNode
 {
     /// <summary>
     /// Distance from leading node to goal node
@@ -16,32 +16,33 @@ public class Node
     /// <summary>
     /// Total distance, hCost + gCost
     /// </summary>
-    float fCost;
-    bool isToutchingWall = false;
-    bool traversable = true;
-    bool isStairFloorNode = false;
-    bool isToutchingFloor = false;
+    public float fCost;
+    public bool isToutchingWall = false;
+    public bool traversable = false;
+    public bool isStairFloorNode = false;
+    public bool isToutchingFloor = false;
     float radius = 0.5f;
-    Node OppositeStairFloorNode;
+    NewNode OppositeStairFloorNode;
     Player player;
-    GameObject target;
+    GameObject targetObj;
+    GameObject originObj;
     //Layer 9 = Wall
     //Layer 12 = Floor
     //Layer 13 = Stair
     GameObject targetFloor;
     GameObject floor;
-    Vector3 pos;
+    public Vector3 pos;
 
-    public Node(Vector3 position)
+    public NewNode(Vector3 position)
     {
         //Round down the x position to the nearest int
         int roundDownXPos = Convert.ToInt32(Math.Floor(position.x));
         //Round down the y position to the nearest int
         int roundDownZPos = Convert.ToInt32(Math.Floor(position.z));
-        
-        pos = new Vector3(roundDownXPos, 0, roundDownZPos);
 
-       // FindFloor();
+        pos = new Vector3(roundDownXPos, floor.transform.position.y, roundDownZPos);
+
+        // FindFloor();
 
         //check if toutching wall
         if (Physics.CheckSphere(position, 0.5f, 9))
@@ -61,6 +62,34 @@ public class Node
         {
             isStairFloorNode = true;
         }
+        
+    }
+
+    public NewNode() // Is meant to exist to allow as a pointer
+    {
+
+    }
+
+    public void CalculateCosts(Vector3 startPos, Vector3 endPos, Vector3 leadingPos)
+    {
+        GetHCost(leadingPos, endPos);
+        GetGCost(startPos, leadingPos);
+        GetFCost();
+    }
+
+    void GetFCost()
+    {
+        fCost = gCost + hCost;
+    }
+
+    void GetHCost(Vector3 leadingPos, Vector3 endPos)
+    {
+        hCost = Vector3.Distance(leadingPos, endPos);
+    }
+
+    void GetGCost(Vector3 startPos, Vector3 leadingPos)
+    {
+        gCost = Vector3.Distance(startPos, leadingPos);
     }
 
     //void FindFloor()

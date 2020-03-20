@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Grid
+public class SimpleGrid
 {
 
     MyList<GridNode> AllNodesList = new MyList<GridNode>();
@@ -14,7 +14,7 @@ public class Grid
     /// </summary>
     /// <param name="width"></param>    
     /// <param name="height"></param>
-    public Grid(int width, int height)
+    public SimpleGrid(int width, int height)
     {
         //A 2D grid array array to represent the grid
         //GridNode[,] gridArray = new GridNode[width, height];
