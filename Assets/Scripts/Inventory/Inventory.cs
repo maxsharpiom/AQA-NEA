@@ -102,7 +102,7 @@ public class Inventory : MonoBehaviour
         foreach (Transform item in transform)
         {
             if (counter == weaponNumberSelect - 1)
-            {
+            {                
                 item.gameObject.SetActive(true);
                 currentItem = item.gameObject.GetComponent<Item>();
                 //player.currentWeapon = item.gameObject.GetComponent<Weapon>();    

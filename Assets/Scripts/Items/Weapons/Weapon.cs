@@ -64,9 +64,13 @@ public class Weapon : Item
     /// </summary>
     protected Animation reloadAnim;
     /// <summary>
+    /// Referecnce to the attack audio for weapon
+    /// </summary>
+    public AudioSource attackSource;
+    /// <summary>
     /// Attack audio for weapon
     /// </summary>
-   // protected AudioSource attackAudio;
+    protected string attackAudioName;
     /// <summary>
     /// Reload audio for weapon
     /// </summary>
@@ -76,6 +80,18 @@ public class Weapon : Item
     /// Used as a pause between each time fire is called
     /// </summary>
     /// <returns></returns>
+    /// <summary>
+    /// The visual effect the weapon has unpon the surface it attacks
+    /// </summary>
+    GameObject impactEffect;
+    /// <summary>
+    /// Audio hit sound
+    /// </summary>
+    public AudioSource hitSoundSource;
+    /// <summary>
+    /// Audio hit sound source name
+    /// </summary>
+    //public string[] hitSoundSourceLocation = new string[2];
     public float fireTime;
     protected float recoilAmount;
     //protected MouseLook mouseLook;    
@@ -83,6 +99,7 @@ public class Weapon : Item
     protected const float throwForceFloat = 10f; //For grenades and stuff //May not need
     protected float explosionRadius;
     protected float firetime;
+    protected ParticleSystem muzzleFlash;
     //public Weapon(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
     //{
     //    this.name = name;
@@ -93,8 +110,9 @@ public class Weapon : Item
 
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("Player").GetComponent<Player>();        
         timeSinceLastFire = Mathf.Infinity;
+        //this.hitSoundSource = this.gameObject.GetComponent<AudioSource>();
         // mouseLook = player.GetComponent<MouseLook>();        
     }
 
@@ -102,16 +120,14 @@ public class Weapon : Item
     {
         ////Keeps checking if the weapon is fired
         //Debug.Log(this.name + " : " + playerIsHolding);
-        if (this.name == "AKM"/*playerIsHolding == true*/)
+        if (this.gameObject.tag == "Holding"/*playerIsHolding == true*/)
         {
-            Debug.Log(this.name + " : " + playerIsHolding);
-            Debug.Log(this.name.ToString() + " : BOOM");
             CheckFireWeapon();
+        }
+        ////Keeps checking if the weapon is being reloaded
+        //CheckReloadWeapon();
+        // ApplyLayer();
     }
-    ////Keeps checking if the weapon is being reloaded
-    //CheckReloadWeapon();
-    // ApplyLayer();
-}
 
 
     //protected void ApplyLayer()
@@ -175,8 +191,8 @@ public class Weapon : Item
     {
         //Debug.Log(this.gameObject.transform.root);
         //Gets the current status of Fire1, not just for a single frame       
-        if (Input.GetButton("Fire1"))
-        {            
+        if (Input.GetButton("Fire1") && Time.time - timeSinceLastFire >= fireTime)
+        {
             //Debug.Log("ROOT (this)" + this.gameObject.transform.root);
             //Debug.Log("ROOT (player)" + player.transform.root);
             FireWeapon();
@@ -207,11 +223,11 @@ public class Weapon : Item
     {
         weaponIfFiring = true;
         RaycastHit hit;
-        //Casts a raycast maxDistance length from the player camera, outputs the info into hit
-        
-        if (Time.time - timeSinceLastFire >= firetime)
-        {            
+        //Casts a raycast maxDistance length from the player camera, outputs the info into hit        
+        if (true/*(Time.time - timeSinceLastFire) >= firetime*/)
+        {
             Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance);
+            attackSource.Play();
             //Debug.Log($"BANG : {this.name}");
             //Print the name of the object that has been hit            
             ///
@@ -224,6 +240,11 @@ public class Weapon : Item
             {
                 itemHit.SendMessage("TakeDamage", damage);
                 Debug.Log($"{this.name} > {damage} > {hit.collider.gameObject.name}");
+                //if (itemHit.GetComponent<Shader>().name == "crate_diffuse")
+                //{
+                //impactEffect = Resources.Load<GameObject>("WFX_BImpact Wood + Hole Lit");
+                //}
+                //Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             }
             //The target component of the object that has been hit (if the object has no target component then it is ignored?) is set equal to the target
             //Target target = hit.transform.GetComponent<Target>();

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CanTakeDamage
   - CanPickup
+  - Holding
   layers:
   - Default
   - TransparentFX

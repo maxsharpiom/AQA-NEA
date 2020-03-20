@@ -2117,6 +2117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceBetweenPlayerAndItem: 0
+  playerIsHolding: 0
 --- !u!1 &920085976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,22 +2666,22 @@ PrefabInstance:
     - target: {fileID: 2936894221560963159, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: -0.25000012
       objectReference: {fileID: 0}
     - target: {fileID: 2936894221560963159, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.76
+      value: 27.760002
       objectReference: {fileID: 0}
     - target: {fileID: 2936894221560963159, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2936894221560963159, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2936894221560963159, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
         type: 3}
@@ -2711,6 +2712,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936894221560963159, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936894221560963159, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2936894221561265265, guid: 8ddbc6f8b1877cf45a1643cd7ce20451,
         type: 3}
@@ -3172,6 +3183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb84d95119610b499f86fe9cb71d28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemToDisplay: {fileID: 0}
+  player: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &1704557767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3812,7 +3826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.292, y: 16.385}
+  m_AnchoredPosition: {x: 15, y: 16.385}
   m_SizeDelta: {x: 151.75, y: 31.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120050245
@@ -3827,6 +3841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a152eba49d4627a48a4f2ded71326620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemToDisplay: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &2120050246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3846,7 +3862,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+    m_Font: {fileID: 12800000, guid: 0aa3141a288455542a497ab8fcd5a8c5, type: 3}
     m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0

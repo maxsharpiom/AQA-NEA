@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
         //Create an inventory;
         inventory = new Inventory();
         currentHealth = maxHealth;
+        this.gameObject.AddComponent<AudioListener>();
+        AudioListener.volume = 0.025f;
     }
 
     void Update()
@@ -62,7 +64,9 @@ public class Player : MonoBehaviour
         item.transform.position = GameObject.Find("WeaponHolder").transform.position;
         item.transform.rotation = GameObject.Find("WeaponHolder").transform.rotation;
         item.gameObject.GetComponent<Weapon>().playerCamera = GameObject.Find("WeaponCamera").GetComponent<Camera>();
-        item.tag = "Untagged";
+        //item.gameObject.AddComponent<AudioSource>();
+        //item.gameObject.GetComponent<Weapon>().attackSource = item.gameObject.GetComponent<AudioSource>();
+        item.tag = "Holding";
         // ChangeLayer(item.GetComponent<GameObject>(), 11);
         inventory.AddItem(item);       
         item.playerIsHolding = true;

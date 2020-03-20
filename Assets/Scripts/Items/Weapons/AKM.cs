@@ -18,10 +18,11 @@ public class AKM : Weapon
         this.currentAmmoInMagazine = magazineSize;
         //this.reserveAmmo = inventory.total762mmAmmo;
         //this.recoilAmount = 15f;
-        this.fireTime = 0.096f;        
+        this.fireTime = 0.096f;
         //Define attackAnim;
         //Define reloadAnim;
-        //Define attackAudio;
+        //Define attackAudioName;        
+        this.attackAudioName = "ak47-1";
         //Define reloadAudio;     
         this.gameObject.tag = "CanPickup";
 
@@ -31,6 +32,9 @@ public class AKM : Weapon
         //    this.position = position;
         //    this.useableByPlayer = useableByPlayer;
         //}
-
+        this.gameObject.AddComponent<AudioSource>();
+        this.attackSource = this.gameObject.GetComponent<AudioSource>();
+        this.attackSource.clip = Resources.Load<AudioClip>(attackAudioName);
+        this.attackSource.playOnAwake = false;        
     }
 }
