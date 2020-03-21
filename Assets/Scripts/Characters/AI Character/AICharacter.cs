@@ -17,7 +17,7 @@ public class AICharacter : MonoBehaviour
     protected bool friendly;
     protected bool playerInteractable;
     protected bool following;
-    protected float interactRange = 1.5f;    
+    protected float interactRange = 1.5f;
     public bool playerLooking;
     LayerMask playerGroundMask;
     //protected Pathfind pathfinding = new Pathfind();
@@ -36,9 +36,12 @@ public class AICharacter : MonoBehaviour
 
     void Awake()
     {
+        //Debug.Break();
         Rigidbody AIRigidbody = gameObject.AddComponent<Rigidbody>();
         playerGroundMask = LayerMask.GetMask("Player");
         player = GameObject.Find("Player");
+        NewPathfind pathfind = new NewPathfind(this.gameObject, player);
+
     }
 
     private void Start()
@@ -51,6 +54,11 @@ public class AICharacter : MonoBehaviour
         //FOV();  
         playerLooking = PlayerLookingAtAI(playerInteractable, interactRange);
         CheckIfDead();
+    }
+
+    public void Mover(Vector3 positionToMoveTo)
+    {
+        Vector3.MoveTowards(this.transform.position, positionToMoveTo, this.movementSpeed * Time.deltaTime);
     }
 
     protected void TakeDamage(float damage)

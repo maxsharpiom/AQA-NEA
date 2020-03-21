@@ -14,7 +14,7 @@ public class Testing : MonoBehaviour
         int xwidth = Convert.ToInt32(Math.Floor(floor001.transform.localScale.x));
         int zlength = Convert.ToInt32(Math.Floor(floor001.transform.localScale.z));
         //Instantite a new grid with the given lengths
-        Grid grid = new Grid(xwidth, zlength);
+        SimpleGrid grid = new SimpleGrid(xwidth, zlength);
     }
 
 }

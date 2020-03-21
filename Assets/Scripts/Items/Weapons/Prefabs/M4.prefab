@@ -208,7 +208,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5222578334193207714}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.059999, y: 2.069, z: 7.2650003}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
@@ -229,7 +229,7 @@ Transform:
   - {fileID: 5222578334193112540}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5222578334200609292
 Animator:
   serializedVersion: 3
@@ -262,10 +262,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceBetweenPlayerAndItem: 0
+  playerIsHolding: 0
   damage: 0
   currentAmmoInMagazine: 0
   reserveAmmo: 0
+  weaponIfFiring: 0
   playerCamera: {fileID: 0}
+  attackSource: {fileID: 0}
+  hitSoundSource: {fileID: 0}
+  fireTime: 0
 --- !u!1 &5222578334193207716
 GameObject:
   m_ObjectHideFlags: 0

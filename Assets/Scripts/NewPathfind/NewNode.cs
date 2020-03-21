@@ -33,36 +33,41 @@ public class NewNode
     GameObject floor;
     public Vector3 pos;
 
-    public NewNode(Vector3 position)
+    public NewNode(GameObject obj)
     {
         //Round down the x position to the nearest int
-        int roundDownXPos = Convert.ToInt32(Math.Floor(position.x));
+        int roundDownXPos = Convert.ToInt32(Math.Floor(obj.transform.position.x));
         //Round down the y position to the nearest int
-        int roundDownZPos = Convert.ToInt32(Math.Floor(position.z));
+        int roundDownZPos = Convert.ToInt32(Math.Floor(obj.transform.position.z));
 
-        pos = new Vector3(roundDownXPos, floor.transform.position.y, roundDownZPos);
+        pos = new Vector3(roundDownXPos, obj.transform.position.z/*floor.transform.position.y*/, roundDownZPos);
 
         // FindFloor();
 
         //check if toutching wall
-        if (Physics.CheckSphere(position, 0.5f, 9))
+        if (Physics.CheckSphere(obj.transform.position, 0.5f, 9))
         {
             this.isToutchingWall = true;
             traversable = false;
         }
 
         //check if toutching floor
-        if (Physics.CheckSphere(position, 0.5f, 12))
+        if (Physics.CheckSphere(obj.transform.position, 0.5f, 12))
         {
             isToutchingFloor = true;
         }
 
         //check if toutching stair and floor layers
-        if (Physics.CheckSphere(position, 0.5f, 13) && Physics.CheckSphere(position, 0.5f, 12))
+        if (Physics.CheckSphere(obj.transform.position, 0.5f, 13) && Physics.CheckSphere(obj.transform.position, 0.5f, 12))
         {
             isStairFloorNode = true;
         }
         
+    }
+    
+    public NewNode returnThisNode()
+    {
+        return this;
     }
 
     public NewNode() // Is meant to exist to allow as a pointer
