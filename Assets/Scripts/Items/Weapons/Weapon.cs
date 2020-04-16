@@ -214,7 +214,7 @@ public class Weapon : Item
         //    //Play clicking sound (no ammo in chamber)
         //}
     }
-
+     
     /// <summary>
     /// /// Some of this script derives from Brakey's youtube video
     /// https://www.youtube.com/watch?v=THnivyG0Mvo
@@ -227,6 +227,7 @@ public class Weapon : Item
         if (true/*(Time.time - timeSinceLastFire) >= firetime*/)
         {
             Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, maxDistance);
+            Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward, Color.green, 2f);
             attackSource.Play();
             //Debug.Log($"BANG : {this.name}");
             //Print the name of the object that has been hit            

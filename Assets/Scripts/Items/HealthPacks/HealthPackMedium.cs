@@ -16,10 +16,10 @@ public class HealthPackMedium : HealthPack
         this.gameObject.tag = "CanPickup";
     }
 
-    //public HealthPackMedium(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    //{
-    //    this.itemName = name;
-    //    this.position = position;
-    //    this.useableByPlayer = useableByPlayer;
-    //}
+    public HealthPackMedium(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    {
+        this.itemName = name;
+        this.position = position;
+        this.useableByPlayer = useableByPlayer;
+    }
 }

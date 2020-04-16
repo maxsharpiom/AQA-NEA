@@ -17,10 +17,10 @@ public class HealthPackLarge : HealthPack
         this.gameObject.tag = "CanPickup";
     }
 
-    //public HealthPackLarge(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
-    //{
-    //    this.itemName = name;
-    //    this.position = position;
-    //    this.useableByPlayer = useableByPlayer;
-    //}
+    public HealthPackLarge(string name, Vector3 position, bool useableByPlayer) : base(name, position, useableByPlayer)
+    {
+        this.itemName = name;
+        this.position = position;
+        this.useableByPlayer = useableByPlayer;
+    }
 }

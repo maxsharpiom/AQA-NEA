@@ -10,7 +10,7 @@ public class Scientist : AICharacter
         this.maxHealth = 50f;
         this.movementSpeed = 8f;
         this.friendly = true;
-            this.fovAngle = 90f;
+         this.fovAngle = 90f;
         this.viewDistance = 20f;
         float interactRange = 1.5f;
         //this.gameObject.CompareTag = "Scientist";

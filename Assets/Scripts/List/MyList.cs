@@ -297,7 +297,7 @@ public class MyList<T>
             OldTempPosPointer = OldTempPosPointer.NextNode;
         }
 
-        //Moves the TempNewPosPointer to the node on the new position
+        //Moves the NewTempPosPointer to the node on the new position
         for (int i = 0; i < newPos - 1; i++)
         {
             NewTempPosPointer = NewTempPosPointer.NextNode;

@@ -35,31 +35,36 @@ public class NewPathfind : MonoBehaviour
 
     public NewPathfind(GameObject originObj, GameObject targetObj)
     {
-        Debug.Log("originObj = " + originObj);
-        Debug.Log("targetObj = " + targetObj);
-        finaltargetObj = targetObj;
-        if (setUp)
-        {
-            Pathfind(originObj, targetObj);
-            nodeList.DisplayList();
-        }
-        else
-        {
-            SetUpPathfind(originObj, targetObj);
-        }
-        
-    }
-    
-    void Pathfind(GameObject originObj, GameObject targetObj)
-    {
+        //Debug.Break();
+        //Debug.Log("Break");
+        //Debug.Log("originObj = " + originObj);
+        //Debug.Log("targetObj = " + targetObj);
         while (!arrived && possibleToFind) //arrived is used for both to stairs and to the total goal
         {
-            CreateNeighbourNodes();
-            FindNodeValuesAndStoreInArray();
-            FindLeadingNode();
-            nodeList.Add(leadingNode);
-            CheckArrived(leadingNode.pos, targetObj.transform.position);
+            finaltargetObj = targetObj;
+            if (setUp)
+            {
+                Pathfind(originObj, targetObj);
+                nodeList.DisplayList();
+            }
+            else if (!setUp)
+            {
+                SetUpPathfind(originObj, targetObj);
+            }
         }
+    }
+
+    void Pathfind(GameObject originObj, GameObject targetObj)
+    {
+
+        CreateNeighbourNodes();
+        FindNodeValuesAndStoreInArray();
+        FindLeadingNode();
+        nodeList.Add(leadingNode);
+        Gizmos.color = new Color(0, 1, 0, 1);
+        Gizmos.DrawCube(leadingNode.pos, new Vector3(1, 1, 1));
+        CheckArrived(leadingNode.pos, targetObj.transform.position);
+
     }
 
     void SetUpPathfind(GameObject originObj, GameObject targetObj) //Not called from anywhere
@@ -78,7 +83,7 @@ public class NewPathfind : MonoBehaviour
         //originObj.transform.position = Vector3.MoveTowards(originStairNode.transform.position, targetStairNode.transform.position, originObj.GetComponent<GameObject>().GetComponent<AICharacter>().movementSpeed * Time.deltaTime);
 
     }
-    
+
     void FindPathfindWithFloors(GameObject originObj, GameObject targetObj)
     {
         GetFloors(originObj, targetObj);
@@ -97,7 +102,7 @@ public class NewPathfind : MonoBehaviour
                 }
             }
             Pathfind(originObj, finaltargetObj);
-        }        
+        }
     }
 
     void MoveObj(MyList<NewNode> nodeList)
@@ -121,7 +126,7 @@ public class NewPathfind : MonoBehaviour
             if (colliders[i].gameObject == originFloor)
             {
                 originStairNode = colliders[i].gameObject;
-            } 
+            }
         }
         colliders = Physics.OverlapSphere(targetStairNode.transform.position, 1f, 12);
         for (int i = 0; i < colliders.Length; i++)
@@ -138,7 +143,7 @@ public class NewPathfind : MonoBehaviour
         }
 
     }
-    
+
     void CompareFloors()
     {
         if (originFloor == targetFloor)
@@ -162,14 +167,14 @@ public class NewPathfind : MonoBehaviour
         //leadingNode = ht.get
 
         //Preforming basic bubble sort to find node with lowest fCost
-        for (int o =0; o < SourroundingNodes.Length-2; o++)
+        for (int o = 0; o < SourroundingNodes.Length - 2; o++)
         {
             for (int t = 0; t < SourroundingNodes.Length - 2; t++)
             {
-                if (SourroundingNodes[o].fCost > SourroundingNodes[o+1].fCost)
+                if (SourroundingNodes[o].fCost > SourroundingNodes[o + 1].fCost)
                 {
                     temp = SourroundingNodes[o + 1];
-                    SourroundingNodes[o+1] = SourroundingNodes[o];
+                    SourroundingNodes[o + 1] = SourroundingNodes[o];
                     SourroundingNodes[o] = temp;
                 }
             }
@@ -178,7 +183,7 @@ public class NewPathfind : MonoBehaviour
         leadingNode = SourroundingNodes[0];
     }
 
-   
+
     void FindNodeValuesAndStoreInArray()
     {
         if (upNode.traversable)
@@ -217,7 +222,7 @@ public class NewPathfind : MonoBehaviour
         {
             downNode.traversable = true;
         }
-        if(leftNode.isToutchingFloor && NotNullUnder(leftNode.pos))
+        if (leftNode.isToutchingFloor && NotNullUnder(leftNode.pos))
         {
             leftNode.traversable = true;
         }
@@ -227,7 +232,7 @@ public class NewPathfind : MonoBehaviour
         }
 
     }
-    
+
     bool NotNullUnder(Vector3 pos)
     {
         RaycastHit hit;
@@ -239,19 +244,19 @@ public class NewPathfind : MonoBehaviour
         else
         {
             return false;
-        }        
+        }
     }
 
     void CreateStartNode(GameObject originObj)
     {
-       this.startNode = new NewNode(originObj);
-        Debug.Log("startNode =" + startNode +", " + startNode.pos);
+        this.startNode = new NewNode(originObj);
+        Debug.Log("startNode =" + startNode + ", " + startNode.pos);
     }
 
     void CreateEndNode(GameObject targetObj)
     {
         this.endNode = new NewNode(targetObj);
-        Debug.Log("endNode =" + endNode+", " + endNode.pos);
+        Debug.Log("endNode =" + endNode + ", " + endNode.pos);
     }
 
     //NewNode GetNodeUnder(Vector3 vector3) //shouldn't exist
@@ -277,19 +282,21 @@ public class NewPathfind : MonoBehaviour
         {
             targetFloor = hit.collider.gameObject;
         }
+        Debug.Log($"originFloor = {originFloor}");
+        Debug.Log($"targetFloor = {targetFloor}");
     }
 
     void CreateNeighbourNodes()
     {
         Vector3 position = new Vector3(leadingNode.pos.x - 1, leadingNode.pos.y, leadingNode.pos.z);
         GameObject tempObj = new GameObject();
-        tempObj.transform.position = position;       
+        tempObj.transform.position = position;
         leftNode = new NewNode(tempObj);
         position = new Vector3(leadingNode.pos.x + 1, leadingNode.pos.y, leadingNode.pos.z);
         rightNode = new NewNode(tempObj);
-        position = new Vector3(leadingNode.pos.x, leadingNode.pos.y, leadingNode.pos.z+1);
+        position = new Vector3(leadingNode.pos.x, leadingNode.pos.y, leadingNode.pos.z + 1);
         upNode = new NewNode(tempObj);
-        position = new Vector3(leadingNode.pos.x, leadingNode.pos.y, leadingNode.pos.z-1);
+        position = new Vector3(leadingNode.pos.x, leadingNode.pos.y, leadingNode.pos.z - 1);
         downNode = new NewNode(tempObj);
     }
 

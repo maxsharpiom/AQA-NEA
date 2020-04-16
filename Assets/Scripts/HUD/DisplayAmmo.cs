@@ -13,7 +13,7 @@ public class DisplayAmmo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //DisplayAmountOfAmmo();
+        DisplayAmountOfAmmo();
         //weapon = player.currentWeapon;
     }
 

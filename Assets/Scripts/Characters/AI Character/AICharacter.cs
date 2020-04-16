@@ -28,7 +28,7 @@ public class AICharacter : MonoBehaviour
     //Should probably be adapted not just for player but any two gameobjects
     protected GameObject player;
     protected bool dead;
-
+    NewPathfind pathfind; 
     //public virtual void Start()
     //{
 
@@ -39,14 +39,13 @@ public class AICharacter : MonoBehaviour
         //Debug.Break();
         Rigidbody AIRigidbody = gameObject.AddComponent<Rigidbody>();
         playerGroundMask = LayerMask.GetMask("Player");
-        player = GameObject.Find("Player");
-        NewPathfind pathfind = new NewPathfind(this.gameObject, player);
-
+        player = GameObject.Find("Player");        
+        pathfind = new NewPathfind(this.gameObject, player);
     }
 
     private void Start()
     {
-        this.gameObject.tag = "canTakeDamage";
+        this.gameObject.tag = "CanTakeDamage";        
     }
 
     void Update()

@@ -15,6 +15,13 @@ public class DestructableObject : MonoBehaviour
     //Need to referene player for position;
     protected bool canPickup;
     protected Vector3 position;
+    /// Referecnce to the destroy audio for object
+    /// </summary>
+    public AudioSource destroySource;
+    /// <summary>
+    /// Attack audio for weapon
+    /// </summary>
+    protected string destroyAudioName;
 
     private void Awake()
     {
@@ -22,7 +29,7 @@ public class DestructableObject : MonoBehaviour
     }
 
     protected void TakeDamage(float amount)
-    {
+    {        
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
@@ -31,17 +38,17 @@ public class DestructableObject : MonoBehaviour
     }
     
     void Destroy()
-    {
+    {        
         if (this.explodes == true)
-        {
+        {      
             Explode();
+            destroySource.Play();
         }
         if (this.containsItem == true)
         {
             //Drop containing item
             DropContainingItem();
-        }
-
+        }               
         //Remove gameObject from world
         Object.Destroy(this.gameObject);
     }
@@ -59,7 +66,8 @@ public class DestructableObject : MonoBehaviour
             distanceToPlayerSquared = Vector3.Distance(explosionHit[i].transform.position, this.transform.position);
             dealDamageToSourounding = maximumDamage * (1 / distanceToPlayerSquared);
             explosionHit[i].SendMessage("TakeDamage", dealDamageToSourounding);
-        }
+        }       
+            
         //play explosion anim
     }
 
